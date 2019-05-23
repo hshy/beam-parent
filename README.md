@@ -111,7 +111,6 @@ http://www.hsshy.com
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-32261ca3ec99e6ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-5bb29689629e43c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-56d2d548f945d51b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 #### 代码生成器使用（待续...）
 ###### 代码生成器是独立的，可以随时删掉或者独立成一个项目
 - 1、修改generator.properties里的配置，例如包路径、表前缀、作者
