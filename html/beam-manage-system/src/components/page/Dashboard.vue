@@ -155,8 +155,6 @@
         computed: {
             sysuser(){
                 let sysuser = JSON.parse(localStorage.getItem('sysuser'));
-                console.log(sysuser.account);
-                console.log(sysuser.avatar);
                 return sysuser?sysuser:this.user;
             }
         },

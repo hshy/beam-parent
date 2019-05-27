@@ -26,7 +26,7 @@
                 #if($column.columnName != $pk.attrname && $column.columnName!="create_time" && $column.columnName!=
                     "update_time")
                     <if test="${classname}.${column.attrname} != null and ${classname}.${column.attrname} != ''">
-                        a.${column.columnName} = #{${classname}.${column.attrname}}
+                        and a.${column.columnName} = #{${classname}.${column.attrname}}
                     </if>
                 #end
             #end
