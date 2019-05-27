@@ -300,16 +300,18 @@
                 }
             },
             beforeAvatarUpload(file) {
+                console.log(file.type)
                 const isJPG = file.type === 'image/jpeg';
+                const isPNG = file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;
-
-                if (!isJPG) {
+                if (!isJPG&&!isPNG) {
                     this.$message.error('上传头像图片只能是 JPG 格式!');
+                    return false;
                 }
                 if (!isLt2M) {
                     this.$message.error('上传头像图片大小不能超过 2MB!');
+                    return isLt2M;
                 }
-                return isJPG && isLt2M;
             },
             handleCurrentChange(val) {
                 this.page.pageNo = val;

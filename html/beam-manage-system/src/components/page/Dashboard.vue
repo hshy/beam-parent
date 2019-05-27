@@ -15,12 +15,15 @@
                 </el-card>
                 <el-card shadow="hover" class="mgb20" style="height:252px;">
                     <div class="user-info">
-                        <img src="https://upload-images.jianshu.io/upload_images/13498144-91430607dc93da79.png" class="user-avator" alt="">
+                        <img src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator" alt="">
                         <div class="user-info-cont">
                             <div class="user-info-name">微信小程序</div>
                             <div>个人开发的微信小程序，里面有图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
                         </div>
                     </div>
+                </el-card>
+                <el-card shadow="hover" class="mgb20" style="height:300px;">
+                    <el-image src="http://img.hsshy.cn/cd9cb95c-1967-40b7-ae94-38ebb699e18f.png"></el-image>
                 </el-card>
                 <el-card shadow="hover" style="height:252px;">
                     <div slot="header" class="clearfix">

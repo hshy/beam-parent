@@ -18,16 +18,16 @@ const Http = {
                 if (res.data.code === -1) {
                     Message.error(res.data.msg);
                     window.location = "/#/login";
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
                 else if(res.data.code === 403){
                     Message.error(res.data.msg);
                     window.location = "/#/403";
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
                 else{
                     Message.error(res.data.msg);
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
 
             }
@@ -82,16 +82,16 @@ const Http = {
                 if (res.data.code === -1) {
                     Message.error(res.data.msg);
                     window.location = "/#/login";
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
                 else if(res.data.code === 403){
                     Message.error(res.data.msg);
                     window.location = "/#/403";
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
                 else{
                     Message.error(res.data.msg);
-                    return Promise.reject(res) //拒绝
+                    return Promise.resolve(res) //拒绝
                 }
 
 
