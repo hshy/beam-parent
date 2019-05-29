@@ -6,5 +6,5 @@ then
    kill -9 $pid
 fi
 echo "stop finish"
-nohup java -jar /usr/local/beam/beam-admin-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &
+nohup java -jar /usr/local/beam/beam-admin-0.0.1-SNAPSHOT.jar &
 echo "start run"
