@@ -72,6 +72,7 @@ beam-parent
 - 页面交互：Vue2.x
 - 前后端分离
 - 缓存：Redis
+- 图片上传：七牛云
 
 #### Spring Boot其他案例：https://gitee.com/hsshy/beam-example
 - 秒杀案例模块（加锁、aop加锁、redis锁、消息队列）
@@ -131,4 +132,4 @@ http://www.hsshy.com
 - nginx配置请参考doc下的beam.conf文件,可直接传到服务器下的nginx/conf.d/下进行使用，记得删除默认的default.conf文件。
 
 ### 加入Java互助群
-搜索qq号：750416471（欢迎各位大神，该群暂空无一人）
+搜索qq号：750416471
