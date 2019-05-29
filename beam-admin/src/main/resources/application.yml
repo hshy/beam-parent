@@ -62,5 +62,5 @@ spring:
     database: 0
     host: 127.0.0.1
     port: 6379
-    password: Wwzt1EwP/UpUA     # 密码（默认为空）
+    password:
     timeout: 6000ms  # 连接超时时长（毫秒）
