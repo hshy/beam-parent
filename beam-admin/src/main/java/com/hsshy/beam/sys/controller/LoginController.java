@@ -10,6 +10,7 @@ import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.sys.dto.LoginForm;
 import com.hsshy.beam.sys.entity.User;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,7 @@ public class LoginController  {
      * 清除缓存
      */
     @GetMapping(value = "/clearCache")
+    @RequiresPermissions("sys:user:clearCache")
     @ResponseBody
     public R clearCache() {
         redisUtil.clearCache();

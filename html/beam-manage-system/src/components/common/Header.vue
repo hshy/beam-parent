@@ -28,8 +28,8 @@
                         <a href="https://gitee.com/hsshy/beam-parent" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a>
-                        <el-dropdown-item divided  command="changePassword">修改密码</el-dropdown-item>
-                        <el-dropdown-item divided  command="clearCache">清除缓存</el-dropdown-item>
+                        <el-dropdown-item divided v-if="canChangePassword"  command="changePassword">修改密码</el-dropdown-item>
+                        <el-dropdown-item divided v-if="canClearCache"  command="clearCache">清除缓存</el-dropdown-item>
                         <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -94,7 +94,9 @@
                     password_confirm:[
                         {validator: validatePass, trigger: 'blur' }
                     ]
-                }
+                },
+                canChangePassword:true,
+                canClearCache:true
             }
         },
         computed:{
@@ -158,7 +160,11 @@
                     this.$message.error(err.msg);
                 })
             },
-            // 侧边栏折叠
+            created() {
+                this.canClearCache = this.getButtonPerm().indexOf("sys:user:clearCache")!=-1;
+                this.canChangePassword = this.getButtonPerm().indexOf("sys:user:changePassword")!=-1;
+            },
+                // 侧边栏折叠
             collapseChage(){
                 this.collapse = !this.collapse;
                 bus.$emit('collapse', this.collapse);
