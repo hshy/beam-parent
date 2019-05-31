@@ -16,8 +16,8 @@
                             <el-input style="width: 120px" v-model="req.account" placeholder="请输入账号"></el-input>
                             <el-input style="width: 120px" v-model="req.name" placeholder="请输入姓名"></el-input>
                             <el-button type="primary" icon="search" @click="search">搜索</el-button>
-                            <el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                            <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增用户</el-button>
+                            <el-button v-if="canDel" type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+                            <el-button v-if="canAdd" type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增用户</el-button>
                     </el-header>
                     <el-main>
                         <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
@@ -59,13 +59,14 @@
                             </el-table-column>
                             <el-table-column label="操作" width="180" align="center">
                                 <template slot-scope="scope">
-                                    <el-button type="text" icon="el-icon-edit"
+                                    <el-button v-if="canEdit" type="text" icon="el-icon-edit"
                                                @click="handleEdit(scope.$index, scope.row)">编辑
                                     </el-button>
-                                    <el-button type="text" icon="el-icon-delete" class="red"
+                                    <el-button v-if="canDel" type="text" icon="el-icon-delete" class="red"
                                                @click="handleDelete(scope.$index, scope.row)">删除
                                     </el-button>
                                     <el-button
+                                        v-if="canResetPassword"
                                         type="text"
                                         icon="el-icon-refresh"
                                         class="warning"
@@ -235,13 +236,22 @@
                     children: 'children',
                     label: 'name'
                 },
-                roleList:[]
+                roleList:[],
+                canEdit:true,
+                canAdd:true,
+                canDel:true,
+                canResetPassword:true,
+                canChangePassword:true
 
             }
         },
         created() {
             this.getData();
             this.getDeptTreeData();
+            this.canEdit = this.getButtonPerm().indexOf("sys:user:edit")!=-1;
+            this.canAdd = this.getButtonPerm().indexOf("sys:user:add")!=-1;
+            this.canDel = this.getButtonPerm().indexOf("sys:user:del")!=-1;
+            this.canResetPassword = this.getButtonPerm().indexOf("sys:user:resetPassword")!=-1;
         },
         computed: {},
         methods: {
@@ -398,12 +408,19 @@
                 this.delVisible = true;
             },
             delAll() {
-                this.delVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
+
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+
+                this.delVisible = true;
+
 
             },
             handleSelectionChange(val) {

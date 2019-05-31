@@ -13,6 +13,9 @@ export default {
     getNavList:()=>{
         return http.get("/sys/menu/nav", {})
     },
+    getButtonList:()=>{
+        return http.get("/sys/menu/button", {})
+    },
     clearCache:()=>{
         return http.get("/clearCache", {})
     },

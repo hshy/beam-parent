@@ -150,6 +150,8 @@
                 })
             },
             clearCache(){
+                localStorage.removeItem('menuItems');
+                localStorage.removeItem('buttonItems');
                 AccountApi.clearCache().then((res) => {
                     this.$message.success(res.msg);
                 }, (err) => {

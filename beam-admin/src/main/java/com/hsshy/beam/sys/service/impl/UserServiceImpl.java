@@ -10,6 +10,7 @@ import com.hsshy.beam.common.shiro.ShiroUtils;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
+import com.hsshy.beam.sys.dao.MenuMapper;
 import com.hsshy.beam.sys.dao.UserMapper;
 import com.hsshy.beam.sys.dto.ChangePassowdForm;
 import com.hsshy.beam.sys.entity.User;
@@ -17,6 +18,7 @@ import com.hsshy.beam.sys.service.IUserService;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import java.util.Arrays;
@@ -36,6 +38,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Override
     public IPage<Map> selectPageList(User user) {
@@ -165,6 +170,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public List<Long> queryAllMenuId(Long userId) {
         return baseMapper.queryAllMenuId(userId);
+    }
+
+
+    @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.USER_ID + "'+#userId")
+    public List<String> queryAllButtonPerms(Long userId, Integer type) {
+        if(userId == Constant.SUPER_ADMIN){
+            return menuMapper.queryAllButtonPerms();
+        }
+        else {
+            return baseMapper.queryAllPerms(userId,type);
+        }
     }
 
 

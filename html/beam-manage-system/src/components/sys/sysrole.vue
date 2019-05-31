@@ -11,8 +11,8 @@
 
                 <el-input style="width: 130px" v-model="req.roleName" placeholder="请输入角色名称"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
-                <el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button v-if="canDel" type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+                <el-button v-if="canAdd" type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
             </div>
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
@@ -37,12 +37,12 @@
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
+                        <el-button v-if="canEdit" type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
                         </el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red"
+                        <el-button v-if="canDel" type="text" icon="el-icon-delete" class="red"
                                    @click="handleDelete(scope.$index, scope.row)">删除
                         </el-button>
-                        <el-button class="success" type="text" icon="el-icon-lx-lock" @click="handleConfigPerms(scope.$index, scope.row)">权限配置
+                        <el-button v-if="canConfigPerm" class="success" type="text" icon="el-icon-lx-lock" @click="handleConfigPerms(scope.$index, scope.row)">权限配置
                         </el-button>
 
                     </template>
@@ -80,7 +80,7 @@
         </el-dialog>
         <!-- 编辑弹出框 -->
         <el-dialog title="配置菜单" :modal="false" :visible.sync="configMenuDialog" width="30%">
-            <el-tree check-strictly="true" v-loading="loading" show-checkbox node-key="id" :data="menuTreeData" :default-checked-keys="checkMenuData" :props="defaultProps"  ref="treeMenu" default-expand-all :expand-on-click-node="false" ></el-tree>
+            <el-tree :check-strictly="false" v-loading="loading" show-checkbox node-key="id" :data="menuTreeData" :default-checked-keys="checkMenuData" :props="defaultProps"  ref="treeMenu" default-expand-all :expand-on-click-node="false" ></el-tree>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="configMenuDialog = false">取 消</el-button>
                 <el-button type="primary" @click="saveMuenPerms">确 定</el-button>
@@ -123,11 +123,19 @@
                     label: 'name'
                 },
                 checkMenuData:[],
-                roleId:null
+                roleId:null,
+                canEdit:true,
+                canAdd:true,
+                canDel:true,
+                canConfigPerm:true
             }
         },
         created() {
             this.getData();
+            this.canEdit = this.getButtonPerm().indexOf("sys:role:edit")!=-1;
+            this.canAdd = this.getButtonPerm().indexOf("sys:role:add")!=-1;
+            this.canDel = this.getButtonPerm().indexOf("sys:role:del")!=-1;
+            this.canConfigPerm = this.getButtonPerm().indexOf("sys:role:configPerm")!=-1;
         },
         computed: {},
         methods: {
@@ -243,13 +251,16 @@
                 this.delVisible = true;
             },
             delAll() {
-                this.delVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
-
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+                this.delVisible = true;
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;

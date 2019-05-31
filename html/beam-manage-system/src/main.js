@@ -10,7 +10,17 @@ import "babel-polyfill";
 
 Vue.use(ElementUI, { size: 'small' });
 Vue.prototype.$axios = axios;
+Vue.prototype.getButtonPerm = function (){//changeData是函数名
 
+    let buttonItems = localStorage.getItem("buttonItems");
+    if(buttonItems){
+        return buttonItems;
+    }
+    else {
+        return [];
+    }
+
+}
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     const ms_username = localStorage.getItem('ms_username');

@@ -25,5 +25,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * 获取不包含按钮的菜单列表
      */
     List<Map> queryNotButtonList();
+
+    List<String> queryAllButtonPerms();
 	
 }

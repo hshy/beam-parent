@@ -1,12 +1,9 @@
 package com.hsshy.beam.sys.service;
-
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hsshy.beam.common.base.service.ICommonService;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.sys.dto.ChangePassowdForm;
 import com.hsshy.beam.sys.entity.User;
-
 import java.util.List;
 import java.util.Map;
 
@@ -35,5 +32,8 @@ public interface IUserService extends ICommonService<User> {
      * 查询用户的所有菜单ID
      */
     List<Long> queryAllMenuId(Long userId);
+
+    List<String> queryAllButtonPerms(Long userId,Integer type);
+
 
 }

@@ -22,11 +22,11 @@
                     </el-option>
                 </el-select>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
-                <el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
-                <el-button type="info"  class="handle-del mr10" @click="handleRun">运行一次</el-button>
-                <el-button type="danger"  class="handle-del mr10" @click="handlePause">停止</el-button>
-                <el-button type="success"  class="handle-del mr10" @click="handleResume">恢复</el-button>
+                <el-button type="danger" v-if="canDel" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+                <el-button type="primary" v-if="canAdd" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button type="info"  v-if="canRun" class="handle-del mr10" @click="handleRun">运行一次</el-button>
+                <el-button type="danger"  v-if="canPause" class="handle-del mr10" @click="handlePause">停止</el-button>
+                <el-button type="success"  v-if="canResume" class="handle-del mr10" @click="handleResume">恢复</el-button>
             </div>
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
@@ -79,12 +79,11 @@
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
+                        <el-button type="text" icon="el-icon-edit" v-if="canEdit" @click="handleEdit(scope.$index, scope.row)">编辑
                         </el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red"
+                        <el-button type="text" icon="el-icon-delete" class="red" v-if="canDel"
                                    @click="handleDelete(scope.$index, scope.row)">删除
                         </el-button>
-
                     </template>
                 </el-table-column>
             </el-table>
@@ -199,13 +198,24 @@
                 req: {},
                 accountInput: true,
                 loading: false,
-                statusName:[]
+                statusName:[],
+                canEdit:true,
+                canAdd:true,
+                canDel:true,
+                canResume:true,
+                canPause:true,
+                canRun:true
             }
         },
         created() {
             this.getData();
             this.getStatusList();
-
+            this.canEdit = this.getButtonPerm().indexOf("sys:schedule:edit")!=-1;
+            this.canAdd = this.getButtonPerm().indexOf("sys:schedule:add")!=-1;
+            this.canDel = this.getButtonPerm().indexOf("sys:schedule:del")!=-1;
+            this.canResume = this.getButtonPerm().indexOf("sys:schedule:resume")!=-1;
+            this.canPause = this.getButtonPerm().indexOf("sys:schedule:pause")!=-1;
+            this.canRun = this.getButtonPerm().indexOf("sys:schedule:run")!=-1;
         },
         computed: {},
         methods: {
@@ -268,36 +278,56 @@
                 this.delVisible = true;
             },
             delAll() {
-                this.delVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+                this.delVisible = true;
+
             },
             handleRun(){
-                this.runVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+                this.runVisible = true;
+
             },
             handlePause(){
-                this.pauseVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+                this.pauseVisible = true;
+
             },
             handleResume(){
-                this.resumeVisible = true;
                 this.ids = [];
                 const length = this.multipleSelection.length;
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
+                if(this.ids.length<=0){
+                    this.$message.error("请选择要操作的记录");
+                    return false;
+                }
+                this.resumeVisible = true;
+
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
@@ -335,8 +365,6 @@
                         this.$message.error(err.msg);
                     })
                 }
-
-
 
             },
 

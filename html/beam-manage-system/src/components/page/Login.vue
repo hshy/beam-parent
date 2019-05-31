@@ -54,8 +54,6 @@
 				                console.log(res.data)
 				                localStorage.setItem('sysuser',JSON.stringify(res.data));
 				                this.$router.push({path: '/'});
-				              } else {
-				                this.$message.error(res.msg);
 				              }
 				            }, (err) => {
 				              this.loading = false

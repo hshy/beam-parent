@@ -23,7 +23,7 @@ public interface IMenuService extends IService<Menu> {
     List<Map> queryListParentId(Long parentId, List<Long> menuIdList);
 
     /**
-     * 获取该角色的菜单列表
+     * 获取该用户的菜单列表
      */
     List<Map> getUserMenuList(Long userId);
 
@@ -37,6 +37,7 @@ public interface IMenuService extends IService<Menu> {
      * 获取树形菜单列表
      */
     List<Map> treeMenuList(Long menuId, Menu menu);
+
 
 
 }

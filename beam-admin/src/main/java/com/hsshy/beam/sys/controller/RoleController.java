@@ -7,6 +7,7 @@ import com.hsshy.beam.sys.entity.Role;
 import com.hsshy.beam.sys.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,7 @@ public class RoleController  {
 
 
     @SysLog(value = "保存角色")
-    @RequiresPermissions("sys:role:save")
+    @RequiresPermissions(value = {"sys:role:add","sys:role:edit"},logical = Logical.OR)
     @ApiOperation("保存角色")
     @PostMapping(value = "/save")
     public Object save(@RequestBody Role role){
@@ -61,6 +62,7 @@ public class RoleController  {
 
     @ApiOperation("角色详情")
     @GetMapping(value = "/info}")
+    @RequiresPermissions("sys:role:edit")
     public Object info(@RequestParam Long roleId){
 
         return R.ok(roleService.getById(roleId));
@@ -73,7 +75,7 @@ public class RoleController  {
         return  R.ok(roleService.getCheckMenuIds(roleId));
     }
 
-    @RequiresPermissions("sys:role:saveMenuPerm")
+    @RequiresPermissions("sys:role:configPerm")
     @ApiOperation("配置菜单权限")
     @PostMapping(value = "/save/menu/perm")
     public Object saveMuenPerms(@RequestBody Role role){

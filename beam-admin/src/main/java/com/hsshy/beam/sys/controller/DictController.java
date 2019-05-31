@@ -9,6 +9,7 @@ import com.hsshy.beam.sys.service.IDictService;
 import com.hsshy.beam.common.base.controller.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -63,7 +64,7 @@ public class DictController extends BaseController {
         return R.ok(dictList);
     }
     @ApiOperation("保存")
-    @RequiresPermissions("sys:dict:save")
+    @RequiresPermissions(value = {"sys:dict:add","sys:dict:edit"},logical = Logical.OR)
     @PostMapping(value = "/save")
     public R save(@RequestBody Dict dict){
 
@@ -81,7 +82,7 @@ public class DictController extends BaseController {
         return R.ok();
     }
     @ApiOperation("删除")
-    @RequiresPermissions("sys:dict:delete")
+    @RequiresPermissions("sys:dict:del")
     @PostMapping(value = "/delete")
     public R delete(@RequestBody Long dictIds[]){
 

@@ -10,6 +10,7 @@ import com.hsshy.beam.sys.service.IDeptService;
 import com.hsshy.beam.common.base.controller.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class DeptController extends BaseController {
     }
     @ApiOperation("保存")
     @PostMapping(value = "/save")
-    @RequiresPermissions("sys:dept:save")
+    @RequiresPermissions(value = {"sys:dept:add","sys:dept:edit"},logical = Logical.OR)
     public R save(@RequestBody Dept dept){
 
         deptService.saveOrUpdate(dept);
@@ -87,7 +88,7 @@ public class DeptController extends BaseController {
 
     @ApiOperation("详情")
     @GetMapping(value = "/info")
-    @RequiresPermissions("sys:dept:info")
+    @RequiresPermissions("sys:dept:edit")
     public R info(@RequestParam Long deptId){
 
         Dept dept = deptService.getById(deptId);

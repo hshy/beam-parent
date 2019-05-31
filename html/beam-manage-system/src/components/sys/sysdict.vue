@@ -12,7 +12,7 @@
                 <el-input style="width: 120px" v-model="req.keyword" placeholder="请输入关键字"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <!--<el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>-->
-                <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button v-if="canAdd" type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
             </div>
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
@@ -54,9 +54,9 @@
                         <el-button type="text" class="yellow" icon="el-icon-zoom-in"
                                    @click="handleView(scope.$index, scope.row)">查看字典值
                         </el-button>
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
+                        <el-button v-if="canEdit" type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
                         </el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red"
+                        <el-button v-if="canDel" type="text" icon="el-icon-delete" class="red"
                                    @click="handleDelete(scope.$index, scope.row)">删除
                         </el-button>
 
@@ -154,9 +154,9 @@
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="subHandleEdit(scope.$index, scope.row)">编辑
+                        <el-button v-if="canEdit" type="text" icon="el-icon-edit" @click="subHandleEdit(scope.$index, scope.row)">编辑
                         </el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red"
+                        <el-button v-if="canDel" type="text" icon="el-icon-delete" class="red"
                                    @click="subHandleDelete(scope.$index, scope.row)">删除
                         </el-button>
                     </template>
@@ -189,22 +189,25 @@
                 rules: {
                     name: [
                         {required: true, message: '请填写字典名称', trigger: 'blur'},
-
                     ],
                     code: [
                         {required: true, message: '请填写字典编码', trigger: 'blur'},
-
                     ],
-
                 },
                 dictList: [],
                 subDictList: [],
                 mark: 0,
-                pid: 0
+                pid: 0,
+                canEdit:true,
+                canAdd:true,
+                canDel:true
             }
         },
         created() {
             this.getData();
+            this.canEdit = this.getButtonPerm().indexOf("sys:dict:edit")!=-1;
+            this.canAdd = this.getButtonPerm().indexOf("sys:dict:add")!=-1;
+            this.canDel = this.getButtonPerm().indexOf("sys:dict:del")!=-1;
         },
         computed: {},
         methods: {

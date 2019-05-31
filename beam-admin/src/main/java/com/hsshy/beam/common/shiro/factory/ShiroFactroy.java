@@ -93,7 +93,7 @@ public class ShiroFactroy implements IShiro {
                 permsList.add(menu.getPerms());
             }
         }else{
-            permsList = userMapper.queryAllPerms(userId);
+            permsList = userMapper.queryAllPerms(userId,null);
         }
         return permsList;
     }

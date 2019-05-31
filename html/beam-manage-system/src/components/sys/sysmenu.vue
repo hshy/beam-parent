@@ -12,7 +12,7 @@
                 <el-input style="width: 150px" v-model="req.name" placeholder="请输入菜单名称"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <!--<el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>-->
-                <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button v-if="canAdd" type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
             </div>
             <el-table row-key="id" :data="treeData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
@@ -50,9 +50,9 @@
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
+                        <el-button v-if="canEdit" type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
                         </el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red"
+                        <el-button v-if="canDel" type="text" icon="el-icon-delete" class="red"
                                    @click="handleDelete(scope.$index, scope.row)">删除
                         </el-button>
 
@@ -60,18 +60,6 @@
                 </el-table-column>
             </el-table>
 
-            <!--<div class="pagination">-->
-                <!--<el-pagination-->
-                    <!--background-->
-                    <!--:page-sizes="[10, 20, 30, 40, 50]"-->
-                    <!--:page-size="page.pageSize"-->
-                    <!--:current-page="page.pageNo"-->
-                    <!--@current-change="handleCurrentChange"-->
-                    <!--@size-change="changePageSize"-->
-                    <!--layout="prev, pager, next"-->
-                    <!--:total="page.totalRows">-->
-                <!--</el-pagination>-->
-            <!--</div>-->
         </div>
 
         <!-- 编辑弹出框 -->
@@ -187,12 +175,18 @@
                 defaultProps: {
                     children: 'children',
                     label: 'name'
-                }
+                },
+                canEdit:true,
+                canAdd:true,
+                canDel:true,
 
             }
         },
         created() {
             this.getTreeData();
+            this.canEdit = this.getButtonPerm().indexOf("sys:menu:edit")!=-1;
+            this.canAdd = this.getButtonPerm().indexOf("sys:menu:add")!=-1;
+            this.canDel = this.getButtonPerm().indexOf("sys:menu:del")!=-1;
         },
         computed: {},
         methods: {
@@ -280,6 +274,8 @@
                 MenuApi.save(this.menu).then((res) => {
                     this.loading = false
                     if (res.error === false) {
+                        localStorage.removeItem('menuItems');
+                        localStorage.removeItem('buttonItems');
                         this.editVisible = false
                         this.$message.success(res.msg);
                         this.reload()

@@ -24,12 +24,12 @@ public interface UserMapper extends BaseMapper<User> {
      * 查询用户的所有权限
      * @param userId  用户ID
      */
-    List<String> queryAllPerms(Long userId);
+    List<String> queryAllPerms(@Param("userId") Long userId,@Param("type") Integer type);
 
     /**
      * 查询用户的所有菜单ID
      */
-    List<Long> queryAllMenuId(Long userId);
+    List<Long> queryAllMenuId(@Param("userId") Long userId);
 
 
     List<Long> getRoleIdsById(@Param("userId") Long userId);

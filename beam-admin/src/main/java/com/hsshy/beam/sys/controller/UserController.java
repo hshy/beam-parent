@@ -11,6 +11,7 @@ import com.hsshy.beam.sys.service.IUserService;
 import com.hsshy.beam.sys.wrapper.UserWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +53,7 @@ public class UserController extends BaseController {
 
     @ApiOperation("保存用户")
     @PostMapping(value = "/save")
-    @RequiresPermissions("sys:user:save")
+    @RequiresPermissions(value = {"sys:user:add","sys:user:edit"},logical = Logical.OR)
     public R save(@RequestBody User user){
         //删除缓存
 

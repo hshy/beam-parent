@@ -10,10 +10,12 @@ import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.sys.entity.Dept;
 import com.hsshy.beam.sys.entity.Menu;
 import com.hsshy.beam.sys.service.IMenuService;
+import com.hsshy.beam.sys.service.IUserService;
 import com.hsshy.beam.sys.wrapper.MenuWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,9 @@ public class MenuController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private IUserService userService;
+
     /**
      * 树形菜单
      */
@@ -59,6 +64,16 @@ public class MenuController extends BaseController {
     public R nav(){
         List<Map> menuList = menuService.getUserMenuList(ShiroUtils.getUserId());
         return R.ok(menuList);
+    }
+
+    /**
+     * 按钮权限
+     */
+    @ApiOperation(value = "按钮权限")
+    @GetMapping("/button")
+    public R button(){
+
+        return R.ok(userService.queryAllButtonPerms(ShiroUtils.getUserId(),2));
     }
 
     //分页
@@ -81,7 +96,7 @@ public class MenuController extends BaseController {
         return R.ok(menuList);
     }
     @ApiOperation("保存")
-    @RequiresPermissions("sys:menu:save")
+    @RequiresPermissions(value = {"sys:menu:add","sys:menu:edit"},logical = Logical.OR)
     @PostMapping(value = "/save")
     public R save(@RequestBody Menu menu){
 
@@ -102,7 +117,7 @@ public class MenuController extends BaseController {
 
     @ApiOperation("详情")
     @GetMapping(value = "/info")
-    @RequiresPermissions("sys:menu:info")
+    @RequiresPermissions("sys:menu:edit")
     public R info(@RequestParam Long menuId){
 
         Menu menu = menuService.getById(menuId);
@@ -121,7 +136,7 @@ public class MenuController extends BaseController {
         return R.ok(menu);
 
     }
-    @RequiresPermissions("sys:menu:delete")
+    @RequiresPermissions("sys:menu:del")
     @ApiOperation("删除")
     @PostMapping(value = "/delete")
     public R delete(@RequestBody Long menuIds[]){
