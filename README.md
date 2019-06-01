@@ -27,6 +27,7 @@
   - **集成了异步插入日志**
   - **实现了用户角色菜单权限动态配置，精确到按钮级别**
   - **日志分类等**
+  - **使用七牛云存储图片（注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）**
 
 
 
@@ -99,7 +100,7 @@ http://www.hsshy.com
 演示账户：test 123456
 
 #### 常见问题
-第一次运行项目若菜单没有出来，先注释掉MenuServiceImpl里的缓存注解
+上传图片失败，请修改sys_config中的七牛云配置，改为自己的七牛云配置。（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
 
 #### 项目截图
 ##### 后台管理系统：
