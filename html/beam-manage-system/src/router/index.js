@@ -59,7 +59,7 @@ export default new Router({
                 {
                     path: '/schedulejob',
                     component: resolve => require(['../components/sys/schedulejob.vue'], resolve),
-                    meta: { title: '定时任务管理',permission:true,perms:"sys:schedulejob:list" }
+                    meta: { title: '定时任务管理',permission:true,perms:"sys:schedule:list" }
                 },
                 {
                     path: '/sysdict',

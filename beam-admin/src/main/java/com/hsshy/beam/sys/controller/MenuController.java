@@ -44,8 +44,6 @@ public class MenuController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
 
-    @Autowired
-    private IUserService userService;
 
     IShiro shiroFactory = ShiroFactroy.me();
 
@@ -55,7 +53,7 @@ public class MenuController extends BaseController {
      */
     @ApiOperation(value = "树形菜单")
     @GetMapping("/tree/menu")
-    @RequiresPermissions("sys:menu:tree")
+    @RequiresPermissions("sys:menu:list")
     public R treeMenu(Menu menu){
 
         return R.ok(menuService.treeMenuList(0L,menu));
@@ -81,25 +79,7 @@ public class MenuController extends BaseController {
         return R.ok(shiroFactory.findPermissionsByUserId(ShiroUtils.getUserId()));
     }
 
-    //分页
-    @ApiOperation("分页列表")
-    @GetMapping(value = "/page/list")
-    public R pageList(Menu menu){
 
-        QueryWrapper qw = new QueryWrapper<Menu>();
-
-        IPage<Map> page = menuService.page(new Page(menu.getCurrentPage(),menu.getPageSize()),qw);
-        return R.ok(new MenuWrapper(page).wrap());
-    }
-    @ApiOperation("列表")
-    @GetMapping(value = "/list")
-    public R list(Menu menu){
-
-        QueryWrapper qw = new QueryWrapper<Menu>();
-
-        List<Menu> menuList = menuService.list(qw);
-        return R.ok(menuList);
-    }
     @ApiOperation("保存")
     @RequiresPermissions(value = {"sys:menu:add","sys:menu:edit"},logical = Logical.OR)
     @PostMapping(value = "/save")

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2019-06-01 10:09:27
+Date: 2019-06-01 11:27:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -187,7 +187,8 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'LAPTOP-JP1B0EBJ1559353087447', '1559354787086', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'izm5ejcx2c067iw3q7pqrnz1559354948480', '1559358431729', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'localhost1549951415301', '1559358420010', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -359,12 +360,11 @@ CREATE TABLE `sys_dict` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES ('0', '0', '顶级', '顶级', null, '0', '2019-04-13 15:55:58', '2019-04-13 15:56:01');
 INSERT INTO `sys_dict` VALUES ('16', '0', '状态', '', 'frozen', '1', '2019-04-12 10:50:21', '2019-04-13 07:30:04');
 INSERT INTO `sys_dict` VALUES ('17', '16', '启用', null, '1', '1', '2019-04-12 10:50:25', '2019-04-12 10:50:28');
 INSERT INTO `sys_dict` VALUES ('18', '16', '禁用', null, '0', '2', '2019-04-12 10:50:30', '2019-04-12 10:50:33');
@@ -378,6 +378,7 @@ INSERT INTO `sys_dict` VALUES ('35', '32', '按钮', null, '2', '3', '2019-04-12
 INSERT INTO `sys_dict` VALUES ('36', '0', '定时任务状态', null, 'schedule_status', '4', '2019-04-13 11:49:28', '2019-04-13 11:49:30');
 INSERT INTO `sys_dict` VALUES ('37', '36', '正常', null, '1', '1', '2019-04-13 11:50:08', '2019-04-13 11:50:10');
 INSERT INTO `sys_dict` VALUES ('38', '36', '暂停', null, '0', '2', '2019-04-13 11:50:24', '2019-04-13 11:50:27');
+INSERT INTO `sys_dict` VALUES ('39', '0', '顶级', '顶级', null, '0', '2019-04-13 15:55:58', '2019-04-13 15:56:01');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -393,7 +394,7 @@ CREATE TABLE `sys_login_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1134635766908022787 DEFAULT CHARSET=utf8mb4 COMMENT='登陆日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1134656354379530242 DEFAULT CHARSET=utf8mb4 COMMENT='登陆日志';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -443,6 +444,14 @@ INSERT INTO `sys_login_log` VALUES ('1134446421467013121', '登录日志', '1', 
 INSERT INTO `sys_login_log` VALUES ('1134450053851738114', '登录日志', '1', '成功', null, '127.0.0.1', '2019-05-31 13:22:25', '2019-05-31 13:22:25');
 INSERT INTO `sys_login_log` VALUES ('1134635631440392194', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-01 01:39:50', '2019-06-01 01:39:50');
 INSERT INTO `sys_login_log` VALUES ('1134635766908022786', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-01 01:40:22', '2019-06-01 01:40:22');
+INSERT INTO `sys_login_log` VALUES ('1134643138689662977', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 02:09:40', '2019-06-01 02:09:40');
+INSERT INTO `sys_login_log` VALUES ('1134649284267769857', '登录日志', '1072429679148908546', '成功', null, '110.87.38.164', '2019-06-01 02:34:05', '2019-06-01 02:34:05');
+INSERT INTO `sys_login_log` VALUES ('1134650000055107586', '登录日志', '1072429679148908546', '成功', null, '110.87.38.164', '2019-06-01 02:36:55', '2019-06-01 02:36:55');
+INSERT INTO `sys_login_log` VALUES ('1134651022559313921', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 02:40:59', '2019-06-01 02:40:59');
+INSERT INTO `sys_login_log` VALUES ('1134655631478652930', '登录日志', '1072429679148908546', '成功', null, '110.87.38.164', '2019-06-01 02:59:18', '2019-06-01 02:59:18');
+INSERT INTO `sys_login_log` VALUES ('1134655732154531841', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 02:59:42', '2019-06-01 02:59:42');
+INSERT INTO `sys_login_log` VALUES ('1134656100074684418', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 03:01:10', '2019-06-01 03:01:10');
+INSERT INTO `sys_login_log` VALUES ('1134656354379530241', '登录日志', '1072429679148908546', '成功', null, '110.87.38.164', '2019-06-01 03:02:10', '2019-06-01 03:02:10');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -472,8 +481,8 @@ INSERT INTO `sys_menu` VALUES ('1', '0', '系统首页', 'dashboard', 'sys:dashb
 INSERT INTO `sys_menu` VALUES ('15', '0', '系统管理', 'sys', null, '0', 'el-icon-lx-settings', '15', '1', '1', '2018-12-10 17:52:34', '2019-05-31 09:06:50', '0');
 INSERT INTO `sys_menu` VALUES ('16', '15', '用户管理', 'sysuser', 'sys:user:list', '1', null, '16', '1', '1', '2018-12-10 18:28:59', '2019-01-02 10:38:09', '0');
 INSERT INTO `sys_menu` VALUES ('17', '15', '角色管理', 'sysrole', 'sys:role:list', '1', null, '17', '1', '1', '2018-12-10 18:35:34', '2019-01-03 01:33:09', '0');
-INSERT INTO `sys_menu` VALUES ('18', '15', '菜单管理', 'sysmenu', 'sys:menu:tree', '1', null, '18', '1', '1', '2018-12-10 18:36:16', '2019-01-03 01:39:01', '0');
-INSERT INTO `sys_menu` VALUES ('19', '15', '部门管理', 'sysdept', 'sys:dept:tree', '1', null, '19', '1', '1', '2018-12-10 18:37:20', '2019-01-03 01:41:49', '0');
+INSERT INTO `sys_menu` VALUES ('18', '15', '菜单管理', 'sysmenu', 'sys:menu:list', '1', null, '18', '1', '1', '2018-12-10 18:36:16', '2019-01-03 01:39:01', '0');
+INSERT INTO `sys_menu` VALUES ('19', '15', '部门管理', 'sysdept', 'sys:dept:list', '1', null, '19', '1', '1', '2018-12-10 18:37:20', '2019-01-03 01:41:49', '0');
 INSERT INTO `sys_menu` VALUES ('21', '15', '定时任务', 'schedulejob', 'sys:schedule:list', '1', null, '21', '1', '1', '2018-12-10 18:39:14', '2019-01-03 01:42:33', '0');
 INSERT INTO `sys_menu` VALUES ('1080412372541181953', '16', '新增', 'sysuser/add', 'sys:user:add', '2', null, '1', null, null, '2019-01-02 10:35:57', '2019-05-31 09:38:25', '0');
 INSERT INTO `sys_menu` VALUES ('1080413095496585218', '16', '删除', 'sysuser/del', 'sys:user:del', '2', null, '2', null, null, '2019-01-02 10:38:50', '2019-04-15 07:21:36', '0');
@@ -557,7 +566,7 @@ CREATE TABLE `sys_role_menu` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -584,29 +593,31 @@ INSERT INTO `sys_role_menu` VALUES ('194', '1', '21');
 INSERT INTO `sys_role_menu` VALUES ('195', '1', '1080640763785650177');
 INSERT INTO `sys_role_menu` VALUES ('196', '1', '1080640900176027650');
 INSERT INTO `sys_role_menu` VALUES ('197', '1', '1080641066287243266');
-INSERT INTO `sys_role_menu` VALUES ('227', '1076685137679704065', '1');
-INSERT INTO `sys_role_menu` VALUES ('228', '1076685137679704065', '15');
-INSERT INTO `sys_role_menu` VALUES ('229', '1076685137679704065', '16');
-INSERT INTO `sys_role_menu` VALUES ('230', '1076685137679704065', '1080412372541181953');
-INSERT INTO `sys_role_menu` VALUES ('231', '1076685137679704065', '17');
-INSERT INTO `sys_role_menu` VALUES ('232', '1076685137679704065', '1080637598663188481');
-INSERT INTO `sys_role_menu` VALUES ('233', '1076685137679704065', '1134397077300789249');
-INSERT INTO `sys_role_menu` VALUES ('234', '1076685137679704065', '1080638043456544769');
-INSERT INTO `sys_role_menu` VALUES ('235', '1076685137679704065', '18');
-INSERT INTO `sys_role_menu` VALUES ('236', '1076685137679704065', '1080639293405274114');
-INSERT INTO `sys_role_menu` VALUES ('237', '1076685137679704065', '1134398704145481730');
-INSERT INTO `sys_role_menu` VALUES ('238', '1076685137679704065', '19');
-INSERT INTO `sys_role_menu` VALUES ('239', '1076685137679704065', '1080639863587348482');
-INSERT INTO `sys_role_menu` VALUES ('240', '1076685137679704065', '1080640119691550722');
-INSERT INTO `sys_role_menu` VALUES ('241', '1076685137679704065', '1080640228772814849');
-INSERT INTO `sys_role_menu` VALUES ('242', '1076685137679704065', '21');
-INSERT INTO `sys_role_menu` VALUES ('243', '1076685137679704065', '1134386963948847105');
-INSERT INTO `sys_role_menu` VALUES ('244', '1076685137679704065', '1134387182992179202');
-INSERT INTO `sys_role_menu` VALUES ('245', '1076685137679704065', '1134387322570227714');
-INSERT INTO `sys_role_menu` VALUES ('246', '1076685137679704065', '1116603445676101634');
-INSERT INTO `sys_role_menu` VALUES ('247', '1076685137679704065', '1116613754159702018');
-INSERT INTO `sys_role_menu` VALUES ('248', '1076685137679704065', '1116961835054452737');
-INSERT INTO `sys_role_menu` VALUES ('249', '1076685137679704065', '1117688867416195074');
+INSERT INTO `sys_role_menu` VALUES ('276', '1076685137679704065', '1');
+INSERT INTO `sys_role_menu` VALUES ('277', '1076685137679704065', '15');
+INSERT INTO `sys_role_menu` VALUES ('278', '1076685137679704065', '16');
+INSERT INTO `sys_role_menu` VALUES ('279', '1076685137679704065', '1080412372541181953');
+INSERT INTO `sys_role_menu` VALUES ('280', '1076685137679704065', '1080636440926232577');
+INSERT INTO `sys_role_menu` VALUES ('281', '1076685137679704065', '1134393918364925954');
+INSERT INTO `sys_role_menu` VALUES ('282', '1076685137679704065', '1134405857598062594');
+INSERT INTO `sys_role_menu` VALUES ('283', '1076685137679704065', '17');
+INSERT INTO `sys_role_menu` VALUES ('284', '1076685137679704065', '1080637598663188481');
+INSERT INTO `sys_role_menu` VALUES ('285', '1076685137679704065', '1134397077300789249');
+INSERT INTO `sys_role_menu` VALUES ('286', '1076685137679704065', '1080638043456544769');
+INSERT INTO `sys_role_menu` VALUES ('287', '1076685137679704065', '18');
+INSERT INTO `sys_role_menu` VALUES ('288', '1076685137679704065', '1080639293405274114');
+INSERT INTO `sys_role_menu` VALUES ('289', '1076685137679704065', '1134398704145481730');
+INSERT INTO `sys_role_menu` VALUES ('290', '1076685137679704065', '19');
+INSERT INTO `sys_role_menu` VALUES ('291', '1076685137679704065', '1080639863587348482');
+INSERT INTO `sys_role_menu` VALUES ('292', '1076685137679704065', '1080640119691550722');
+INSERT INTO `sys_role_menu` VALUES ('293', '1076685137679704065', '1080640228772814849');
+INSERT INTO `sys_role_menu` VALUES ('294', '1076685137679704065', '21');
+INSERT INTO `sys_role_menu` VALUES ('295', '1076685137679704065', '1134386963948847105');
+INSERT INTO `sys_role_menu` VALUES ('296', '1076685137679704065', '1134387182992179202');
+INSERT INTO `sys_role_menu` VALUES ('297', '1076685137679704065', '1134387322570227714');
+INSERT INTO `sys_role_menu` VALUES ('298', '1076685137679704065', '1116603445676101634');
+INSERT INTO `sys_role_menu` VALUES ('299', '1076685137679704065', '1116961835054452737');
+INSERT INTO `sys_role_menu` VALUES ('300', '1076685137679704065', '1117688867416195074');
 
 -- ----------------------------
 -- Table structure for sys_user
