@@ -108,7 +108,7 @@
         },
         created() {
             this.getData();
-            this.canClear = this.getButtonPerm().indexOf("sys:operationLog:clear")!=-1;
+            this.canClear = this.getPerms().indexOf("sys:operationLog:clear")!=-1;
 
         },
         computed: {},

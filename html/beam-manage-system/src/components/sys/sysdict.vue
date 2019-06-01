@@ -205,9 +205,9 @@
         },
         created() {
             this.getData();
-            this.canEdit = this.getButtonPerm().indexOf("sys:dict:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:dict:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:dict:del")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:dict:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:dict:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:dict:del")!=-1;
         },
         computed: {},
         methods: {

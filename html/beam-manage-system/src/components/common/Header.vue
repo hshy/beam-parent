@@ -172,8 +172,8 @@
                 })
             },
             created() {
-                this.canClearCache = this.getButtonPerm().indexOf("sys:user:clearCache")!=-1;
-                this.canChangePassword = this.getButtonPerm().indexOf("sys:user:changePassword")!=-1;
+                this.canClearCache = this.getPerms().indexOf("sys:user:clearCache")!=-1;
+                this.canChangePassword = this.getPerms().indexOf("sys:user:changePassword")!=-1;
             },
                 // 侧边栏折叠
             collapseChage(){

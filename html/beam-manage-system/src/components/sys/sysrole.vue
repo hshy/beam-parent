@@ -132,10 +132,10 @@
         },
         created() {
             this.getData();
-            this.canEdit = this.getButtonPerm().indexOf("sys:role:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:role:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:role:del")!=-1;
-            this.canConfigPerm = this.getButtonPerm().indexOf("sys:role:configPerm")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:role:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:role:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:role:del")!=-1;
+            this.canConfigPerm = this.getPerms().indexOf("sys:role:configPerm")!=-1;
         },
         computed: {},
         methods: {

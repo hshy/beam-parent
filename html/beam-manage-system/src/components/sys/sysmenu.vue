@@ -184,9 +184,9 @@
         },
         created() {
             this.getTreeData();
-            this.canEdit = this.getButtonPerm().indexOf("sys:menu:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:menu:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:menu:del")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:menu:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:menu:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:menu:del")!=-1;
         },
         computed: {},
         methods: {

@@ -173,9 +173,7 @@
 
             getDashboardContent(){
                 DashboardApi.getDashboardContent().then((res)=>{
-                    console.log(res);
                 },(err) => {
-                    console.log(err)
                     this.$message.error(err.msg);
                 })
             },

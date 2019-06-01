@@ -71,7 +71,6 @@
                 AccountApi.getButtonList().then((res)=>{
                         this.buttonItems = res.data;
                         localStorage.setItem("buttonItems",res.data);
-                        console.log(this.buttonItems);
                     },
                     (err) => {
                         this.buttonItems = []

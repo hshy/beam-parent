@@ -10,7 +10,7 @@ import "babel-polyfill";
 
 Vue.use(ElementUI, { size: 'small' });
 Vue.prototype.$axios = axios;
-Vue.prototype.getButtonPerm = function (){//changeData是函数名
+Vue.prototype.getPerms = function (){//changeData是函数名
 
     let buttonItems = localStorage.getItem("buttonItems");
     if(buttonItems){
@@ -23,15 +23,14 @@ Vue.prototype.getButtonPerm = function (){//changeData是函数名
 }
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    const ms_username = localStorage.getItem('ms_username');
-    // if(!role && to.path !== '/login'&& to.path!=='/vedio'){
-    //     next('/login');
-    // }else
+    let buttonItems = localStorage.getItem("buttonItems");
     if(to.meta.permission){
-        // 鉴权
-        let menuItems = localStorage.getItem('menuItems');
-        console.log(menuItems);
-        ms_username === 'admin' ? next() : next('/403');
+        if(buttonItems.indexOf(to.meta.perms)!=-1){
+           next();
+        }
+        else {
+           next('/403');
+        }
     }else{
         // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
         if(navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor'){

@@ -139,9 +139,9 @@
         },
         created() {
             this.getTreeData();
-            this.canEdit = this.getButtonPerm().indexOf("sys:dept:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:dept:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:dept:del")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:dept:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:dept:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:dept:del")!=-1;
         },
         computed: {},
         methods: {

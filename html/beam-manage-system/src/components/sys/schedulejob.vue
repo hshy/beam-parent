@@ -210,12 +210,12 @@
         created() {
             this.getData();
             this.getStatusList();
-            this.canEdit = this.getButtonPerm().indexOf("sys:schedule:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:schedule:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:schedule:del")!=-1;
-            this.canResume = this.getButtonPerm().indexOf("sys:schedule:resume")!=-1;
-            this.canPause = this.getButtonPerm().indexOf("sys:schedule:pause")!=-1;
-            this.canRun = this.getButtonPerm().indexOf("sys:schedule:run")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:schedule:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:schedule:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:schedule:del")!=-1;
+            this.canResume = this.getPerms().indexOf("sys:schedule:resume")!=-1;
+            this.canPause = this.getPerms().indexOf("sys:schedule:pause")!=-1;
+            this.canRun = this.getPerms().indexOf("sys:schedule:run")!=-1;
         },
         computed: {},
         methods: {

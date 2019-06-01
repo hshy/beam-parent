@@ -248,10 +248,10 @@
         created() {
             this.getData();
             this.getDeptTreeData();
-            this.canEdit = this.getButtonPerm().indexOf("sys:user:edit")!=-1;
-            this.canAdd = this.getButtonPerm().indexOf("sys:user:add")!=-1;
-            this.canDel = this.getButtonPerm().indexOf("sys:user:del")!=-1;
-            this.canResetPassword = this.getButtonPerm().indexOf("sys:user:resetPassword")!=-1;
+            this.canEdit = this.getPerms().indexOf("sys:user:edit")!=-1;
+            this.canAdd = this.getPerms().indexOf("sys:user:add")!=-1;
+            this.canDel = this.getPerms().indexOf("sys:user:del")!=-1;
+            this.canResetPassword = this.getPerms().indexOf("sys:user:resetPassword")!=-1;
         },
         computed: {},
         methods: {
