@@ -3,7 +3,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.common.shiro.IShiro;
 import com.hsshy.beam.common.shiro.ShiroUtils;
+import com.hsshy.beam.common.shiro.factory.ShiroFactroy;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
@@ -45,6 +47,9 @@ public class MenuController extends BaseController {
     @Autowired
     private IUserService userService;
 
+    IShiro shiroFactory = ShiroFactroy.me();
+
+
     /**
      * 树形菜单
      */
@@ -73,7 +78,7 @@ public class MenuController extends BaseController {
     @GetMapping("/button")
     public R button(){
 
-        return R.ok(userService.queryAllButtonPerms(ShiroUtils.getUserId(),2));
+        return R.ok(shiroFactory.findPermissionsByUserId(ShiroUtils.getUserId()));
     }
 
     //分页

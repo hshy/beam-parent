@@ -33,7 +33,7 @@ public interface IUserService extends ICommonService<User> {
      */
     List<Long> queryAllMenuId(Long userId);
 
-    List<String> queryAllButtonPerms(Long userId,Integer type);
+//    List<String> queryAllButtonPerms(Long userId,Integer type);
 
 
 }

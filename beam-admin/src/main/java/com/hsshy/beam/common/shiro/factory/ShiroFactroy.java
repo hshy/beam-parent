@@ -8,6 +8,7 @@ import com.hsshy.beam.common.factory.impl.ConstantFactory;
 import com.hsshy.beam.common.shiro.ShiroUser;
 import com.hsshy.beam.common.utils.SpringContextHolder;
 import com.hsshy.beam.common.shiro.IShiro;
+import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.sys.dao.MenuMapper;
 import com.hsshy.beam.sys.dao.UserMapper;
 import com.hsshy.beam.sys.entity.Menu;
@@ -86,11 +87,13 @@ public class ShiroFactroy implements IShiro {
 
         List<String> permsList;
         //系统管理员，拥有最高权限
-        if(userId == Constant.SUPER_ADMIN){
+        if(userId.longValue() == Constant.SUPER_ADMIN){
             List<Menu> menuList = menuMapper.selectList(null);
             permsList = new ArrayList<>(menuList.size());
             for(Menu menu : menuList){
-                permsList.add(menu.getPerms());
+                if(ToolUtil.isNotEmpty(menu.getPerms())){
+                    permsList.add(menu.getPerms());
+                }
             }
         }else{
             permsList = userMapper.queryAllPerms(userId,null);

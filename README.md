@@ -25,7 +25,7 @@
   - **后端使用guns的map+wrapper返回方式返回字段的字典值**
   - **前后端分离**
   - **集成了异步插入日志**
-  - **实现了基础的用户角色菜单权限动态配置**
+  - **实现了用户角色菜单权限动态配置，精确到按钮级别**
   - **日志分类等**
 
 
@@ -104,15 +104,15 @@ http://www.hsshy.com
 #### 项目截图
 ##### 后台管理系统：
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-c83089109737709c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-3efb2aa334717c6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-47608fef199fac65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-23439e67ae3df2f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-01f8a58a32d513ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-81e727c82affa1b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-32261ca3ec99e6ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-5bb29689629e43c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-56d2d548f945d51b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-900e17a18eb8812e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-c9ace30dac0edff7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-75dcb0b8fdefc926.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-c6d8f6ada98154e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-80fd19bb42b31046.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-a1ebc7317dbf6af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-1b964ca56a75e1bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-5e2cbf66570bc962.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-cd6a59c0734ae61a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #### 代码生成器使用（待续...）
 ###### 代码生成器是独立的，可以随时删掉或者独立成一个项目
 - 1、修改generator.properties里的配置，例如包路径、表前缀、作者
@@ -136,4 +136,4 @@ http://www.hsshy.com
 - 脚本运行报错（执行dos2unix deploy.sh，window环境下与Linux环境下文本格式有所不同）
 
 ### 加入Java互助群
-搜索qq号：750416471
+![image.png](https://upload-images.jianshu.io/upload_images/13498144-d9ab786afee34d3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

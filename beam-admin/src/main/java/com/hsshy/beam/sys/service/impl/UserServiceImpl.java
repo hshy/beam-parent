@@ -53,7 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Assert.notNull(user.getAccount(),"登陆账号不能为空");
         Assert.notNull(user.getName(),"真实姓名不能为空");
         if(ToolUtil.isNotEmpty(user.getId())){
-            if(user.getId()==Constant.SUPER_ADMIN&&ShiroUtils.getUserId().longValue()!=Constant.SUPER_ADMIN){
+            if(user.getId().longValue()==Constant.SUPER_ADMIN&&ShiroUtils.getUserId().longValue()!=Constant.SUPER_ADMIN){
                 return R.fail("不能修改超级管理员信息");
             }
             User oldUser = this.getById(user.getId());
@@ -101,7 +101,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public R changeStatus(Long userId, Integer flag) {
-        if(userId == Constant.SUPER_ADMIN){
+        if(userId.longValue() == Constant.SUPER_ADMIN){
             return R.fail("不能修改超级管理员的状态");
         }
         User user = this.getById(userId);
@@ -117,7 +117,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             return R.fail("未选择删除的用户");
         }
         for(Long userId:userIds){
-            if(userId == Constant.SUPER_ADMIN){
+            if(userId.longValue() == Constant.SUPER_ADMIN){
                 return R.fail("管理员不能删除");
             }
         }
@@ -131,7 +131,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             return R.fail("未选择要重置密码的用户");
         }
         for(Long userId:userIds){
-            if(userId == Constant.SUPER_ADMIN){
+            if(userId.longValue() == Constant.SUPER_ADMIN){
                 return R.fail("管理员密码不能重置");
             }
         }
@@ -173,16 +173,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
 
-    @Override
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.USER_ID + "'+#userId")
-    public List<String> queryAllButtonPerms(Long userId, Integer type) {
-        if(userId == Constant.SUPER_ADMIN){
-            return menuMapper.queryAllButtonPerms();
-        }
-        else {
-            return baseMapper.queryAllPerms(userId,type);
-        }
-    }
+//    @Override
+//    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.USER_BUTTON + "'+#userId")
+//    public List<String> queryAllButtonPerms(Long userId, Integer type) {
+//        if(userId == Constant.SUPER_ADMIN){
+//            return menuMapper.queryAllButtonPerms();
+//        }
+//        else {
+//            return baseMapper.queryAllPerms(userId,type);
+//        }
+//    }
 
 
 }

@@ -78,7 +78,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     public List<Map> getUserMenuList(Long userId) {
 
         //系统管理员，拥有最高权限
-        if(userId == Constant.SUPER_ADMIN){
+        if(userId.longValue() == Constant.SUPER_ADMIN){
             return getAllMenuList(null);
         }
 

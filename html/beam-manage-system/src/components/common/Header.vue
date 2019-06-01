@@ -152,10 +152,21 @@
                 })
             },
             clearCache(){
-                localStorage.removeItem('menuItems');
-                localStorage.removeItem('buttonItems');
+
                 AccountApi.clearCache().then((res) => {
-                    this.$message.success(res.msg);
+
+                    bus.$emit('closeAll', "");
+                    localStorage.removeItem('menuItems');
+                    localStorage.removeItem('buttonItems');
+                    this.$message({
+                        showClose: true,
+                        message: '清除成功，正在刷新页面...',
+                        type: 'true',
+                        duration:1000,
+                        onClose:function () {
+                            window.location.reload();
+                        }
+                    });
                 }, (err) => {
                     this.$message.error(err.msg);
                 })

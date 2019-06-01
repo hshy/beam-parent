@@ -26,4 +26,6 @@ public interface CacheKey {
 
     String USER_MENU = "USER_MENU_";
 
+    String USER_BUTTON = "USER_BUTTON_";
+
 }
