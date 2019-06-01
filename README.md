@@ -123,6 +123,7 @@ http://www.hsshy.com
 
 #### 部署流程
 ##### 后端：
+- 服务器选的是阿里云（注册地址：https://chuangke.aliyun.com/invite?userCode=647hkjjy）
 - 打包：package -Dmaven.test.skip=true -P produce -f pom.xml
 - 上传：scp -r beam-admin-0.0.1-SNAPSHOT.jar root@xxx.xx.xx.xx:/usr/local/beam/
 - 启动：将doc下的脚本上传到和jar包相同目录下，运行脚本(记得给脚本权限)
