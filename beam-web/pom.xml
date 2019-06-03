@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>beam-web</name>
-    <description>Demo project for Spring Boot</description>
+    <description>通用模块</description>
 
     <parent>
         <groupId>com.hsshy</groupId>
