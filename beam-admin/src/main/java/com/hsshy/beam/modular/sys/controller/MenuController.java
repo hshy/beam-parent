@@ -39,7 +39,7 @@ public class MenuController extends BaseController {
     private RedisUtil redisUtil;
 
 
-    IShiro shiroFactory = ShiroFactroy.me();
+    private IShiro shiroFactory = ShiroFactroy.me();
 
 
     /**
