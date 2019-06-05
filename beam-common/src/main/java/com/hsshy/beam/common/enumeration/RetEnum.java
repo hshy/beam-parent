@@ -66,7 +66,10 @@ public enum RetEnum {
    /**
     *  服务器异常
     * */
-    SERVER_EXCEPTION(500,"未知的服务器异常");
+    SERVER_EXCEPTION(500,"未知的服务器异常"),
+
+
+    DANGER_ERROR(500,"请求中有违反安全规则元素存在，拒绝访问!");
 
     /**
      * @Description 返回信息

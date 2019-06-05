@@ -1,5 +1,4 @@
 package com.hsshy.beam.common.base.controller;
-import com.hsshy.beam.common.base.warpper.BaseControllerWrapper;
 import com.hsshy.beam.common.support.HttpKit;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

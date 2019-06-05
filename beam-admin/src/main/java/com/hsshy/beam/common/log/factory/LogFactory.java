@@ -1,8 +1,8 @@
 package com.hsshy.beam.common.log.factory;
 import com.hsshy.beam.common.log.state.LogSucceed;
 import com.hsshy.beam.common.log.state.LogType;
-import com.hsshy.beam.sys.entity.LoginLog;
-import com.hsshy.beam.sys.entity.OperationLog;
+import com.hsshy.beam.modular.sys.entity.LoginLog;
+import com.hsshy.beam.modular.sys.entity.OperationLog;
 import java.util.Date;
 
 public class LogFactory {

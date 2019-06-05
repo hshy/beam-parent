@@ -1,9 +1,8 @@
 package com.hsshy.beam.common.quartz;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.common.quartz.state.QuartzConstant;
-import com.hsshy.beam.sys.entity.ScheduleJobEntity;
+import com.hsshy.beam.modular.sys.entity.ScheduleJobEntity;
 import org.quartz.*;
-
 /**
  * 定时任务工具类
  *

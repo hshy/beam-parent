@@ -1,6 +1,6 @@
 package com.hsshy.beam.common.quartz.task;
-import com.hsshy.beam.sys.entity.User;
-import com.hsshy.beam.sys.service.IUserService;
+import com.hsshy.beam.modular.sys.entity.User;
+import com.hsshy.beam.modular.sys.service.IUserService;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

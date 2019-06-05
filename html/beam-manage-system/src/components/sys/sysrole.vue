@@ -187,6 +187,7 @@
                             item.status = Boolean(item.status)
                         })
                     } else {
+                        console.log(res);
                         this.$message.error(res.msg);
                     }
                 }, (err) => {

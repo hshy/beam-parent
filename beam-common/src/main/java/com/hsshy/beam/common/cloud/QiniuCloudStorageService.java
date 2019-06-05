@@ -15,7 +15,6 @@
  */
 package com.hsshy.beam.common.cloud;
 import com.hsshy.beam.common.exception.BeamException;
-import com.hsshy.beam.common.exception.BeamException;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;

@@ -118,12 +118,10 @@
 </template>
 
 <script>
-    import treeTable from '@/components/TreeTable'
     import MenuApi from '../../api/sysmenu';
 
     export default {
         name: 'basetable',
-        components: { treeTable },
         data() {
             return {
                 selectMenuDialog:false,

@@ -1,5 +1,5 @@
 package com.hsshy.beam.common.quartz;
-import com.hsshy.beam.sys.entity.ScheduleJobEntity;
+import com.hsshy.beam.modular.sys.entity.ScheduleJobEntity;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;

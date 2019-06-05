@@ -536,7 +536,7 @@ CREATE TABLE `sys_operation_log` (
 -- ----------------------------
 -- Records of sys_operation_log
 -- ----------------------------
-INSERT INTO `sys_operation_log` VALUES ('1116618489721860097', '业务日志', '清空日志', '1', 'com.hsshy.beam.sys.controller.OperationLogController', 'clear', '成功', '', '2019-04-12 08:26:08', '2019-04-12 08:26:08');
+INSERT INTO `sys_operation_log` VALUES ('1116618489721860097', '业务日志', '清空日志', '1', 'com.hsshy.beam.modular.sys.controller.OperationLogController', 'clear', '成功', '', '2019-04-12 08:26:08', '2019-04-12 08:26:08');
 
 -- ----------------------------
 -- Table structure for sys_role

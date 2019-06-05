@@ -1,7 +1,6 @@
 package com.hsshy.beam.sign.converter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.config.properties.BeamRestProperties;
 import com.hsshy.beam.sign.security.DataSecurityAction;
 import com.hsshy.beam.common.enumeration.RetEnum;

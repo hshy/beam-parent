@@ -3,7 +3,6 @@ package com.hsshy.beam.common.utils;
 
 import com.hsshy.beam.common.support.*;
 import com.hsshy.beam.common.support.exception.ToolBoxException;
-import com.hsshy.beam.common.support.*;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;

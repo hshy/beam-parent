@@ -28,11 +28,12 @@ public class ConfigListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent evt) {
         ServletContext sc = evt.getServletContext();
 
-        //项目发布,当前运行环境的绝对路径
+        //项目发布,当前运行环境的绝对路径 例如：C:\Users\xxx\AppData\Local\Temp\tomcat-docbase.251591378651784368.8080\
         conf.put("realPath", sc.getRealPath("/").replaceFirst("/", ""));
 
-        //servletContextPath,默认""
+        //servletContextPath,默认"" 例如：/beam_ht
         conf.put("contextPath", sc.getContextPath());
+
     }
 
 }

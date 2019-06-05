@@ -1,6 +1,6 @@
 package com.hsshy.beam.common.factory;
 
-import com.hsshy.beam.sys.entity.Dict;
+import com.hsshy.beam.modular.sys.entity.Dict;
 
 import java.util.List;
 
