@@ -34,11 +34,7 @@
                     label="是否可用"
                     align="center">
                     <template slot-scope="scope">
-                        <el-switch
-                            v-model="scope.row.status"
-                            :active-text="scope.row.frozen ? '可用' : '不可用'"
-                            @change="changeStatus(scope.row.id, scope.row.frozen)">
-                        </el-switch>
+                        <p>{{scope.row.frozen==1? '可用' : '不可用'}}</p>
                     </template>
                 </el-table-column>
 
