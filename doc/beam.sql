@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2019-06-01 11:27:36
+Date: 2019-06-10 08:48:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,16 +23,17 @@ CREATE TABLE `b_article` (
   `id` bigint(20) NOT NULL,
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
-  `content` longtext,
+  `content` longtext COMMENT '内容',
   `frozen` tinyint(1) DEFAULT NULL COMMENT '是否可用',
-  `create_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of b_article
 -- ----------------------------
+INSERT INTO `b_article` VALUES ('1136098414749036546', '测试', 'hh', '<p>十大大苏打盛大的</p>', '0', '2019-06-05 02:32:24', '2019-06-05 08:37:38');
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -140,7 +141,7 @@ CREATE TABLE `qrtz_job_details` (
 -- ----------------------------
 -- Records of qrtz_job_details
 -- ----------------------------
-INSERT INTO `qrtz_job_details` VALUES ('RenrenScheduler', 'TASK_1080345897063223297', 'DEFAULT', null, 'com.hsshy.beam.common.quartz.ScheduleJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B45597372002B636F6D2E68737368792E6265616D2E7379732E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200074C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000269647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7872002C636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E52657374456E74697479EE8CF07CFDCA369C0200024C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000A75706461746554696D6571007E000D78720030636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E4162737472616374456E74697479040721C4286B1A7C0200024A000B63757272656E74506167654A00087061676553697A6578720035636F6D2E62616F6D69646F752E6D796261746973706C75732E657874656E73696F6E2E6163746976657265636F72642E4D6F64656C000000000000000102000078700000000000000000000000000000000A737200126A6176612E73716C2E54696D657374616D702618D5C80153BF650200014900056E616E6F737872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001680D307CA078163B87407371007E00117708000001680D307CA078163B8740740008746573745461736B74000B30202A202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700EFE28DE95011001740005746573743270740006E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0018000000007800);
+INSERT INTO `qrtz_job_details` VALUES ('RenrenScheduler', 'TASK_1080345897063223297', 'DEFAULT', null, 'com.hsshy.beam.common.quartz.ScheduleJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720033636F6D2E68737368792E6265616D2E6D6F64756C61722E7379732E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200074C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000269647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7872002C636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E52657374456E74697479EE8CF07CFDCA369C0200024C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000A75706461746554696D6571007E000D78720030636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E4162737472616374456E74697479040721C4286B1A7C0200024A000B63757272656E74506167654A00087061676553697A6578720035636F6D2E62616F6D69646F752E6D796261746973706C75732E657874656E73696F6E2E6163746976657265636F72642E4D6F64656C000000000000000102000078700000000000000000000000000000000A7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001680D307CA0787371007E001177080000016B0D3FF9E878740008746573745461736B74000B30202A202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700EFE28DE95011001740005746573743270740006E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0017000000007800);
 
 -- ----------------------------
 -- Table structure for qrtz_locks
@@ -187,8 +188,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'izm5ejcx2c067iw3q7pqrnz1559354948480', '1559358431729', '15000');
-INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'localhost1549951415301', '1559358420010', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'LAPTOP-JP1B0EBJ1559723320411', '1559723893488', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -276,29 +276,7 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RenrenScheduler', 'TASK_1080345897063223297', 'DEFAULT', 'TASK_1080345897063223297', 'DEFAULT', null, '1546409520000', '-1', '5', 'PAUSED', 'CRON', '1546409508000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B45597372002B636F6D2E68737368792E6265616D2E7379732E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200074C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000269647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7872002C636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E52657374456E74697479EE8CF07CFDCA369C0200024C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000A75706461746554696D6571007E000D78720030636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E4162737472616374456E74697479040721C4286B1A7C0200024A000B63757272656E74506167654A00087061676553697A6578720035636F6D2E62616F6D69646F752E6D796261746973706C75732E657874656E73696F6E2E6163746976657265636F72642E4D6F64656C000000000000000102000078700000000000000000000000000000000A7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001680D307CA0787371007E001177080000016B0D3FF9E878740008746573745461736B74000B30202A202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700EFE28DE95011001740005746573743270740006E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0017000000007800);
-
--- ----------------------------
--- Table structure for schedule_job
--- ----------------------------
-DROP TABLE IF EXISTS `schedule_job`;
-CREATE TABLE `schedule_job` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
-  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
-  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
-  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
-  `cron_expression` varchar(100) DEFAULT NULL COMMENT 'cron表达式',
-  `status` tinyint(4) DEFAULT NULL COMMENT '任务状态  0：正常  1：暂停',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1080345897063223298 DEFAULT CHARSET=utf8 COMMENT='定时任务';
-
--- ----------------------------
--- Records of schedule_job
--- ----------------------------
-INSERT INTO `schedule_job` VALUES ('1080345897063223297', 'testTask', 'test2', null, '0 * * * * ?', '0', '测试', '2019-01-02 06:11:48', '2019-05-31 09:37:05');
+INSERT INTO `qrtz_triggers` VALUES ('RenrenScheduler', 'TASK_1080345897063223297', 'DEFAULT', 'TASK_1080345897063223297', 'DEFAULT', null, '1559702820000', '-1', '5', 'PAUSED', 'CRON', '1559702773000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720033636F6D2E68737368792E6265616D2E6D6F64756C61722E7379732E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200074C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000269647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7872002C636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E52657374456E74697479EE8CF07CFDCA369C0200024C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000A75706461746554696D6571007E000D78720030636F6D2E68737368792E6265616D2E636F6D6D6F6E2E626173652E656E746974792E4162737472616374456E74697479040721C4286B1A7C0200024A000B63757272656E74506167654A00087061676553697A6578720035636F6D2E62616F6D69646F752E6D796261746973706C75732E657874656E73696F6E2E6163746976657265636F72642E4D6F64656C000000000000000102000078700000000000000000000000000000000A7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001680D307CA0787371007E001177080000016B0D3FF9E878740008746573745461736B74000B30202A202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700EFE28DE95011001740005746573743270740006E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0017000000007800);
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -319,7 +297,7 @@ CREATE TABLE `sys_config` (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO `sys_config` VALUES ('1', 'CLOUD_STORAGE_CONFIG_KEY', '{\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"aliyunDomain\":\"\",\"aliyunEndPoint\":\"\",\"aliyunPrefix\":\"\",\"qcloudBucketName\":\"\",\"qcloudDomain\":\"\",\"qcloudPrefix\":\"\",\"qcloudSecretId\":\"\",\"qcloudSecretKey\":\"\",\"qiniuAccessKey\":\"uTUUJ1fidpo5Hc6b7qJXd2i5SyVUzsBvQJgKn_N6\",\"qiniuBucketName\":\"hsshy\",\"qiniuDomain\":\"http://img.hsshy.cn\",\"qiniuPrefix\":\"upload\",\"qiniuSecretKey\":\"\",\"type\":1}', '1', '云存储配置信息', null, null);
+INSERT INTO `sys_config` VALUES ('1', 'CLOUD_STORAGE_CONFIG_KEY', '{\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"aliyunDomain\":\"\",\"aliyunEndPoint\":\"\",\"aliyunPrefix\":\"\",\"qcloudBucketName\":\"\",\"qcloudDomain\":\"\",\"qcloudPrefix\":\"\",\"qcloudSecretId\":\"\",\"qcloudSecretKey\":\"\",\"qiniuAccessKey\":\"uTUUJ1fidpo5Hc6b7qJXd2i5SyVUzsBvQJgKn_N6\",\"qiniuBucketName\":\"hsshy\",\"qiniuDomain\":\"http://img.hsshy.cn\",\"qiniuPrefix\":\"upload\",\"qiniuSecretKey\":\"_XKtAamyCjnQN_rW-cqjSOb5X5bmDONgfDBknzbR\",\"type\":1}', '1', '云存储配置信息', null, null);
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -394,7 +372,7 @@ CREATE TABLE `sys_login_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1134656354379530242 DEFAULT CHARSET=utf8mb4 COMMENT='登陆日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1136189793869303811 DEFAULT CHARSET=utf8mb4 COMMENT='登陆日志';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -452,6 +430,27 @@ INSERT INTO `sys_login_log` VALUES ('1134655631478652930', '登录日志', '1072
 INSERT INTO `sys_login_log` VALUES ('1134655732154531841', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 02:59:42', '2019-06-01 02:59:42');
 INSERT INTO `sys_login_log` VALUES ('1134656100074684418', '登录日志', '1', '成功', null, '110.87.38.164', '2019-06-01 03:01:10', '2019-06-01 03:01:10');
 INSERT INTO `sys_login_log` VALUES ('1134656354379530241', '登录日志', '1072429679148908546', '成功', null, '110.87.38.164', '2019-06-01 03:02:10', '2019-06-01 03:02:10');
+INSERT INTO `sys_login_log` VALUES ('1135821878431137794', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:13:33', '2019-06-04 08:13:33');
+INSERT INTO `sys_login_log` VALUES ('1135822114989883394', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:14:29', '2019-06-04 08:14:29');
+INSERT INTO `sys_login_log` VALUES ('1135822975732310018', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:17:55', '2019-06-04 08:17:55');
+INSERT INTO `sys_login_log` VALUES ('1135823045018017793', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:18:11', '2019-06-04 08:18:11');
+INSERT INTO `sys_login_log` VALUES ('1135823298639192065', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:19:12', '2019-06-04 08:19:12');
+INSERT INTO `sys_login_log` VALUES ('1135824351124283393', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:23:23', '2019-06-04 08:23:23');
+INSERT INTO `sys_login_log` VALUES ('1135824502886764545', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:23:59', '2019-06-04 08:23:59');
+INSERT INTO `sys_login_log` VALUES ('1135824975257669633', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:25:51', '2019-06-04 08:25:51');
+INSERT INTO `sys_login_log` VALUES ('1135825256150208513', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:26:58', '2019-06-04 08:26:58');
+INSERT INTO `sys_login_log` VALUES ('1135825301289308161', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:27:09', '2019-06-04 08:27:09');
+INSERT INTO `sys_login_log` VALUES ('1135825919592669186', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:29:37', '2019-06-04 08:29:37');
+INSERT INTO `sys_login_log` VALUES ('1135829205955678210', '登录日志', '1072429679148908546', '成功', null, '127.0.0.1', '2019-06-04 08:42:40', '2019-06-04 08:42:40');
+INSERT INTO `sys_login_log` VALUES ('1135829865224777730', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 08:45:17', '2019-06-04 08:45:17');
+INSERT INTO `sys_login_log` VALUES ('1135848728297517058', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-04 10:00:15', '2019-06-04 10:00:15');
+INSERT INTO `sys_login_log` VALUES ('1136087437131395073', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 01:48:47', '2019-06-05 01:48:47');
+INSERT INTO `sys_login_log` VALUES ('1136106160080896001', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 03:03:11', '2019-06-05 03:03:11');
+INSERT INTO `sys_login_log` VALUES ('1136136004231524353', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 05:01:46', '2019-06-05 05:01:46');
+INSERT INTO `sys_login_log` VALUES ('1136145776754417666', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 05:40:36', '2019-06-05 05:40:36');
+INSERT INTO `sys_login_log` VALUES ('1136152637083762690', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 06:07:52', '2019-06-05 06:07:52');
+INSERT INTO `sys_login_log` VALUES ('1136152832748044290', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 06:08:39', '2019-06-05 06:08:39');
+INSERT INTO `sys_login_log` VALUES ('1136189793869303810', '登录日志', '1', '成功', null, '127.0.0.1', '2019-06-05 08:35:31', '2019-06-05 08:35:31');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -477,8 +476,8 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '0', '系统首页', 'dashboard', 'sys:dashboard:info', '1', 'el-icon-lx-home', '0', '1', '1', '2018-12-06 14:54:07', '2018-12-06 14:54:09', '0');
-INSERT INTO `sys_menu` VALUES ('15', '0', '系统管理', 'sys', null, '0', 'el-icon-lx-settings', '15', '1', '1', '2018-12-10 17:52:34', '2019-05-31 09:06:50', '0');
+INSERT INTO `sys_menu` VALUES ('1', '0', '系统首页', 'dashboard', 'sys:dashboard:info', '1', 'el-icon-lx-home', '0', '1', '1', '2018-12-06 14:54:07', '2019-06-04 08:26:20', '0');
+INSERT INTO `sys_menu` VALUES ('15', '0', '系统管理', 'sys', null, '0', 'el-icon-lx-settings', '1', '1', '1', '2018-12-10 17:52:34', '2019-06-04 09:11:14', '0');
 INSERT INTO `sys_menu` VALUES ('16', '15', '用户管理', 'sysuser', 'sys:user:list', '1', null, '16', '1', '1', '2018-12-10 18:28:59', '2019-01-02 10:38:09', '0');
 INSERT INTO `sys_menu` VALUES ('17', '15', '角色管理', 'sysrole', 'sys:role:list', '1', null, '17', '1', '1', '2018-12-10 18:35:34', '2019-01-03 01:33:09', '0');
 INSERT INTO `sys_menu` VALUES ('18', '15', '菜单管理', 'sysmenu', 'sys:menu:list', '1', null, '18', '1', '1', '2018-12-10 18:36:16', '2019-01-03 01:39:01', '0');
@@ -514,6 +513,8 @@ INSERT INTO `sys_menu` VALUES ('1134397077300789249', '17', '编辑', 'sysrole/e
 INSERT INTO `sys_menu` VALUES ('1134398704145481730', '18', '修改', 'sysmenu/edit', 'sys:menu:edit', '2', null, '3', null, null, '2019-05-31 09:58:22', '2019-05-31 09:58:22', '0');
 INSERT INTO `sys_menu` VALUES ('1134403202943369217', '1116961835054452737', '修改', 'sysdict/edit', 'sys:dict:edit', '2', null, '3', null, null, '2019-05-31 10:16:14', '2019-05-31 10:16:14', '0');
 INSERT INTO `sys_menu` VALUES ('1134405857598062594', '16', '清除缓存', 'sysuser/clearCache', 'sys:user:clearCache', '2', null, '6', null, null, '2019-05-31 10:26:47', '2019-05-31 10:26:47', '0');
+INSERT INTO `sys_menu` VALUES ('1135836344682065921', '0', '内容管理', 'business', null, '0', 'el-icon-menu', '2', null, null, '2019-06-04 09:11:02', '2019-06-04 09:11:44', '0');
+INSERT INTO `sys_menu` VALUES ('1135837162231607298', '1135836344682065921', '文章管理', 'article', null, '1', 'el-icon-notebook-1', '1', null, null, '2019-06-04 09:14:17', '2019-06-04 09:18:34', '0');
 
 -- ----------------------------
 -- Table structure for sys_operation_log
@@ -531,12 +532,13 @@ CREATE TABLE `sys_operation_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1116618489721860098 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1135837114504622082 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of sys_operation_log
 -- ----------------------------
-INSERT INTO `sys_operation_log` VALUES ('1116618489721860097', '业务日志', '清空日志', '1', 'com.hsshy.beam.modular.sys.controller.OperationLogController', 'clear', '成功', '', '2019-04-12 08:26:08', '2019-04-12 08:26:08');
+INSERT INTO `sys_operation_log` VALUES ('1116618489721860097', '业务日志', '清空日志', '1', 'com.hsshy.beam.sys.controller.OperationLogController', 'clear', '成功', '', '2019-04-12 08:26:08', '2019-04-12 08:26:08');
+INSERT INTO `sys_operation_log` VALUES ('1135837114504622081', '异常日志', '', '1', null, null, '失败', 'org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: parseInt error, field : orderNum; nested exception is com.alibaba.fastjson.JSONException: parseInt error, field : orderNum\r\n	at com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(FastJsonHttpMessageConverter.java:205)\r\n	at com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(FastJsonHttpMessageConverter.java:177)\r\n	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:204)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:157)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:130)\r\n	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:126)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:167)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)\r\n	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.hsshy.beam.modular.common.xss.XssFilter.doFilter(XssFilter.java:31)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)\r\n	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:41002)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocolTConnectionHandler.process(AbstractProtocol.java:836)\r\n	at org.apache.tomcat.util.net.NioEndpointTSocketProcessor.doRun(NioEndpoint.java:1747)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:624)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:748)\r\nCaused by: com.alibaba.fastjson.JSONException: parseInt error, field : orderNum\r\n	at com.alibaba.fastjson.serializer.IntegerCodec.deserialze(IntegerCodec.java:99)\r\n	at com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer.parseField(DefaultFieldDeserializer.java:86)\r\n	at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.parseField(JavaBeanDeserializer.java:1078)\r\n	at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.deserialze(JavaBeanDeserializer.java:773)\r\n	at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.parseRest(JavaBeanDeserializer.java:1283)\r\n	at com.alibaba.fastjson.parser.deserializer.FastjsonASMDeserializer_2_Menu.deserialze(Unknown Source)\r\n	at com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.deserialze(JavaBeanDeserializer.java:267)\r\n	at com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(DefaultJSONParser.java:661)\r\n	at com.alibaba.fastjson.JSON.parseObject(JSON.java:365)\r\n	at com.alibaba.fastjson.JSON.parseObject(JSON.java:333)\r\n	at com.alibaba.fastjson.JSON.parseObject(JSON.java:296)\r\n	at com.alibaba.fastjson.JSON.parseObject(JSON.java:402)\r\n	at com.alibaba.fastjson.JSON.parseObject(JSON.java:484)\r\n	at com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(FastJsonHttpMessageConverter.java:203)\r\n	... 73 more\r\nCaused by: java.lang.NumberFormatException: For input string: \"el-icon-notebook-1\"\r\n	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\r\n	at java.lang.Integer.parseInt(Integer.java:580)\r\n	at java.lang.Integer.parseInt(Integer.java:615)\r\n	at com.alibaba.fastjson.util.TypeUtils.castToInt(TypeUtils.java:588)\r\n	at com.alibaba.fastjson.serializer.IntegerCodec.deserialze(IntegerCodec.java:95)\r\n	... 86 more\r\n', '2019-06-04 09:14:06', '2019-06-04 09:14:06');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -618,6 +620,28 @@ INSERT INTO `sys_role_menu` VALUES ('297', '1076685137679704065', '1134387322570
 INSERT INTO `sys_role_menu` VALUES ('298', '1076685137679704065', '1116603445676101634');
 INSERT INTO `sys_role_menu` VALUES ('299', '1076685137679704065', '1116961835054452737');
 INSERT INTO `sys_role_menu` VALUES ('300', '1076685137679704065', '1117688867416195074');
+
+-- ----------------------------
+-- Table structure for sys_schedule_job
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_schedule_job`;
+CREATE TABLE `sys_schedule_job` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
+  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
+  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
+  `cron_expression` varchar(100) DEFAULT NULL COMMENT 'cron表达式',
+  `status` tinyint(4) DEFAULT NULL COMMENT '任务状态  0：正常  1：暂停',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1080345897063223298 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+
+-- ----------------------------
+-- Records of sys_schedule_job
+-- ----------------------------
+INSERT INTO `sys_schedule_job` VALUES ('1080345897063223297', 'testTask', 'test2', null, '0 * * * * ?', '0', '测试', '2019-01-02 06:11:48', '2019-05-31 09:37:05');
 
 -- ----------------------------
 -- Table structure for sys_user
