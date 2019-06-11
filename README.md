@@ -128,12 +128,7 @@ http://www.hsshy.com
 ##### 后端：
 - 服务器选的是阿里云（注册地址：https://chuangke.aliyun.com/invite?userCode=647hkjjy）
 - 1、使用命令行打包：在beam-parent下执行 ```mvn package -Dmaven.test.skip=true -P produce -f pom.xml```
-- 2、使用idea进行打包：
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-093e564b01d1255b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-e1cfd8f54b0c747c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-0f57ad4ea4668aa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-a7bc5c6b24328cfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+- 2、使用idea进行打包：https://www.jianshu.com/p/32c597dd637e
 - 上传：scp -r beam-admin-0.0.1-SNAPSHOT.jar root@xxx.xx.xx.xx:/usr/local/beam/
 - 启动：将doc下的脚本上传到和jar包相同目录下，运行脚本(记得给脚本权限)
 - 查看运行日志：tail -f xxx/log_total.log(xxx文件名为yml配置的的log.path)
