@@ -127,7 +127,7 @@ http://www.hsshy.com
 #### 部署流程
 ##### 后端：
 - 服务器选的是阿里云（注册地址：https://chuangke.aliyun.com/invite?userCode=647hkjjy）
-- 打包：package -Dmaven.test.skip=true -P produce -f pom.xml
+- 打包：mvn package -Dmaven.test.skip=true -P produce -f pom.xml
 - 上传：scp -r beam-admin-0.0.1-SNAPSHOT.jar root@xxx.xx.xx.xx:/usr/local/beam/
 - 启动：将doc下的脚本上传到和jar包相同目录下，运行脚本(记得给脚本权限)
 - 查看运行日志：tail -f xxx/log_total.log(xxx文件名为yml配置的的log.path)
@@ -137,7 +137,7 @@ http://www.hsshy.com
 - nginx配置请参考doc下的beam.conf文件,可直接传到服务器下的nginx/conf.d/下进行使用，记得删除默认的default.conf文件。
 
 #### 部署可能出现的问题
-- 数据库改成大小写不敏感
+- 出现表不存在（定时任务相关的表改成大写或者将数据库改成大小写不敏感）
 - 脚本运行报错（执行dos2unix deploy.sh，window环境下与Linux环境下文本格式有所不同）
 
 ### 加入Java互助群
