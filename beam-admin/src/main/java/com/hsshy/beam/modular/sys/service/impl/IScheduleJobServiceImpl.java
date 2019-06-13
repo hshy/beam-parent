@@ -7,7 +7,7 @@ import com.hsshy.beam.common.quartz.state.QuartzConstant;
 import com.hsshy.beam.common.quartz.ScheduleUtils;
 import com.hsshy.beam.modular.sys.dao.ScheduleJobMapper;
 import com.hsshy.beam.modular.sys.entity.ScheduleJobEntity;
-import com.hsshy.beam.modular.sys.service.ScheduleJobService;
+import com.hsshy.beam.modular.sys.service.IScheduleJobService;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import java.util.*;
 @Service("scheduleJobService")
-public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, ScheduleJobEntity> implements ScheduleJobService {
+public class IScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, ScheduleJobEntity> implements IScheduleJobService {
 	@Autowired
     private Scheduler scheduler;
 	

@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  * @since 1.2.0 2016-11-28
  */
-public interface ScheduleJobService extends IService<ScheduleJobEntity> {
+public interface IScheduleJobService extends IService<ScheduleJobEntity> {
 
 	IPage<ScheduleJobEntity> queryPage(Map<String, Object> params);
 

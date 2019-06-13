@@ -7,13 +7,12 @@ import com.hsshy.beam.common.quartz.ScheduleJob;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.entity.ScheduleJobEntity;
-import com.hsshy.beam.modular.sys.service.ScheduleJobService;
+import com.hsshy.beam.modular.sys.service.IScheduleJobService;
 import com.hsshy.beam.modular.sys.wrapper.ScheduleWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 
@@ -27,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/sys/schedule")
 public class ScheduleJobController {
 	@Autowired
-	private ScheduleJobService scheduleJobService;
+	private IScheduleJobService scheduleJobService;
 	
 	/**
 	 * 定时任务列表
@@ -54,7 +53,6 @@ public class ScheduleJobController {
 	 * 定时任务信息
 	 */
 	@RequestMapping("/info/{jobId}")
-//	@RequiresPermissions("sys:schedule:info")
 	public R info(@PathVariable("jobId") Long jobId){
 		ScheduleJobEntity schedule = scheduleJobService.getById(jobId);
 		
