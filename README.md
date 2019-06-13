@@ -45,15 +45,7 @@ beam-parent
 │           ├─logback-spring.xml  日志配置文件
 │ 
 ├─beam-rest        API服务 （post请求签名、token)
-│        
-│ 
-├─beam-generator  代码生成器
-│        └─resources 
-│           ├─mapper   MyBatis文件
-│           ├─template 代码生成器模板（可增加或修改相应模板）
-│           ├─application.yml    全局配置文件
-│           └─generator.properties   代码生成器，配置文件
-│       
+│             
 │ 
 ├─beam-web  公用实体类、dao、service
 │   
@@ -78,6 +70,9 @@ beam-parent
 - 缓存：Redis
 - 图片上传：七牛云
 
+### 代码生成器
+https://gitee.com/hsshy/beam-generator
+
 #### Spring Boot其他案例：https://gitee.com/hsshy/beam-example
 - 秒杀案例模块（加锁、aop加锁、redis锁、消息队列）
 - 动态数据源案例模块
@@ -96,14 +91,16 @@ beam-parent
 - lombok插件
 
 #### 前端地址：
-/html/beam-manage-system
+beam-parent/html/beam-manage-system
 
 #### 演示地址
 http://www.hsshy.com
 演示账户：test 123456
 
 #### 常见问题
-上传图片失败，请修改sys_config中的七牛云配置，改为自己的七牛云配置。（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
+- 上传图片失败，请修改sys_config中的七牛云配置，改为自己的七牛云配置。（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
+- 提示账户验证失败，检查是否安装Redis，以及用户名密码是否正确。
+- set、get报红，请安装Lombok插件。详情请参照软件需求。
 
 #### 项目截图
 ##### 后台管理系统：
@@ -117,12 +114,7 @@ http://www.hsshy.com
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-1b964ca56a75e1bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-5e2cbf66570bc962.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/13498144-cd6a59c0734ae61a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-#### 代码生成器使用（待续...）
-###### 代码生成器是独立的，可以随时删掉或者独立成一个项目
-- 1、修改generator.properties里的配置，例如包路径、表前缀、作者
-- 2、运行代码生成器：http://localhost:8083/beam-generator/#generator.html
-- 3、选中要生成的表、点击生成
-- 4、将生成的实体类、dao、service、controller、vue、js放到对应的目录下
+
 
 #### 部署流程
 ##### 后端：
