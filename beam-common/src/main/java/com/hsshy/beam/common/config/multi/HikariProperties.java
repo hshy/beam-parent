@@ -36,7 +36,6 @@ public class HikariProperties {
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         dataSource.setDriverClassName(driverClassName);
-        dataSource.setDriverClassName(driverClassName);
         dataSource.setConnectionTimeout(connectionTimeout);
         dataSource.setIdleTimeout(idleTimeout);
         dataSource.setValidationTimeout(validationTimeout);

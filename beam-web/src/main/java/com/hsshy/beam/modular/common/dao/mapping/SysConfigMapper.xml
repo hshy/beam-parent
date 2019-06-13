@@ -25,7 +25,7 @@
     </update>
 
     <!-- 根据key，查询value -->
-    <select id="getByKey" parameterType="string" resultType="string">
+    <select id="getByKey" parameterType="string"  resultType="string">
       select param_value from sys_config where `param_key` = #{key}
     </select>
 
