@@ -120,6 +120,13 @@ http://www.hsshy.com
 
 
 #### 部署流程
+
+##### 软件安装
+Java8:https://www.jianshu.com/p/dfdedff74fbc
+redis4.0.6：https://www.jianshu.com/p/500e6a205fae
+zookeeper：https://www.jianshu.com/p/3d1a8cec8fc8
+mysql5.7：https://www.jianshu.com/p/3cf566658ad6
+
 ##### 后端：
 - 服务器选的是阿里云（注册地址：https://chuangke.aliyun.com/invite?userCode=647hkjjy）
 - 1、使用命令行打包：在beam-parent下执行 ```mvn package -Dmaven.test.skip=true -P produce -f pom.xml```
