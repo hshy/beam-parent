@@ -50,6 +50,8 @@ beam-parent
 ├─beam-web  公用实体类、dao、service
 │   
 │ 
+├─html/beam-manager-system 前端代码
+│ 
 ├─doc  数据库sql文件
 │ 
 │ 
