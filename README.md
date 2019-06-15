@@ -12,10 +12,6 @@
   -  **字典管理**
   -  **登陆日志**
   -  **业务日志**
-- 项目代码参考了
-  - Guns：https://gitee.com/stylefeng/guns
-  - renren-security：https://gitee.com/renrenio/renren-security
-  - vue-manage-system：https://github.com/lin-xin/vue-manage-system
   
 - 项目特点：
   - **持久层：mybatis持久化，使用MyBatis-Plus优化，减少sql开发量；Transtraction注解事务。**
