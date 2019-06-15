@@ -130,6 +130,7 @@ http://www.hsshy.com
 - 上传：scp -r beam-admin-0.0.1-SNAPSHOT.jar root@xxx.xx.xx.xx:/usr/local/beam/
 - 启动：将doc下的脚本上传到和jar包相同目录下，运行脚本(记得给脚本权限)
 - 查看运行日志：tail -f xxx/log_total.log(xxx文件名为yml配置的的log.path)
+
 ##### 前端（这边是用nginx进行部署）：
 - 打包：npm run build
 - 上传：进入dist文件夹，scp -r * root@xx.xx.xx.xx:/etc/nginx/html/beam-manage-system/
