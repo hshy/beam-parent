@@ -1,6 +1,7 @@
 # beam-parent
 
 #### 项目介绍
+#### 基于dubbo的：https://gitee.com/hsshy/beam-dubbo
 - Beam基于SpringBoot 2，致力于做更简洁的后台管理系统，一款快速开发的脚手架。springmvc + shiro + MyBatis-Plus + vue。
 - 基础模块：
   -  **用户管理**
