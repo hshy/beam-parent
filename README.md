@@ -68,7 +68,7 @@ beam-parent
 - 页面交互：Vue2.x
 - 前后端分离
 - 缓存：Redis
-- 图片上传：七牛云
+- 图片上传：七牛云（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
 
 ### 代码生成器
 https://gitee.com/hsshy/beam-generator
@@ -119,10 +119,9 @@ http://www.hsshy.com
 #### 部署流程
 
 ##### 软件安装
-Java8:https://www.jianshu.com/p/dfdedff74fbc
-redis4.0.6：https://www.jianshu.com/p/500e6a205fae
-zookeeper：https://www.jianshu.com/p/3d1a8cec8fc8
-mysql5.7：https://www.jianshu.com/p/3cf566658ad6
+- Java8:https://www.jianshu.com/p/dfdedff74fbc
+- redis4.0.6：https://www.jianshu.com/p/500e6a205fae
+- mysql5.7：https://www.jianshu.com/p/3cf566658ad6
 
 ##### 后端：
 - 服务器选的是阿里云（注册地址：https://chuangke.aliyun.com/invite?userCode=647hkjjy）
