@@ -7,8 +7,6 @@
         </div>
         <div class="container">
             <div class="handle-box">
-
-
                 <el-input style="width: 130px" v-model="req.roleName" placeholder="请输入角色名称"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <el-button v-if="canDel" type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
