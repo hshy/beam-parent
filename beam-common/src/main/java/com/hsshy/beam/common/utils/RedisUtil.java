@@ -23,6 +23,7 @@ import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -84,6 +85,33 @@ public class RedisUtil {
 
     public String get(String key) {
         return get(key, NOT_EXPIRE);
+    }
+
+
+    /**
+     * listOperations使用
+     */
+    public <T> void lset(String key, List<T> list, long expire){
+        listOperations.leftPush(key,list);
+        if(expire != NOT_EXPIRE){
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        }
+    }
+
+    public <T> void lset(String key, List<T> list){
+        lset(key, list, DEFAULT_EXPIRE);
+    }
+
+    public <T> List<T> lget(String key, long expire) {
+        List<T> list = (List<T>)listOperations.leftPop(key);
+        if(expire != NOT_EXPIRE){
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        }
+        return list;
+    }
+
+    public <T> List<T> lget(String key) {
+        return lget(key, NOT_EXPIRE);
     }
 
     public void delete(String key) {
