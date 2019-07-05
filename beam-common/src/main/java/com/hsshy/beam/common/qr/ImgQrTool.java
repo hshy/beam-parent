@@ -6,6 +6,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.hsshy.beam.common.support.HttpKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,7 +109,26 @@ public class ImgQrTool {
             }
         }
     }
+    /**
+     * 创建不带参数的二维码 输出到浏览器
+     * @param content       二维码的内容
+     * @param width         宽度
+     * @param height        高度
+     */
+    public static void createSimpleQr(String content, int width, int height) {
 
+
+        try {
+            String format = "jpg";// 图像类型
+            Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+
+            MatrixToImageWriter.writeToStream(bitMatrix, format, HttpKit.getResponse().getOutputStream());// 输出图像
+        } catch (Exception e) {
+            log.error("生成二维码出错！ImgQrTool：createSimpleQr()", e);
+        }
+    }
     private static BufferedImage genBarcode(String content, int width, int height, String srcImagePath)
             throws WriterException, IOException {
         // 读取源图像
