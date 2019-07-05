@@ -215,28 +215,50 @@ public class DateUtil {
         return day;
     }
 
+    public static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
+
     /**
      * 得到n天之后的日期
      */
-    public static String getAfterDayDate(String days) {
+    public static String getAfterDayDateStr(Date date,String days) {
         int daysInt = Integer.parseInt(days);
-
-        Calendar canlendar = Calendar.getInstance(); // java.util包
-        canlendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
-        Date date = canlendar.getTime();
-        return getTime(date);
+        Calendar calendar = getCalendar(date);
+        calendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
+        return getTime(calendar.getTime());
+    }
+    /**
+     * 得到n天之后的日期
+     */
+    public static Date getAfterDayDate(Date date,String days) {
+        int daysInt = Integer.parseInt(days);
+        Calendar calendar = getCalendar(date);
+        calendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
+        return calendar.getTime();
     }
 
     /**
      * 得到n天之前的日期
      */
-    public static String getBeforeDayDate(String days) {
+    public static String getBeforeDayDateStr(Date date,String days) {
         int daysInt = Integer.parseInt(days);
 
-        Calendar canlendar = Calendar.getInstance(); // java.util包
-        canlendar.add(Calendar.DATE, -daysInt); // 日期减 如果不够减会将月变动
-        Date date = canlendar.getTime();
-        return getTime(date);
+        Calendar calendar = getCalendar(date);
+        calendar.add(Calendar.DATE, -daysInt); // 日期减 如果不够减会将月变动
+        return getTime(calendar.getTime());
+    }
+    /**
+     * 得到n天之前的日期
+     */
+    public static Date getBeforeDayDate(Date date,String days) {
+        int daysInt = Integer.parseInt(days);
+
+        Calendar calendar = getCalendar(date);
+        calendar.add(Calendar.DATE, -daysInt); // 日期减 如果不够减会将月变动
+        return calendar.getTime();
     }
 
     /**
