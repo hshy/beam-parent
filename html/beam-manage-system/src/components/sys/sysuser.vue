@@ -383,6 +383,7 @@
                 this.editVisible = true;
                 this.accountInput = false;
                 this.form.status = true;
+                this.getRoleList();
             },
             handleEdit(index, row) {
                 this.idx = index;
