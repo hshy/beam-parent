@@ -1,10 +1,7 @@
 package com.hsshy.beam.common.qr;
-
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import sun.misc.BASE64Decoder;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -13,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,13 +28,14 @@ public class ParseQrTool {
     public static String deEncodeByBase64(String baseStr) {
         String content = null;
         BufferedImage image;
-        BASE64Decoder decoder = new BASE64Decoder();
+        Base64.Decoder decoder = Base64.getDecoder();
+
         byte[] b=null;
         try {
             int i = baseStr.indexOf("data:image/png;base64,");
             baseStr = baseStr.substring(i+"data:image/png;base64,".length());//去掉base64图片的data:image/png;base64,部分才能转换为byte[]
  
-            b = decoder.decodeBuffer(baseStr);//baseStr转byte[]
+            b = decoder.decode(baseStr);//baseStr转byte[]
             ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(b);//byte[] 转BufferedImage
             image = ImageIO.read(byteArrayInputStream);
             LuminanceSource source = new BufferedImageLuminanceSource(image);
