@@ -2,6 +2,7 @@ package com.hsshy.beam.modular.sys.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hsshy.beam.modular.sys.entity.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
     List<Map> queryNotButtonList();
 
     List<String> queryAllButtonPerms();
+
+    void delMRInMenuId(@Param("menuIds") Long menuIds[]);
 	
 }

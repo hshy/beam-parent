@@ -32,6 +32,12 @@
                order_num as orderNum,
                perms
     	</sql>
+    <delete id="delMRInMenuId">
+        delete from sys_role_menu where menu_id in
+        <foreach collection ="menuIds" item="menuId" index= "index"  open="(" separator="," close=")">
+            #{menuId}
+        </foreach >
+    </delete>
 
     <select id="queryListParentId" resultType="java.util.Map">
 		select <include refid="Nav_Column_List" />

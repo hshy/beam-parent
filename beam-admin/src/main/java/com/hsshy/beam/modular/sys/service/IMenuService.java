@@ -1,5 +1,6 @@
 package com.hsshy.beam.modular.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.modular.sys.entity.Menu;
 
 import java.util.List;
@@ -36,6 +37,8 @@ public interface IMenuService extends IService<Menu> {
      * 获取树形菜单列表
      */
     List<Map> treeMenuList(Long menuId, Menu menu);
+
+    R deleteMenu(Long menuIds[]);
 
 
 

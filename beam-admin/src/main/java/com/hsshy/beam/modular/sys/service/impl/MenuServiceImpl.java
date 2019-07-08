@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hsshy.beam.common.constant.Constant;
 import com.hsshy.beam.common.constant.cache.Cache;
 import com.hsshy.beam.common.constant.cache.CacheKey;
+import com.hsshy.beam.common.utils.R;
+import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.dao.MenuMapper;
 import com.hsshy.beam.modular.sys.entity.Menu;
@@ -14,8 +16,10 @@ import com.hsshy.beam.modular.sys.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +36,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public List<Map> queryListParentId(Long parentId, List<Long> menuIdList) {
@@ -70,6 +76,27 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         }
 
         return getAllMenuTreeList(menuList);
+    }
+
+    @Transactional
+    @Override
+    public R deleteMenu(Long menuIds[]) {
+        if(ToolUtil.isEmpty(menuIds)||menuIds.length<=0){
+            return R.fail("未提交要删除的记录");
+        }
+        for(Long menuId:menuIds){
+            Integer count = this.count(new QueryWrapper<Menu>().lambda().eq(Menu::getParentId,menuId));
+            if(count>0){
+                return R.fail("删除失败，请先删除菜单关联的子菜单");
+            }
+
+        }
+        //清除缓存
+        redisUtil.clearCache();
+        Boolean a = this.removeByIds(Arrays.asList(menuIds));
+
+
+        return R.ok();
     }
 
 

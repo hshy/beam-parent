@@ -120,20 +120,8 @@ public class MenuController extends BaseController {
     @PostMapping(value = "/delete")
     public R delete(@RequestBody Long menuIds[]){
 
-        if(ToolUtil.isEmpty(menuIds)||menuIds.length<=0){
-            return R.fail("未提交要删除的记录");
-        }
-        for(Long menuId:menuIds){
-            Integer count = menuService.count(new QueryWrapper<Menu>().lambda().eq(Menu::getParentId,menuId));
-            if(count>0){
-                return R.fail("删除失败，请先删除菜单关联的子菜单");
-            }
+        return menuService.deleteMenu(menuIds);
 
-        }
-        //清除缓存
-        redisUtil.clearCache();
-        menuService.removeByIds(Arrays.asList(menuIds));
-        return R.ok();
     }
 
 

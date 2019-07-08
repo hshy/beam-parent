@@ -16,6 +16,7 @@ import com.hsshy.beam.modular.sys.service.IUserService;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import java.util.Arrays;
 import java.util.List;
@@ -35,8 +36,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     private RedisUtil redisUtil;
 
-    @Autowired
-    private MenuMapper menuMapper;
 
     @Override
     public IPage<Map> selectPageList(User user) {
@@ -107,6 +106,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return R.ok();
     }
 
+    @Transactional
     @Override
     public R deleteUser(Long[] userIds) {
         if(ToolUtil.isEmpty(userIds)||userIds.length<=0){
@@ -116,8 +116,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             if(userId.longValue() == Constant.SUPER_ADMIN){
                 return R.fail("管理员不能删除");
             }
+
         }
-        this.removeByIds(Arrays.asList(userIds));
+
+        Boolean a = this.removeByIds(Arrays.asList(userIds));
+        if(a){
+            baseMapper.delURInUserId(userIds);
+        }
         return R.ok();
     }
 
