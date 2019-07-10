@@ -1,9 +1,7 @@
 package com.hsshy.beam.modular.sys.controller;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsshy.beam.common.base.controller.BaseController;
 import com.hsshy.beam.common.shiro.IShiro;
 import com.hsshy.beam.common.shiro.ShiroUtils;
-import com.hsshy.beam.common.shiro.factory.ShiroFactroy;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
@@ -38,8 +36,8 @@ public class MenuController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
 
-
-    private IShiro shiroFactory = ShiroFactroy.me();
+    @Autowired
+    private  IShiro shiroFactory ;
 
 
     /**
