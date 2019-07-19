@@ -152,6 +152,19 @@
             <version>3.2.1</version>
         </dependency>
 
+        <!-- bcprov-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+        </dependency>
+
+
+        <!-- 微信开发相关 -->
+        <dependency>
+            <groupId>com.github.liyiorg</groupId>
+            <artifactId>weixin-popular</artifactId>
+        </dependency>
+
     </dependencies>
 
 

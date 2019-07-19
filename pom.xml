@@ -59,6 +59,9 @@
 		<redisson-version>3.5.0</redisson-version>
 
 		<easyexcel-version>1.1.1</easyexcel-version>
+		<weixin-popular>2.8.27</weixin-popular>
+		<bcprov-jdk15on>1.56</bcprov-jdk15on>
+
 
 	</properties>
 	<dependencyManagement>
@@ -274,6 +277,19 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>easyexcel</artifactId>
 				<version>${easyexcel-version}</version>
+			</dependency>
+
+			<!-- bcprov-jdk15on -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bcprov-jdk15on}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.liyiorg</groupId>
+				<artifactId>weixin-popular</artifactId>
+				<version>${weixin-popular}</version>
 			</dependency>
 
 
