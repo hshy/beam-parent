@@ -102,19 +102,6 @@ http://www.hsshy.com
 - 提示账户验证失败，检查是否安装Redis，以及用户名密码是否正确。
 - set、get报红，请安装Lombok插件。详情请参照软件需求。
 
-#### 项目截图
-##### 后台管理系统：
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-c83089109737709c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-900e17a18eb8812e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-c9ace30dac0edff7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-75dcb0b8fdefc926.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-c6d8f6ada98154e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-80fd19bb42b31046.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-a1ebc7317dbf6af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-1b964ca56a75e1bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-5e2cbf66570bc962.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/13498144-cd6a59c0734ae61a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 #### 部署流程
 
