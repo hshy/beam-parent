@@ -7,8 +7,6 @@
         </div>
         <div class="container">
             <div class="handle-box">
-
-
                 <el-input style="width: 120px" v-model="req.keyword" placeholder="请输入关键字"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
@@ -17,8 +15,6 @@
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-
-
                 <el-table-column
                     label="标题"
                     align="center"
@@ -55,7 +51,6 @@
                         <el-button type="text" icon="el-icon-delete" class="red"
                                    @click="handleDelete(scope.$index, scope.row)">删除
                         </el-button>
-
                     </template>
                 </el-table-column>
             </el-table>
@@ -83,9 +78,8 @@
                 <el-form-item label="作者" prop="author">
                     <el-input v-model.trim="article.author"></el-input>
                 </el-form-item>
-
                 <el-form-item label="内容" prop="content">
-                    <quill-editor ref="myTextEditor" v-model="article.content" :options="editorOption"></quill-editor>
+                    <mavon-editor :subfield="false" defaultOpen="edit" v-model="article.content"/>
                 </el-form-item>
                 <el-form-item label="是否可用" prop="status">
                     <el-switch v-model="article.frozen" :active-text="article.frozen ? '可用' : '不可用'"></el-switch>
@@ -117,11 +111,15 @@
     import 'quill/dist/quill.bubble.css';
     import {quillEditor} from 'vue-quill-editor';
 
+    import {mavonEditor} from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
+
     export default {
         name: 'basetable',
         components:{
             quillEditor,
-            quillRedefine
+            quillRedefine,
+            mavonEditor
         },
         data() {
             return {

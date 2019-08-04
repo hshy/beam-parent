@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -65,6 +67,8 @@ public class TestController extends BaseBeanController {
         System.out.println(getUserId());
         return R.ok();
     }
+
+
 
 
 
