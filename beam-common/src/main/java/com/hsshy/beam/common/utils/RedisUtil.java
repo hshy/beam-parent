@@ -16,9 +16,7 @@ import java.util.stream.Stream;
 /**
  * Redis工具类
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-07-17 21:12
+ * @author hs
  */
 @Component
 public class RedisUtil {
@@ -179,12 +177,30 @@ public class RedisUtil {
         return get(key, NOT_EXPIRE);
     }
 
+    /**
+     * @method
+     * @description 加
+     * @date: 2019/8/5 17:48
+     * @param  * @param null
+     * @return
+     */
+    public long increment(String key,long count,long expire){
+        if(expire != NOT_EXPIRE){
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        }
+        return valueOperations.increment(key,count);
+    }
+    public long increment(String key,long count){
+
+        return increment(key,count,DEFAULT_EXPIRE);
+    }
+
 
 
     /**
      * listOperations使用
      */
-    public <T> void lpush(String key, long expire, T t) {
+    public <T> void lpush(String key, T t, long expire) {
         listOperations.leftPush(key, t);
         if (expire != NOT_EXPIRE) {
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
@@ -199,7 +215,7 @@ public class RedisUtil {
      * @return
      */
     public <T> void lpush(String key, T t) {
-        lpush(key, DEFAULT_EXPIRE, t);
+        lpush(key, t, DEFAULT_EXPIRE);
     }
 
     public <T> T lpop(String key, long expire) {
@@ -292,7 +308,7 @@ public class RedisUtil {
      * setOperations使用
      */
 
-    public <T> void sSet(String key, long expire, T t) {
+    public <T> void sSet(String key, T t, long expire) {
         setOperations.add(key, t);
         if (expire != NOT_EXPIRE) {
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
@@ -307,7 +323,7 @@ public class RedisUtil {
      * @return
      */
     public <T> void sSet(String key, T t) {
-        sSet(key, DEFAULT_EXPIRE, t);
+        sSet(key, t, DEFAULT_EXPIRE);
     }
     /**
      * @method
@@ -361,7 +377,7 @@ public class RedisUtil {
      * zSetOperations使用
      */
 
-    public <T> void zSet(String key, long expire, T t,double score) {
+    public <T> void zSet(String key, T t,double score, long expire) {
         zSetOperations.add(key, t,score);
         if (expire != NOT_EXPIRE) {
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
@@ -376,7 +392,7 @@ public class RedisUtil {
      * @return
      */
     public <T> void zSet(String key, T t,double score) {
-        zSet(key, DEFAULT_EXPIRE, t,score);
+        zSet(key, t,score, DEFAULT_EXPIRE);
     }
     /**
      * @method
@@ -439,8 +455,94 @@ public class RedisUtil {
         return arrayList;
     }
 
+    /**
+     * hashOperations使用
+     */
 
 
+    public void hsetAll(String key,Map map, long expire){
+        hashOperations.putAll(key, map);
+        if (expire != NOT_EXPIRE) {
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        }
+    }
+    /**
+     * @method
+     * @description 放入Map
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public  void hsetAll(String key,Map map){
+        hsetAll(key,map,DEFAULT_EXPIRE);
+    }
+
+    public  void hset(String key,String hkey,String hvalue,long expire){
+        hashOperations.put(key, hkey,hvalue);
+        if (expire != NOT_EXPIRE) {
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        }
+    }
+    /**
+     * @method
+     * @description 放入String
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public  void hset(String key,String hkey,String hvalue){
+        hset(key,hkey,hvalue,DEFAULT_EXPIRE);
+    }
+    /**
+     * @method
+     * @description 获取map
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public Map hgetMap(String key){
+
+        return hashOperations.entries(key);
+
+    }
+    /**
+     * @method
+     * @description 获取单个值
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public <T> T hget(String key,String hkey){
+
+        return (T)hashOperations.get(key,hkey);
+
+    }
+    /**
+     * @method
+     * @description 获取所有值
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public <T> List<T> hgetVlist(String key){
+
+        return (List<T>)hashOperations.values(key);
+
+    }
+    /**
+     * @method
+     * @description 扫描获取对象
+     * @date: 2019/8/4 13:59
+     * @return
+     */
+    public List<Map.Entry<String, Object>> hscan(String key){
+
+        List<Map.Entry<String, Object>> mapList = new ArrayList<>();
+        Cursor<Map.Entry<String, Object>> curosr = hashOperations.scan(key,
+                ScanOptions.scanOptions().match("*").count(1000).build());
+        while(curosr.hasNext()){
+            Map.Entry<String, Object> entry = curosr.next();
+            mapList.add(entry);
+        }
+
+        return mapList;
+
+    }
 
 
 

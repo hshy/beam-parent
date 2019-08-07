@@ -1,5 +1,4 @@
 package com.hsshy.beam.modular.test.controller;
-
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.RedisUtil;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,5 +210,62 @@ public class TestRedisController {
         return R.ok(count);
     }
 
+    @ApiOperation(value = "放入缓存")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/set")
+    public R  hSet(){
+
+
+        redisUtil.hset("hash:test","hkey","asadsda");
+
+        return R.ok();
+    }
+
+    @ApiOperation(value = "放入缓存")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/set/all")
+    public R  hSetAll(){
+
+        Map map = new HashMap();
+        map.put("hkey","hhhhhh");
+        map.put("test1","111111");
+        map.put("test2","222222");
+
+        redisUtil.hsetAll("hash:test",map);
+
+        return R.ok();
+    }
+
+    @ApiOperation(value = "获取map")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/get/map")
+    public R  hGetMap(){
+
+        return R.ok(redisUtil.hgetMap("hash:test"));
+    }
+
+    @ApiOperation(value = "获取值")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/get")
+    public R  hget(){
+
+        return R.ok(redisUtil.hget("hash:test","hkey"));
+    }
+
+    @ApiOperation(value = "获取的所有value")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/get/value/list")
+    public R  hgetVlist(){
+
+        return R.ok(redisUtil.hgetVlist("hash:test"));
+    }
+
+    @ApiOperation(value = "扫描key的所有值")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/hash/scan")
+    public R  hscan(){
+
+        return R.ok(redisUtil.hscan("hash:test"));
+    }
 
 }
