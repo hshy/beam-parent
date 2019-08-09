@@ -31,8 +31,8 @@ public class AppInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception e) throws Exception {
-        logger.info("className--->" + arg2);
-        logger.info("request--->" + request);
+//        logger.info("className--->" + arg2);
+//        logger.info("request--->" + request);
     }
 
     @Override
