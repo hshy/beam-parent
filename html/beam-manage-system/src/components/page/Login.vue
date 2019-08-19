@@ -16,7 +16,7 @@
                 <div class="login-btn">
                     <el-button type="primary" v-loading="loading" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
-                <p class="login-tips">Tips : 用户名和密码随便填。</p>
+                <p class="login-tips"></p>
             </el-form>
         </div>
     </div>
@@ -52,7 +52,7 @@
 				              if (res.error === false) {
 				                this.$message.success(res.msg);
 				                localStorage.setItem('sysuser',JSON.stringify(res.data));
-				                this.$router.push({path: '/'});
+				                this.$router.push({path: '/dashboard'});
 				              }
 				            }, (err) => {
 				              this.loading = false

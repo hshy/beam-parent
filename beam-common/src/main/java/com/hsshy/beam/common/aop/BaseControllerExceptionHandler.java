@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 public class BaseControllerExceptionHandler {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    public Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 拦截业务异常

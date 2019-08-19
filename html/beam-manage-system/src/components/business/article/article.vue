@@ -9,8 +9,7 @@
             <div class="handle-box">
                 <el-input style="width: 120px" v-model="req.keyword" placeholder="请输入关键字"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
-                <el-button type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button type="primary" icon="add" class="handle-del mr10" @click="$router.push('/article/add')">新增</el-button>
             </div>
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
@@ -33,7 +32,11 @@
                         <p>{{scope.row.frozen==1? '可用' : '不可用'}}</p>
                     </template>
                 </el-table-column>
-
+                <el-table-column
+                    label="排序"
+                    align="center"
+                    prop="sort">
+                </el-table-column>
                 <el-table-column
                     label="创建时间"
                     align="center"
@@ -46,10 +49,12 @@
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑
+                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.row.id)">编辑
                         </el-button>
                         <el-button type="text" icon="el-icon-delete" class="red"
                                    @click="handleDelete(scope.$index, scope.row)">删除
+                        </el-button>
+                        <el-button type="text" icon="el-icon-view" @click="handleView(scope.row.shortCode)">预览
                         </el-button>
                     </template>
                 </el-table-column>
@@ -68,29 +73,6 @@
             </div>
         </div>
 
-        <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="60%">
-
-            <el-form ref="article" :model="article" label-width="100px">
-                <el-form-item label="标题" prop="title">
-                    <el-input v-model.trim="article.title"></el-input>
-                </el-form-item>
-                <el-form-item label="作者" prop="author">
-                    <el-input v-model.trim="article.author"></el-input>
-                </el-form-item>
-                <el-form-item label="内容" prop="content">
-                    <mavon-editor :subfield="false" defaultOpen="edit" v-model="article.content"/>
-                </el-form-item>
-                <el-form-item label="是否可用" prop="status">
-                    <el-switch v-model="article.frozen" :active-text="article.frozen ? '可用' : '不可用'"></el-switch>
-                </el-form-item>
-
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" :loading="loading" @click="saveEdit">确 定</el-button>
-            </span>
-        </el-dialog>
 
         <!-- 删除提示框 -->
         <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
@@ -104,23 +86,11 @@
 </template>
 
 <script>
-    import ArticleApi from '../../api/business/article';
-    import {quillRedefine} from 'vue-quill-editor-upload'//引入图片上传
-    import 'quill/dist/quill.core.css';
-    import 'quill/dist/quill.snow.css';
-    import 'quill/dist/quill.bubble.css';
-    import {quillEditor} from 'vue-quill-editor';
-
-    import {mavonEditor} from 'mavon-editor'
-    import 'mavon-editor/dist/css/index.css'
+    import ArticleApi from '../../../api/business/article';
+    import bus from '../../common/bus';
 
     export default {
         name: 'basetable',
-        components:{
-            quillEditor,
-            quillRedefine,
-            mavonEditor
-        },
         data() {
             return {
                 tableData: [],
@@ -129,7 +99,6 @@
                 is_search: false,
                 editVisible: false,
                 delVisible: false,
-                article: {},
                 idx: -1,
                 ids: [],
                 req: {},
@@ -140,28 +109,15 @@
         },
         created() {
             this.getData();
-            this.initQuillOption();
+            bus.$on('reloadArticleList', msg => {
+                console.log(msg);
+                this.reload();
+            })
 
 
         },
         computed: {},
         methods: {
-            initQuillOption(){
-                this.editorOption = quillRedefine(//修改富文本编辑器图片上传路径
-                    {
-                        // 图片上传的设置
-                        uploadConfig: {
-                            name: 'file',  // 图片上传参数名
-                            action: "/beam_ht/file/upload",  // 必填参数 图片上传地址
-                            methods: 'POST',
-                            res: (res) => {
-                                console.log(res);
-                                return res.data;//return图片url
-                            },
-                        },
-
-                    })
-            },
             handleCurrentChange(val) {
                 this.page.pageNo = val;
                 this.getData();
@@ -203,18 +159,6 @@
                 this.is_search = true;
                 this.getData();
             },
-
-            handleAdd() {
-                this.article = {};
-                this.editVisible = true;
-            },
-            handleEdit(index, row) {
-                this.editVisible = true;
-                this.idx = index;
-                const item = this.tableData[index];
-                this.article = item;
-
-            },
             handleDelete(index, row) {
                 this.ids = [row.id];
                 this.delVisible = true;
@@ -226,29 +170,9 @@
                 for (let i = 0; i < length; i++) {
                     this.ids.push(this.multipleSelection[i].id);
                 }
-
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
-            },
-            // 保存编辑
-            saveEdit() {
-                // this.$set(this.tableData, this.idx, this.article);
-                this.loading = true
-                ArticleApi.save(this.article).then((res) => {
-                    this.loading = false
-                    if (res.error === false) {
-                        this.editVisible = false
-                        this.$message.success(res.msg);
-                        this.reload()
-                    } else {
-                        this.$message.error(res.msg);
-                    }
-                }, (err) => {
-                    this.loading = false
-                    this.$message.error(err.msg);
-                })
-
             },
             // 确定删除
             deleteRow() {
@@ -265,6 +189,12 @@
                 })
                 this.delVisible = false;
             },
+            handleEdit(id){
+                this.$router.push({path: `/article/edit/${id}`})
+            },
+            handleView(shortCode){
+                this.$router.push({path: `/blog/detail/${shortCode}`})
+            },
 
 
         }
@@ -276,16 +206,6 @@
     .handle-box {
         margin-bottom: 20px;
     }
-
-    .handle-select {
-        width: 120px;
-    }
-
-    .handle-input {
-        width: 300px;
-        display: inline-block;
-    }
-
     .del-dialog-cnt {
         font-size: 16px;
         text-align: center

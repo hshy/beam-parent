@@ -1,8 +1,9 @@
-package com.hsshy.beam.modular.business.controller;
+package com.hsshy.beam.modular.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.hsshy.beam.modular.business.entity.Article;
-import com.hsshy.beam.modular.business.service.IArticleService;
+import com.hsshy.beam.common.utils.ShortCodeKit;
+import com.hsshy.beam.modular.blog.entity.Article;
+import com.hsshy.beam.modular.blog.service.IArticleService;
 import com.hsshy.beam.common.base.controller.BaseController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
@@ -13,14 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import java.util.Arrays;
 import java.util.List;
-
 /**
  * @author hs
  * @email 457030599@qq.com
  * @date 2019-06-04 15:34:18
  */
 @Api(value = "ArticleController", tags = {"Article接口"})
-@RequestMapping("/business/article")
+@RequestMapping("/blog/article")
 @RestController
 public class ArticleController extends BaseController {
 
@@ -32,29 +32,32 @@ public class ArticleController extends BaseController {
     @ApiOperation("分页列表")
     @GetMapping(value = "/page/list")
     public R pageList(Article article) {
-
-        QueryWrapper qw = new QueryWrapper<Article>();
-
-        IPage page = articleService.page(new Page(article.getCurrentPage(), article.getPageSize()), qw);
+        IPage page = articleService.selectPageList(new Page(article.getCurrentPage(), article.getPageSize()), article);
         return R.ok(page);
     }
 
     @ApiOperation("列表")
     @GetMapping(value = "/list")
     public R list(Article article) {
-
         QueryWrapper qw = new QueryWrapper<Article>();
-
+        qw.eq("frozen",1);
         List<Article> articleList = articleService.list(qw);
         return R.ok(articleList);
+    }
+
+    @ApiOperation("详情")
+    @GetMapping(value = "/info")
+    public R info(Long articleId) {
+        Article article = articleService.getArticleInfo(articleId);
+
+        return R.ok(article);
     }
 
     @ApiOperation("保存")
     @PostMapping(value = "/save")
     public R save(@RequestBody Article article) {
 
-        articleService.saveOrUpdate(article);
-        return R.ok();
+        return articleService.saveArticle(article);
     }
 
     @ApiOperation("删除")

@@ -17,30 +17,14 @@
                     <div class="user-info">
                         <img src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator" alt="">
                         <div class="user-info-cont">
-                            <div class="user-info-name">微信小程序</div>
-                            <div>个人开发的微信小程序，里面有图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
+                            <div class="user-info-name">光有工具</div>
+                            <div>微信小程序：图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
                         </div>
                     </div>
                 </el-card>
                 <el-card shadow="hover" class="mgb20" style="height:300px;">
                     <el-image src="http://img.hsshy.cn/cd9cb95c-1967-40b7-ae94-38ebb699e18f.png"></el-image>
                 </el-card>
-                <el-card shadow="hover" style="height:252px;">
-                    <div slot="header" class="clearfix">
-                        <span>语言详情</span>
-                    </div>
-                    Vue
-                    <el-progress :percentage="30.3" color="#42b983"></el-progress>
-                    JavaScript
-                    <el-progress :percentage="24.1" color="#f1e05a"></el-progress>
-                    CSS
-                    <el-progress :percentage="30.7"></el-progress>
-                    HTML
-                    <el-progress :percentage="30.9" color="#f56c6c"></el-progress>
-                    Java
-                    <el-progress :percentage="70.9" color="#f56c6c"></el-progress>
-                </el-card>
-
             </el-col>
             <el-col :span="16">
                 <el-row :gutter="20" class="mgb20">

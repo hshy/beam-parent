@@ -513,7 +513,7 @@ INSERT INTO `sys_menu` VALUES ('1134397077300789249', '17', '编辑', 'sysrole/e
 INSERT INTO `sys_menu` VALUES ('1134398704145481730', '18', '修改', 'sysmenu/edit', 'sys:menu:edit', '2', null, '3', null, null, '2019-05-31 09:58:22', '2019-05-31 09:58:22', '0');
 INSERT INTO `sys_menu` VALUES ('1134403202943369217', '1116961835054452737', '修改', 'sysdict/edit', 'sys:dict:edit', '2', null, '3', null, null, '2019-05-31 10:16:14', '2019-05-31 10:16:14', '0');
 INSERT INTO `sys_menu` VALUES ('1134405857598062594', '16', '清除缓存', 'sysuser/clearCache', 'sys:user:clearCache', '2', null, '6', null, null, '2019-05-31 10:26:47', '2019-05-31 10:26:47', '0');
-INSERT INTO `sys_menu` VALUES ('1135836344682065921', '0', '内容管理', 'business', null, '0', 'el-icon-menu', '2', null, null, '2019-06-04 09:11:02', '2019-06-04 09:11:44', '0');
+INSERT INTO `sys_menu` VALUES ('1135836344682065921', '0', '内容管理', 'blog', null, '0', 'el-icon-menu', '2', null, null, '2019-06-04 09:11:02', '2019-06-04 09:11:44', '0');
 INSERT INTO `sys_menu` VALUES ('1135837162231607298', '1135836344682065921', '文章管理', 'article', null, '1', 'el-icon-notebook-1', '1', null, null, '2019-06-04 09:14:17', '2019-06-04 09:18:34', '0');
 
 -- ----------------------------

@@ -19,7 +19,6 @@ export default {
 
     // 批量更改状态
     changeStatus : (userId, flag) => {
-
         return http.post("/sys/user/change/status/" + flag, userId)
     },
     resetPassword: ids => {

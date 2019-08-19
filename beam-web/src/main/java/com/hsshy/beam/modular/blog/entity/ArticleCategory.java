@@ -1,10 +1,12 @@
-package com.hsshy.beam.modular.business.entity;
+package com.hsshy.beam.modular.blog.entity;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hsshy.beam.common.base.entity.RestEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 
@@ -13,25 +15,24 @@ import java.io.Serializable;
  */
 @Data
 @NoArgsConstructor
-@TableName("b_article")
-public class Article extends RestEntity<Long> {
+@TableName("b_article_category")
+public class ArticleCategory extends RestEntity<Long> {
 
     //
     @TableId
     private Long id;
-    // 标题
-    @TableField(value = "title")
-    private String title;
-    // 作者
-    @TableField(value = "author")
-    private String author;
-    // 内容
-    @TableField(value = "content")
-    private String content;
+    // 分类名称
+    @TableField(value = "name")
+    private String name;
     // 是否可用
     @TableField(value = "frozen")
     private Integer frozen;
-
+    //排序
+    @TableField(value = "sort")
+    private Integer sort;
+    //文章数量
+    @TableField(exist = false)
+    private Integer articleCount;
 
     @Override
     public Long getId() {

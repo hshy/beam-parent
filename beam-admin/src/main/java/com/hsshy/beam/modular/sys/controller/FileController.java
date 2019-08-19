@@ -25,9 +25,9 @@ public class FileController {
     @PostMapping("/upload")
     public Object uploadFile(@RequestPart("file") MultipartFile file) {
 
-        String fileName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(file.getOriginalFilename());
         try {
-            String url = OSSFactory.build().upload(file.getBytes(),fileName);
+            String url = OSSFactory.build().uploadSuffix(file.getBytes(),"." + ToolUtil.getFileSuffix(file.getOriginalFilename()));
+
             return R.ok(url);
 
         } catch (Exception e) {

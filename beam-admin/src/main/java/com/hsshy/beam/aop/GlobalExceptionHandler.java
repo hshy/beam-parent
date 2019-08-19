@@ -30,6 +30,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseBody
     public R exception(IllegalArgumentException e) {
         e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(e.getMessage());
     }
 
@@ -39,6 +40,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseBody
     public R exception(IllegalStateException e) {
         e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(e.getMessage());
     }
 
@@ -47,6 +49,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseBody
     public R exception(BindException e) {
         e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(e.getAllErrors().get(0).getDefaultMessage());
     }
 
@@ -55,6 +58,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseBody
     public R exception(MethodArgumentNotValidException e) {
         e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(e.getBindingResult().getFieldErrors().get(0).getDefaultMessage());
     }
 
@@ -67,6 +71,7 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseBody
     public R exception(UnauthorizedException e) {
         e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(RetEnum.FORBID.getRet(),e.getMessage());
     }
 
@@ -78,7 +83,8 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public R notFount(RuntimeException e) {
-        LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroUtils.getUserId(), e));
+        e.printStackTrace();
+        log.error("异常信息：{}",e.getMessage());
         return R.fail(RetEnum.SERVER_EXCEPTION.getRet(), RetEnum.SERVER_EXCEPTION.getMsg());
     }
 

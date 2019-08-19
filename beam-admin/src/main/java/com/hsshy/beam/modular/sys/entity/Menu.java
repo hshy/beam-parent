@@ -40,7 +40,7 @@ public class Menu extends DataEntity<Long> {
 	 */
 	private String url;
 	/**
-	 * 授权(多个用逗号分隔，如：business:list,business:create)
+	 * 授权(多个用逗号分隔，如：blog:list,blog:create)
 	 */
 	private String perms;
 	/**

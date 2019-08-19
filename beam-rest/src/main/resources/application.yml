@@ -21,6 +21,5 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
-
 log:
   path: beam-rest-logs

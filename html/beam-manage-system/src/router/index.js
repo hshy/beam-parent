@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/dashboard'
+            redirect: '/blog'
         },
         {
             path: '/',
@@ -86,14 +86,46 @@ export default new Router({
             children: [
                 {
                     path: '/article',
-                    component: resolve => require(['../components/business/article.vue'], resolve),
+                    component: resolve => require(['../components/business/article/article.vue'], resolve),
                     meta: {title: '文章管理', permission: false},
+                },
+                {
+                    path: '/article/add',
+                    component: resolve => require(['../components/business/article/addArticle.vue'], resolve),
+                    meta: {title: '新增文章', permission: false},
+                },
+                {
+                    path: '/article/edit/:id',
+                    component: resolve => require(['../components/business/article/addArticle.vue'], resolve),
+                    meta: {title: '修改文章', permission: false},
+                },
+                {
+                    path: '/article/category',
+                    component: resolve => require(['../components/business/article/category.vue'], resolve),
+                    meta: {title: '文章分类', permission: false},
                 },
             ]
         },
+
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
+        },
+        {
+            path: '/blog',
+            redirect: '/blog/index',
+            component: resolve => require(['../components/blog/blog.vue'], resolve),
+            meta: {title: '博客管理'},
+            children: [
+                {
+                    path: '/blog/index',
+                    component: resolve => require(['../components/blog/index.vue'], resolve)
+                },
+                {
+                    path: '/blog/detail/:shortCode',
+                    component: resolve => require(['../components/blog/detail.vue'], resolve)
+                }
+            ]
         },
         {
             path: '*',

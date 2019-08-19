@@ -32,8 +32,7 @@
 		<beam.common.version>0.0.1-SNAPSHOT</beam.common.version>
 		<beam.web.version>0.0.1-SNAPSHOT</beam.web.version>
 
-		<mybatis-plus.version>3.0-RC1</mybatis-plus.version>
-		<mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>
+		<mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
 
 		<swagger.version>2.9.2</swagger.version>
 		<fastjson.version>1.2.47</fastjson.version>
@@ -139,6 +138,7 @@
 
 
 			<!-- mybatis-plus begin -->
+
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter</artifactId>
@@ -349,28 +349,18 @@
 			<properties>
 				<spring.active>local</spring.active>
 			</properties>
-
 		</profile>
-<!--		<profile>-->
-<!--			<id>dev</id>-->
-<!--			<properties>-->
-<!--				<spring.active>dev</spring.active>-->
-<!--			</properties>-->
-<!--		</profile>-->
-<!--		<profile>-->
-<!--			<id>test</id>-->
-<!--			<properties>-->
-<!--				<spring.active>test</spring.active>-->
-<!--			</properties>-->
-<!--		</profile>-->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.active>dev</spring.active>
+			</properties>
+		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
 				<spring.active>prod</spring.active>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 	</profiles>
 

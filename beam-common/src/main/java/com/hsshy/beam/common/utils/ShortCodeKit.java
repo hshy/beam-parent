@@ -34,6 +34,8 @@ public class ShortCodeKit {
     }
 
 
+
+
     public static Double roundFunction(Long val) {
         return ((131239 * val + 15534) % 714025) / 714025.0;
     }
@@ -106,32 +108,16 @@ public class ShortCodeKit {
 
     public static void main(String[] args) {
         //转码测试
-//        Long id = permutedId(10230L);
-//        Long oid = permutedId(id);
-//        System.out.println(id);
-//        System.out.println(oid);
-//        String s = convertDecimalToBase62(id, 8);
-//        System.out.println(s);
-//        String r = convertBase62ToDecimal(s);
-//        System.out.println(r);
-//        System.out.println(permutedId(Long.parseLong(r)));
+        Long id = permutedId(3L);
+        Long oid = permutedId(id);
+        System.out.println(id);
+        System.out.println(oid);
+        String s = convertDecimalToBase62(id, 8);
+        System.out.println(s);
+        String r = convertBase62ToDecimal(s);
+        System.out.println(r);
+        System.out.println(permutedId(Long.parseLong(r)));
 
-        String a[] = new String[1000000];
-        //相邻转码无关性测试
-        for (int i = 0; i < 1000000; i++) {
-            Long newId = permutedId(Long.valueOf(i));
-            String code = ShortCodeKit.convertDecimalToBase62(newId, 8);
-            a[i]=code;
 
-        }
-        Arrays.sort(a);
-        for (int i = 0; i < 1000000; i++) {
-
-            if(i>0&&a[i].equals(a[i-1])){
-                System.out.println(a[i]+":"+a[i-1]);
-            }
-            System.out.println(a[i]);
-
-        }
     }
 }

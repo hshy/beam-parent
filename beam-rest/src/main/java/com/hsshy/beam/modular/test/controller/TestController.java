@@ -8,9 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -55,7 +52,6 @@ public class TestController extends BaseBeanController {
     @IgnoreUTokenAuth
     @GetMapping(value = "/ignore")
     public R  testIgnore(){
-
         return R.ok();
     }
 
