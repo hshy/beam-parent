@@ -46,7 +46,7 @@
         },
         computed:{
             onRoutes(){
-                return this.$route.path.replace('/','');
+                // return this.$route.path.replace('/','');
             }
         },
         created(){
@@ -60,9 +60,10 @@
         methods:{
             getNavList(){
                 AccountApi.getNavList().then((res)=>{
-                        this.menuItems = res.data;
-                        localStorage.setItem("menuItems",res.data);
-
+                        if(res.error==false){
+                            this.menuItems = res.data;
+                            localStorage.setItem("menuItems",res.data);
+                        }
                     },
                     (err) => {
                     this.menuItems = []
@@ -71,8 +72,11 @@
             },
             getButtonList(){
                 AccountApi.getButtonList().then((res)=>{
-                        this.buttonItems = res.data;
-                        localStorage.setItem("buttonItems",res.data);
+                        if(res.error==false){
+                            this.buttonItems = res.data;
+                            localStorage.setItem("buttonItems",res.data);
+                        }
+
                     },
                     (err) => {
                         this.buttonItems = []

@@ -11,7 +11,7 @@
                 </el-card>
             </el-aside>
             <el-container >
-                <el-main class="main-box">
+                <el-main style="overflow-y: hidden;" class="main-box">
                     <div class="article-list">
                         <div class="article-item"  @click="goToDetail(article.shortCode)" v-for="article in articleList">
                             <el-card :body-style="{width:'100%',height:'50%', padding: '0px'}">
@@ -19,6 +19,10 @@
                                     <span>{{article.title}}</span>
                                     <div class="article-bottom clearfix">
                                         <time class="article-time">{{article.createTime}}</time>
+                                        <span class="article-tag-box">
+                                            <el-tag v-if="index<=5" class="article-tag" size="mini" :type="colorList[index]" :key="tag"
+                                                    v-for="(tag,index) in article.tags">{{tag}}</el-tag>
+                                            </span>
                                         <span class="views-count">阅读 {{article.readNum}}</span>
                                     </div>
                                 </div>
@@ -58,7 +62,7 @@
 </template>
 
 <script>
-    import BlogApi from '../../api/business/blog';
+    import BlogApi from '../../../api/business/blog';
 
     export default {
         name: "index",
@@ -67,8 +71,8 @@
                 activeIndex: 'index',
                 articleList: [],
                 req:[],
-                categoryList:[]
-
+                categoryList:[],
+                colorList:["danger","warning","success","info",""]
             };
         },
         created() {
@@ -76,7 +80,6 @@
             this.getCategoryList();
         },
         methods: {
-            // 获取 easy-mock 的模拟数据
             getArticleList() {
                 const loading = this.$loading({
                     lock: true,
@@ -88,6 +91,9 @@
                     if (res.error === false) {
                         loading.close();
                         this.articleList = res.data ? res.data : []
+                        this.articleList.forEach(article=>{
+                            article.tags = article.tag.split(',');
+                        })
                     } else {
                         this.$message.error(res.msg);
                     }
@@ -133,11 +139,9 @@
 </script>
 
 <style>
-
     .main-box {
         width: 100%;
         height: 100%;
-        overflow-y: hidden;
     }
     .article-list {
         width: 100%;
@@ -156,6 +160,13 @@
     .article-time {
         font-size: 13px;
         color: #999;
+    }
+    .article-tag-box {
+        font-size: 13px;
+        margin-left: 5%;
+    }
+    .article-tag {
+        margin-left: 2px;
     }
     .views-count{
         font-size: 12px;

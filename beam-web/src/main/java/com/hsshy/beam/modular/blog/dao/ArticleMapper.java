@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ArticleMapper extends BaseMapper<Article> {
 
-    IPage<Article> selectPageList(Page page, @Param("article") Article article);
+    IPage<Article> selectPage(Page page, @Param("article") Article article);
 
     Integer addReadNum(@Param("id") Long id);
 
@@ -24,13 +24,15 @@ public interface ArticleMapper extends BaseMapper<Article> {
 
     Article getArticleInfo(@Param("id") Long id);
 
-    int delRefById(@Param("id") Long id);
+    int delRefById(@Param("articleId") Long articleId);
 
     int saveRef(@Param("id") Long id,@Param("categoryIds") List<Long> categoryIds);
 
     List<Long> getCidById(@Param("id") Long id);
 
     List<Article> getArticleListByCid(@Param("cid") Long cid);
+
+    IPage<Article> selectPageByCid(Page page,@Param("article") Article article);
 
 
 }

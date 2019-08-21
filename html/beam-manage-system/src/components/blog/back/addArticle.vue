@@ -11,9 +11,9 @@
                 <div class="content__main">
                     <div class="section">
                         <div class="section-content">
-                            <el-form ref="article" :model="article" label-width="100px">
+                            <el-form ref="articleForm"  :rules="rules" :model="article" label-width="100px">
                                 <el-form-item label="文章标题" prop="title">
-                                    <el-input style="width: 300px;" v-model.trim="article.title"></el-input>
+                                    <el-input style="width: 500px;" v-model.trim="article.title"></el-input>
                                 </el-form-item>
                                 <el-form-item label="作者" prop="author">
                                     <el-input style="width: 150px;" v-model.trim="article.author"></el-input>
@@ -49,7 +49,12 @@
                                     </el-input>
                                     <el-button v-else class="button-new-tag" size="small" @click="showTagInput">添加标签</el-button>
                                 </el-form-item>
-
+                                <el-form-item label="排序" prop="sort">
+                                    <el-input-number  v-model.trim="article.sort"></el-input-number>
+                                </el-form-item>
+                                <el-form-item label="是否可用" prop="status">
+                                    <el-switch v-model="article.frozen" :active-text="article.frozen ? '可用' : '不可用'"></el-switch>
+                                </el-form-item>
 
                                 <el-form-item label="文本类型" prop="textType">
                                     <el-radio-group v-model="article.textType">
@@ -58,17 +63,12 @@
                                     </el-radio-group>
                                 </el-form-item>
                                 <el-form-item v-if="article.textType==0" label="内容" prop="content">
-                                    <mavon-editor ref="myMavonEditor" :subfield="false" @imgAdd="$imgAdd"  defaultOpen="edit" v-model="article.content"/>
+                                    <mavon-editor ref="myMavonEditor" :subfield="false" @save="$saveContent" @imgAdd="$imgAdd"  defaultOpen="edit" v-model="article.content"/>
                                 </el-form-item>
                                 <el-form-item v-if="article.textType==1" label="内容" prop="content">
                                     <quill-editor ref="myTextEditor" v-model="article.content" :options="editorOption"></quill-editor>
                                 </el-form-item>
-                                <el-form-item label="排序" prop="sort">
-                                    <el-input-number  v-model.trim="article.sort"></el-input-number>
-                                </el-form-item>
-                                <el-form-item label="是否可用" prop="status">
-                                    <el-switch v-model="article.frozen" :active-text="article.frozen ? '可用' : '不可用'"></el-switch>
-                                </el-form-item>
+
                             </el-form>
                         </div>
                     </div>
@@ -96,13 +96,21 @@
         data(){
             return{
                 article: {},
-                authorName:"yellow_han",
+                authorName:"yellow_shy",
                 authorHeadImg:"http://img.hsshy.cn/head_img.jpg",
                 editorOption: {},
                 categoryList: [],
                 tagValue:"",
                 tagVisible:false,
                 tags: [],
+                rules: {
+                    title: [
+                        {required: true, message: '请填写文章标题', trigger: 'blur'},
+                    ],
+                    content: [
+                        {required: true, message: '请填写文章内容', trigger: 'blur'}
+                    ],
+                }
 
             }
         },
@@ -122,7 +130,6 @@
                     author:this.authorName,
                     headImg:this.authorHeadImg,
                     sort:100
-
                 }
             }
             this.editorOption = quillRedefine(//修改富文本编辑器图片上传路径
@@ -188,27 +195,32 @@
             },
             saveArticle() {
                 // this.$set(this.tableData, this.idx, this.article);
-                const loading = this.$loading({
-                    lock: true,
-                    text: 'Loading',
-                    spinner: 'el-icon-loading',
-                    background: 'rgba(0, 0, 0, 0.7)'
-                });
-                this.article.tag = this.tags.join(",");
-                ArticleApi.save(this.article).then((res) => {
-                    loading.close();
-                    if (res.error === false) {
-                        this.editVisible = false
-                        bus.$emit('reloadArticleList', "刷新文章列表");
-                        this.$message.success(res.msg);
-                        this.$router.push({path: `/article`})
-                    } else {
-                        this.$message.error(res.msg);
+                this.$refs.articleForm.validate((valid) => {
+                    if (valid) {
+                        const loading = this.$loading({
+                            lock: true,
+                            text: 'Loading',
+                            spinner: 'el-icon-loading',
+                            background: 'rgba(0, 0, 0, 0.7)'
+                        });
+                        this.article.tag = this.tags.join(",");
+                        ArticleApi.save(this.article).then((res) => {
+                            loading.close();
+                            if (res.error === false) {
+                                this.editVisible = false
+                                bus.$emit('reloadArticleList', "刷新文章列表");
+                                this.$message.success(res.msg);
+                                this.$router.push({path: `/article`})
+                            } else {
+                                this.$message.error(res.msg);
+                            }
+                        }, (err) => {
+                            this.loading = false
+                            this.$message.error(err.msg);
+                        })
                     }
-                }, (err) => {
-                    this.loading = false
-                    this.$message.error(err.msg);
                 })
+
 
             },
             handleClose(tag) {
@@ -237,6 +249,24 @@
                     // $vm.$img2Url 详情见本页末尾
                     this.$refs.myMavonEditor.$img2Url(pos, res.data);
                 })
+            },
+            $saveContent(value,render){
+                // console.log(render); 渲染后的值：html
+                // console.log(value);
+                if(this.article.id){
+                    ArticleApi.saveContent(this.article).then((res) => {
+                        if (res.error === false) {
+                            this.$message.success(res.msg);
+                        } else {
+                            this.$message.error(res.msg);
+                        }
+                    }, (err) => {
+                        this.$message.error(err.msg);
+                    })
+                }
+                else {
+                    this.saveArticle();
+                }
 
             }
 

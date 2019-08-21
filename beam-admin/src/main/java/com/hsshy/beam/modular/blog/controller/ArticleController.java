@@ -32,7 +32,14 @@ public class ArticleController extends BaseController {
     @ApiOperation("分页列表")
     @GetMapping(value = "/page/list")
     public R pageList(Article article) {
-        IPage page = articleService.selectPageList(new Page(article.getCurrentPage(), article.getPageSize()), article);
+        IPage page ;
+        if(ToolUtil.isNotEmpty(article.getCid())){
+            page = articleService.selectPageByCid(new Page(article.getCurrentPage(), article.getPageSize()), article);
+        }
+        else {
+            page = articleService.selectPage(new Page(article.getCurrentPage(), article.getPageSize()), article);
+
+        }
         return R.ok(page);
     }
 
@@ -56,8 +63,14 @@ public class ArticleController extends BaseController {
     @ApiOperation("保存")
     @PostMapping(value = "/save")
     public R save(@RequestBody Article article) {
-
         return articleService.saveArticle(article);
+    }
+
+    @ApiOperation("保存内容")
+    @PostMapping(value = "/save/content")
+    public R saveContent(@RequestBody Article article) {
+        articleService.saveOrUpdate(article);
+        return R.ok("保存文章内容成功");
     }
 
     @ApiOperation("删除")
@@ -67,7 +80,12 @@ public class ArticleController extends BaseController {
         if (ToolUtil.isEmpty(articleIds) || articleIds.length <= 0) {
             return R.fail("未提交要删除的记录");
         }
-        articleService.removeByIds(Arrays.asList(articleIds));
+        boolean a = articleService.removeByIds(Arrays.asList(articleIds));
+        if(a){
+            for(int i=0;i<articleIds.length;i++){
+                articleService.delRefById(articleIds[i]);
+            }
+        }
         return R.ok();
     }
 

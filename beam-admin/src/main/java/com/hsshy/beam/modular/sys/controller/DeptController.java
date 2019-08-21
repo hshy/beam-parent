@@ -36,6 +36,9 @@ public class DeptController extends BaseController {
     @RequiresPermissions(value = {"sys:dept:add","sys:dept:edit"},logical = Logical.OR)
     public R save(@RequestBody Dept dept){
 
+        if(ToolUtil.isEmpty(dept.getParentId())){
+            dept.setParentId(0L);
+        }
         deptService.saveOrUpdate(dept);
         return R.ok();
     }

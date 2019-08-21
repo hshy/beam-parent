@@ -10,7 +10,6 @@ const Http = {
         return axios.get(url, {
             params: data,
         }).then((res) => {
-
             if(res.data.error===false){
                 return Promise.resolve(res.data); //成功
             }
@@ -18,7 +17,7 @@ const Http = {
                 if (res.data.code === -1) {
                     Message.error(res.data.msg);
                     window.location = "/#/login";
-                    return Promise.reject();
+                    return Promise.reject(res.data);
                 }
                 else if(res.data.code === 403){
                     Message.error(res.data.msg);
@@ -156,7 +155,6 @@ const Http = {
                         code: 403,
                         msg: "网络链接错误，请刷新重试！",
                     }
-
                     this.$message.error("网络链接错误，请刷新重试！")
                     return Promise.reject(res)
                 }

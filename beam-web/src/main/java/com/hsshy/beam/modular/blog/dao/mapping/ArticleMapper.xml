@@ -92,10 +92,10 @@
         where id = #{id}
     </update>
     <delete id="delRefById">
-        delete from b_article_category_ref where article_id = #{id}
+        delete from b_article_category_ref where article_id = #{articleId}
     </delete>
 
-    <select id="selectPageList" resultType="com.hsshy.beam.modular.blog.entity.Article">
+    <select id="selectPage" resultType="com.hsshy.beam.modular.blog.entity.Article">
         select
         <include refid="Base_Column_List"/>
         from b_article a
@@ -132,6 +132,17 @@
         left join b_article a
         ON a.id = acr.article_id
         where acr.category_id = #{cid}
+        order by
+        a.sort desc,
+        a.create_time desc
+    </select>
+    <select id="selectPageByCid" resultType="com.hsshy.beam.modular.blog.entity.Article">
+        select
+        <include refid="Front_Column_List"/>
+        from b_article_category_ref acr
+        left join b_article a
+        ON a.id = acr.article_id
+        where acr.category_id = #{article.cid}
         order by
         a.sort desc,
         a.create_time desc

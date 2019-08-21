@@ -15,7 +15,7 @@
                 </div>
 
                 <!-- 用户头像 -->
-                <div class="user-avator"><img :src="sysuser.avatar" ></div>
+                <div class="user-avator"><img :src="sysuser.avatar"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
@@ -28,9 +28,10 @@
                         <a href="https://gitee.com/hsshy/beam-parent" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a>
-                        <el-dropdown-item divided v-if="canChangePassword"  command="changePassword">修改密码</el-dropdown-item>
-                        <el-dropdown-item divided v-if="canClearCache"  command="clearCache">清除缓存</el-dropdown-item>
-                        <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
+                        <el-dropdown-item divided v-if="canChangePassword" command="changePassword">修改密码
+                        </el-dropdown-item>
+                        <el-dropdown-item divided v-if="canClearCache" command="clearCache">清除缓存</el-dropdown-item>
+                        <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </div>
@@ -38,10 +39,12 @@
         <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
             <el-form :model="pwdForm" ref="AccountForm" :rules="rules" label-width="80px">
                 <el-form-item label="旧密码" prop="oldPwd">
-                    <el-input type="password" v-model.trim="pwdForm.oldPwd" auto-complete="off" placeholder="旧密码"></el-input>
+                    <el-input type="password" v-model.trim="pwdForm.oldPwd" auto-complete="off"
+                              placeholder="旧密码"></el-input>
                 </el-form-item>
                 <el-form-item label="新密码" prop="newPwd">
-                    <el-input type="password" v-model.trim="pwdForm.newPwd" auto-complete="off" placeholder="新密码"></el-input>
+                    <el-input type="password" v-model.trim="pwdForm.newPwd" auto-complete="off"
+                              placeholder="新密码"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码" prop="password_confirm">
                     <el-input type="password" v-model.trim="pwdForm.password_confirm" placeholder="确认密码"></el-input>
@@ -78,39 +81,64 @@
                 message: 2,
                 user: null,
                 loading: false,
-                dialogFormVisible:false,
+                dialogFormVisible: false,
                 pwdForm: {
                     oldPwd: "",
                     newPwd: "",
                     password_confirm: ""
                 },
-                rules:{
+                rules: {
                     oldPwd: [
-                        { required: true, message: '请输入旧密码', trigger: 'blur' },
+                        {required: true, message: '请输入旧密码', trigger: 'blur'},
                     ],
                     newPwd: [
-                        { required: true, message: '请输入新密码', trigger: 'blur' },
+                        {required: true, message: '请输入新密码', trigger: 'blur'},
                     ],
-                    password_confirm:[
-                        {validator: validatePass, trigger: 'blur' }
+                    password_confirm: [
+                        {validator: validatePass, trigger: 'blur'}
                     ]
                 },
-                canChangePassword:true,
-                canClearCache:true
+                canChangePassword: true,
+                canClearCache: true
             }
         },
-        computed:{
-            username(){
+        computed: {
+            username() {
                 return this.name;
             },
-            sysuser(){
+            sysuser() {
                 let sysuser = JSON.parse(localStorage.getItem('sysuser'));
 
-                return sysuser?sysuser:this.user;
+                return sysuser ? sysuser : this.user;
             }
 
         },
-        methods:{
+        methods: {
+            getNavList() {
+                AccountApi.getNavList().then((res) => {
+                        if (res.error == false) {
+                            this.menuItems = res.data;
+                            localStorage.setItem("menuItems", res.data);
+                        }
+                    },
+                    (err) => {
+                        this.menuItems = []
+                        this.$message.error(err.msg);
+                    })
+            },
+            getButtonList() {
+                AccountApi.getButtonList().then((res) => {
+                        if (res.error == false) {
+                            this.buttonItems = res.data;
+                            localStorage.setItem("buttonItems", res.data);
+                        }
+
+                    },
+                    (err) => {
+                        this.buttonItems = []
+                        this.$message.error(err.msg);
+                    })
+            },
             // 修改密码
             modifyPwd() {
                 this.$refs.AccountForm.validate((valid) => {
@@ -133,17 +161,17 @@
             },
             // 用户名下拉菜单选择事件
             handleCommand(command) {
-                if(command == 'loginout'){
-                   this.handleLogout();
+                if (command == 'loginout') {
+                    this.handleLogout();
                 }
-                if(command == 'clearCache'){
+                if (command == 'clearCache') {
                     this.clearCache();
                 }
-                if(command == 'changePassword'){
-                    this.dialogFormVisible=true;
+                if (command == 'changePassword') {
+                    this.dialogFormVisible = true;
                 }
             },
-            handleLogout(){
+            handleLogout() {
                 AccountApi.handleLogout().then((res) => {
                     localStorage.removeItem('sysuser')
                     this.$router.push('/login');
@@ -151,20 +179,21 @@
                     this.$message.error(err.msg);
                 })
             },
-            clearCache(){
+            clearCache() {
 
                 AccountApi.clearCache().then((res) => {
-
-                    bus.$emit('closeAll', "");
+                    // bus.$emit('closeAll', "");
                     localStorage.removeItem('menuItems');
                     localStorage.removeItem('buttonItems');
+                    let that = this;
                     this.$message({
                         showClose: true,
                         message: '清除成功，正在刷新页面...',
                         type: 'true',
-                        duration:1000,
-                        onClose:function () {
-                            window.location.reload();
+                        duration: 1000,
+                        onClose: function () {
+                            that.getNavList();
+                            that.getButtonList();
                         }
                     });
                 }, (err) => {
@@ -172,16 +201,16 @@
                 })
             },
             created() {
-                this.canClearCache = this.getPerms().indexOf("sys:user:clearCache")!=-1;
-                this.canChangePassword = this.getPerms().indexOf("sys:user:changePassword")!=-1;
+                this.canClearCache = this.getPerms().indexOf("sys:user:clearCache") != -1;
+                this.canChangePassword = this.getPerms().indexOf("sys:user:changePassword") != -1;
             },
-                // 侧边栏折叠
-            collapseChage(){
+            // 侧边栏折叠
+            collapseChage() {
                 this.collapse = !this.collapse;
                 bus.$emit('collapse', this.collapse);
             },
             // 全屏事件
-            handleFullScreen(){
+            handleFullScreen() {
                 let element = document.documentElement;
                 if (this.fullscreen) {
                     if (document.exitFullscreen) {
@@ -208,8 +237,8 @@
                 this.fullscreen = !this.fullscreen;
             }
         },
-        mounted(){
-            if(document.body.clientWidth < 1500){
+        mounted() {
+            if (document.body.clientWidth < 1500) {
                 this.collapseChage();
             }
         }
@@ -224,32 +253,38 @@
         font-size: 22px;
         color: #fff;
     }
-    .collapse-btn{
+
+    .collapse-btn {
         float: left;
         padding: 0 21px;
         cursor: pointer;
         line-height: 70px;
     }
-    .header .logo{
+
+    .header .logo {
         float: left;
-        width:250px;
+        width: 250px;
         line-height: 70px;
     }
-    .header-right{
+
+    .header-right {
         float: right;
         padding-right: 50px;
     }
-    .header-user-con{
+
+    .header-user-con {
         display: flex;
         height: 70px;
         align-items: center;
     }
-    .btn-fullscreen{
+
+    .btn-fullscreen {
         transform: rotate(45deg);
         margin-right: 5px;
         font-size: 24px;
     }
-    .btn-bell, .btn-fullscreen{
+
+    .btn-bell, .btn-fullscreen {
         position: relative;
         width: 30px;
         height: 30px;
@@ -257,7 +292,8 @@
         border-radius: 15px;
         cursor: pointer;
     }
-    .btn-bell-badge{
+
+    .btn-bell-badge {
         position: absolute;
         right: 0;
         top: -2px;
@@ -267,26 +303,32 @@
         background: #f56c6c;
         color: #fff;
     }
-    .btn-bell .el-icon-bell{
+
+    .btn-bell .el-icon-bell {
         color: #fff;
     }
-    .user-name{
+
+    .user-name {
         margin-left: 10px;
     }
-    .user-avator{
+
+    .user-avator {
         margin-left: 20px;
     }
-    .user-avator img{
+
+    .user-avator img {
         display: block;
-        width:40px;
-        height:40px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
     }
-    .el-dropdown-link{
+
+    .el-dropdown-link {
         color: #fff;
         cursor: pointer;
     }
-    .el-dropdown-menu__item{
+
+    .el-dropdown-menu__item {
         text-align: center;
     }
 </style>

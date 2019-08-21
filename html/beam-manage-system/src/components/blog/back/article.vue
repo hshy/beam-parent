@@ -7,7 +7,15 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-input style="width: 120px" v-model="req.keyword" placeholder="请输入关键字"></el-input>
+                <el-input style="width: 120px" v-model="req.title" placeholder="文章标题"></el-input>
+                <el-select style="width: 150px" v-model="req.cid"  placeholder="请选择">
+                    <el-option
+                        v-for="item in categoryList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                    </el-option>
+                </el-select>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <el-button type="primary" icon="add" class="handle-del mr10" @click="$router.push('/article/add')">新增</el-button>
             </div>
@@ -88,7 +96,6 @@
 <script>
     import ArticleApi from '../../../api/business/article';
     import bus from '../../common/bus';
-
     export default {
         name: 'basetable',
         data() {
@@ -105,10 +112,13 @@
                 accountInput: true,
                 loading: false,
                 editorOption: {},
+                categoryList: [],
+
             }
         },
         created() {
             this.getData();
+            this.getCategoryList();
             bus.$on('reloadArticleList', msg => {
                 console.log(msg);
                 this.reload();
@@ -193,7 +203,23 @@
                 this.$router.push({path: `/article/edit/${id}`})
             },
             handleView(shortCode){
-                this.$router.push({path: `/blog/detail/${shortCode}`})
+                // 打开新页面
+                let routeUrl = this.$router.resolve({
+                    path: `/blog/detail/${shortCode}`,
+                });
+                window.open(routeUrl .href, '_blank');
+                // this.$router.push({path: `/blog/detail/${shortCode}`})
+            },
+            getCategoryList(){
+                ArticleApi.getCategoryList().then((res) => {
+                    if (res.error === false) {
+                        this.categoryList = res.data;
+                    } else {
+                        this.$message.error(res.msg);
+                    }
+                }, (err) => {
+                    this.$message.error(err.msg);
+                })
             },
 
 

@@ -33,6 +33,9 @@ public class ArticleCategoryController extends BaseController {
     @GetMapping(value = "/page/list")
     public R pageList(ArticleCategory articleCategory) {
         QueryWrapper<ArticleCategory> qw = new QueryWrapper();
+        if(ToolUtil.isNotEmpty(articleCategory.getName())){
+            qw.like("name",articleCategory.getName());
+        }
         qw.orderByDesc("sort");
         IPage page = articleCategoryService.page(new Page(articleCategory.getCurrentPage(), articleCategory.getPageSize()), qw);
         return R.ok(page);

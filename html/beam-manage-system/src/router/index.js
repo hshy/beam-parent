@@ -25,11 +25,7 @@ export default new Router({
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
                     meta: {title: '权限测试', permission: true}
                 },
-                {
-                    path: '/404',
-                    component: resolve => require(['../components/page/404.vue'], resolve),
-                    meta: {title: '404'}
-                },
+
                 {
                     path: '/403',
                     component: resolve => require(['../components/page/403.vue'], resolve),
@@ -86,22 +82,22 @@ export default new Router({
             children: [
                 {
                     path: '/article',
-                    component: resolve => require(['../components/business/article/article.vue'], resolve),
+                    component: resolve => require(['../components/blog/back/article.vue'], resolve),
                     meta: {title: '文章管理', permission: false},
                 },
                 {
                     path: '/article/add',
-                    component: resolve => require(['../components/business/article/addArticle.vue'], resolve),
+                    component: resolve => require(['../components/blog/back/addArticle.vue'], resolve),
                     meta: {title: '新增文章', permission: false},
                 },
                 {
                     path: '/article/edit/:id',
-                    component: resolve => require(['../components/business/article/addArticle.vue'], resolve),
+                    component: resolve => require(['../components/blog/back/addArticle.vue'], resolve),
                     meta: {title: '修改文章', permission: false},
                 },
                 {
                     path: '/article/category',
-                    component: resolve => require(['../components/business/article/category.vue'], resolve),
+                    component: resolve => require(['../components/blog/back/category.vue'], resolve),
                     meta: {title: '文章分类', permission: false},
                 },
             ]
@@ -114,18 +110,23 @@ export default new Router({
         {
             path: '/blog',
             redirect: '/blog/index',
-            component: resolve => require(['../components/blog/blog.vue'], resolve),
+            component: resolve => require(['../components/blog/front/blog.vue'], resolve),
             meta: {title: '博客管理'},
             children: [
                 {
                     path: '/blog/index',
-                    component: resolve => require(['../components/blog/index.vue'], resolve)
+                    component: resolve => require(['../components/blog/front/index.vue'], resolve)
                 },
                 {
                     path: '/blog/detail/:shortCode',
-                    component: resolve => require(['../components/blog/detail.vue'], resolve)
+                    component: resolve => require(['../components/blog/front/detail.vue'], resolve)
                 }
             ]
+        },
+        {
+            path: '/404',
+            component: resolve => require(['../components/page/404.vue'], resolve),
+            meta: {title: '404'}
         },
         {
             path: '*',

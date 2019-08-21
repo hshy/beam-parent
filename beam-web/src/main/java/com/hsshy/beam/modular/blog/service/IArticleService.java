@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface IArticleService extends IService<Article> {
 
-    IPage<Article> selectPageList(Page page, Article article);
+    IPage<Article> selectPage(Page page, Article article);
 
     Integer addReadNum(Long id);
 
@@ -29,5 +29,9 @@ public interface IArticleService extends IService<Article> {
     R saveArticle(Article article);
 
     List<Article> getArticleListByCid(Long cid);
+
+    IPage<Article> selectPageByCid(Page page,Article article);
+
+    int delRefById(@Param("articleId") Long articleId);
 
 }

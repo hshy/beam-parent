@@ -54,6 +54,9 @@
 				                localStorage.setItem('sysuser',JSON.stringify(res.data));
 				                this.$router.push({path: '/dashboard'});
 				              }
+				              else {
+                                  this.$message.error(res.msg);
+                              }
 				            }, (err) => {
 				              this.loading = false
 				              this.$message.error(err.msg);

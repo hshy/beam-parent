@@ -11,6 +11,10 @@ export default {
     save : params => {
         return http.post("/blog/article/save", params)
     },
+    // 保存
+    saveContent : params => {
+        return http.post("/blog/article/save/content", params)
+    },
     // 批量删除
     batchDelete : ids => {
         return http.post("/blog/article/delete", ids)

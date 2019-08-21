@@ -9,6 +9,7 @@ import com.hsshy.beam.modular.blog.entity.Article;
 import com.hsshy.beam.modular.blog.service.IArticleService;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
 
     @Override
-    public IPage<Article> selectPageList(Page page, Article article) {
-        return baseMapper.selectPageList(page,article);
+    public IPage<Article> selectPage(Page page, Article article) {
+        return baseMapper.selectPage(page,article);
     }
 
     @Override
@@ -43,6 +44,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return baseMapper.getArticleInfo(id);
     }
 
+    @Transactional
     @Override
     public R saveArticle(Article article) {
         if(ToolUtil.isNotEmpty(article.getId())){
@@ -51,15 +53,17 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 String shortCode = ShortCodeKit.convertDecimalToBase62(pid,8);
                 article.setShortCode(shortCode);
             }
+            this.updateById(article);
             baseMapper.delRefById(article.getId());
         }
         else {
+            this.saveOrUpdate(article);
             Long pid = ShortCodeKit.permutedId(article.getId());
             String shortCode = ShortCodeKit.convertDecimalToBase62(pid,8);
             article.setShortCode(shortCode);
+            this.updateById(article);
         }
-        boolean a = this.saveOrUpdate(article);
-        if(a&&article.getCids().size()>0){
+        if(article.getCids().size()>0){
             baseMapper.saveRef(article.getId(),article.getCids());
         }
         return R.ok(article);
@@ -69,5 +73,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public List<Article> getArticleListByCid(Long cid) {
         return baseMapper.getArticleListByCid(cid);
+    }
+
+    @Override
+    public IPage<Article> selectPageByCid(Page page, Article article) {
+        return baseMapper.selectPageByCid(page,article);
+    }
+
+    @Override
+    public int delRefById(Long articleId) {
+        return baseMapper.delRefById(articleId);
     }
 }

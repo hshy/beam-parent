@@ -1,5 +1,4 @@
 <template>
-
     <el-container style="width: 100%;">
         <div class="main-box">
             <div class="article-title">
@@ -7,13 +6,13 @@
             </div>
             <div class="article-author">
                 <a class="avatar">
-                    <img :src="article.headImg" alt="96">
+                    <img v-if="article.headImg!=undefined" :src="article.headImg" alt="96">
                 </a>
                 <div class="info">
                     <span class="name">{{article.author}}</span>
                     <div class="meta">
                         <span class="publish-time">{{article.createTime}}</span>
-                        <span class="views-count">阅读 {{article.readNum}}</span>
+                        <span v-if="article.readNum!=undefined" class="views-count">阅读 {{article.readNum}}</span>
                     </div>
 
                 </div>
@@ -22,31 +21,28 @@
                 <mavon-editor v-if="article.textType==0" v-model="article.content" :subfield="false"
                               :defaultOpen="defaultData"
                               :toolbarsFlag="false"
-                              :boxShadow="false"/>
+                              :codeStyle="codeStyle"
+                              :ishljs="true"
+                              :boxShadow="true"/>
                 <div class="edit-container" v-if="article.textType==1">
                     <div class="edit-content" v-html="article.content">
                     </div>
                 </div>
-
                 <div style="width:100%;height: 100px;">
-
                 </div>
             </div>
-
-
         </div>
         <el-backtop target=".blog" :bottom="100">
         </el-backtop>
     </el-container>
 
 </template>
-
 <script>
     import 'element-ui/lib/theme-chalk/display.css';
     import {mavonEditor} from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-    import BlogApi from '../../api/business/blog';
-
+    import BlogApi from '../../../api/business/blog';
+    // import bus from '../../common/bus';
     export default {
         components: {
             mavonEditor
@@ -55,9 +51,13 @@
             return {//value的值是经过markdown解析后的文本，可使用`@change="changeData"`在控制台打印显示
                 defaultData: "preview",
                 article: {},
+                codeStyle:"agate",
             };
         },
         created() {
+            // bus.$emit('changeMenuActiveIndex', "");
+
+            this.$store.commit('changeMenuActiveIndex','');
             if (this.$route.params.shortCode) {
                 this.getArticleInfo(this.$route.params.shortCode);
                 this.addReadNum(this.$route.params.shortCode);
@@ -65,12 +65,16 @@
         },
         watch: {
             $route() {
+                // bus.$emit('changeMenuActiveIndex', "");
+
+                this.$store.commit('changeMenuActiveIndex','');
                 if (this.$route.params.shortCode) {
                     this.getArticleInfo(this.$route.params.shortCode);
                     this.addReadNum(this.$route.params.shortCode);
                 }
             },
         },
+
         methods: {
             getArticleInfo(shortCode) {
                 const loading = this.$loading({

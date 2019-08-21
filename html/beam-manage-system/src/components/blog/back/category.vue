@@ -7,7 +7,7 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-input style="width: 120px" v-model="req.keyword" placeholder="请输入关键字"></el-input>
+                <el-input style="width: 120px" v-model="req.name" placeholder="分类名称"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <el-button type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
             </div>
@@ -75,7 +75,6 @@
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-
             <el-form ref="articleCategory" :model="articleCategory" label-width="100px">
                 <el-form-item label="分类名称" prop="name">
                     <el-input v-model.trim="articleCategory.name"></el-input>
@@ -105,7 +104,7 @@
 </template>
 
 <script>
-    import ArticleCategoryApi from '../../../api/business/articleCategory';
+    import ArticleCategoryApi from '../../../api/business/articlecategory';
 
     export default {
         name: 'basetable',

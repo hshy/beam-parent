@@ -38,12 +38,11 @@ public class BlogApi extends BaseController {
         List<Article> articleList;
         if(ToolUtil.isNotEmpty(article.getCid())){
             articleList = articleService.getArticleListByCid(article.getCid());
-
         }
         else {
             QueryWrapper<Article> qw = new QueryWrapper();
             qw.eq("frozen",1);
-            qw.select("short_code as shortCode,title,create_time as createTime,read_num as readNum");
+            qw.select("short_code as shortCode,title,create_time as createTime,read_num as readNum,tag");
             qw.orderByDesc("sort","create_time");
             qw.last("limit 15");
             articleList = articleService.list(qw);
