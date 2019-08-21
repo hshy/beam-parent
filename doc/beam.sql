@@ -693,3 +693,47 @@ CREATE TABLE `sys_user_role` (
 INSERT INTO `sys_user_role` VALUES ('21', '1072429679148908546', '1076685137679704065');
 INSERT INTO `sys_user_role` VALUES ('22', '1', '1');
 INSERT INTO `sys_user_role` VALUES ('23', '1', '1076685137679704065');
+
+-- ----------------------------
+-- Table structure for b_article
+-- ----------------------------
+DROP TABLE IF EXISTS `b_article`;
+CREATE TABLE `b_article` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `short_code` varchar(64) DEFAULT NULL COMMENT '短码',
+  `head_img` varchar(255) DEFAULT '' COMMENT '头像',
+  `author` varchar(255) DEFAULT '' COMMENT '作者',
+  `content` longtext COMMENT '内容',
+  `frozen` tinyint(1) DEFAULT '1' COMMENT '是否可用',
+  `read_num` int(11) DEFAULT '0',
+  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `text_type` smallint(4) DEFAULT '0' COMMENT '0：markdown 1：富文本',
+  `tag` varchar(64) DEFAULT '' COMMENT '标签',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for b_article_category
+-- ----------------------------
+DROP TABLE IF EXISTS `b_article_category`;
+CREATE TABLE `b_article_category` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(64) DEFAULT NULL COMMENT '分类名称',
+  `frozen` tinyint(1) DEFAULT NULL COMMENT '是否可用',
+  `sort` int(11) DEFAULT '100' COMMENT '排序',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for b_article_category_ref
+-- ----------------------------
+DROP TABLE IF EXISTS `b_article_category_ref`;
+CREATE TABLE `b_article_category_ref` (
+  `article_id` bigint(20) DEFAULT NULL,
+  `category_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

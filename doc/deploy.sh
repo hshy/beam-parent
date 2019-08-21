@@ -6,5 +6,7 @@ then
    kill -9 $pid
 fi
 echo "stop finish"
-nohup java -jar /usr/local/beam/beam-admin-0.0.1-SNAPSHOT.jar &
+nohup java -jar /usr/local/beam/beam-admin-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod >/dev/null 2>&1  &
 echo "start run"
+sleep 1
+tail -f beam-admin-logs/log_total.log

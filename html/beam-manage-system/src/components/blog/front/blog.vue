@@ -42,7 +42,7 @@
             handleSelect(key, keyPath) {
                 if (key == 'index') {
                     // this.menuActiveIndex = "index";
-                    this.$store.commit('changeMenuActive','index');
+                    this.$store.commit('changeMenuActiveIndex','index');
                     this.$router.push({path: `/blog/index`})
                 } else if (key == 'about') {
                     this.$message.error("暂未开放");
