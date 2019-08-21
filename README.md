@@ -122,3 +122,6 @@ beam-parent
 - Spring Boot 整合email发送邮件（异步发送、消息队列发送）
 - Spring Boot 整合Kafka案例
 #### 有需要dubbo的请移至：https://gitee.com/hsshy/beam-dubbo
+
+#### 有问题请关注公众号回复消息
+![image.png](http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png)
