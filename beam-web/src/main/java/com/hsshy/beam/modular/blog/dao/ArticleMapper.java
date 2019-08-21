@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ArticleMapper extends BaseMapper<Article> {
 
-    IPage<Article> selectPage(Page page, @Param("article") Article article);
+    IPage<Article> getPage(Page page, @Param("article") Article article);
 
     Integer addReadNum(@Param("id") Long id);
 

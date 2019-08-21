@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface IArticleService extends IService<Article> {
 
-    IPage<Article> selectPage(Page page, Article article);
+    IPage<Article> getPage(Page page, Article article);
 
     Integer addReadNum(Long id);
 

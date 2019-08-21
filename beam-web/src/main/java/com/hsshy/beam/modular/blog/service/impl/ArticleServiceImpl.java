@@ -25,8 +25,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
 
     @Override
-    public IPage<Article> selectPage(Page page, Article article) {
-        return baseMapper.selectPage(page,article);
+    public IPage<Article> getPage(Page page, Article article) {
+        return baseMapper.getPage(page,article);
     }
 
     @Override

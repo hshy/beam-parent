@@ -37,7 +37,7 @@ public class ArticleController extends BaseController {
             page = articleService.selectPageByCid(new Page(article.getCurrentPage(), article.getPageSize()), article);
         }
         else {
-            page = articleService.selectPage(new Page(article.getCurrentPage(), article.getPageSize()), article);
+            page = articleService.getPage(new Page(article.getCurrentPage(), article.getPageSize()), article);
 
         }
         return R.ok(page);
