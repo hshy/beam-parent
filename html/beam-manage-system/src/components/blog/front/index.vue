@@ -1,68 +1,31 @@
 <template>
-    <el-container >
-            <el-aside class="aside-left-box">
-                <el-card class="category-box" :body-style="{width:'300px', padding: '14px'}" >
-                    <div slot="header">
-                        <span style="font-size: 1.3em;font-weight: 700;">分类</span>
-                    </div>
-                    <div @click="selectCategory(category.id)"   v-for="category in categoryList" :key="category.id" :class="category.id==req.cid?'category-item category-active':'category-item'">
-                        {{category.name}}（{{category.articleCount}}）
-                    </div>
-                </el-card>
-            </el-aside>
-            <el-container >
-                <el-main style="overflow-y: hidden;" class="main-box">
-                    <div class="article-list">
-                        <div class="article-item"  @click="goToDetail(article.shortCode)" v-for="article in articleList">
-                            <el-card :body-style="{width:'100%',height:'50%', padding: '0px'}">
-                                <div style="padding: 14px;">
-                                    <span>{{article.title}}</span>
-                                    <div class="article-bottom clearfix">
-                                        <time class="article-time">{{article.createTime}}</time>
-                                        <span class="article-tag-box">
-                                            <el-tag v-if="index<=5" class="article-tag" size="mini" :type="colorList[index]" :key="tag"
+    <el-main style="overflow-y: hidden;" class="main-box">
+        <div class="article-list">
+            <div class="article-item" @click="goToDetail(article.shortCode)" v-for="article in articleList">
+                <el-card :body-style="{width:'100%',height:'50%', padding: '0px'}">
+                    <div style="padding: 14px;">
+                        <span>{{article.title}}</span>
+                        <div class="article-bottom clearfix">
+                            <time class="article-time">{{article.createTime}}</time>
+                            <span class="article-tag-box">
+                                            <el-tag v-if="index<=5&&article.tags.length>0" class="article-tag"
+                                                    size="mini" :type="colorList[index]" :key="tag"
                                                     v-for="(tag,index) in article.tags">{{tag}}</el-tag>
                                             </span>
-                                        <span class="views-count">阅读 {{article.readNum}}</span>
-                                    </div>
-                                </div>
-                            </el-card>
-                        </div>
-                    </div>
-                </el-main>
-            </el-container>
-            <el-aside style="width: 500px;" class="aside-right-box">
-                <el-card class="right-box-1" :body-style="{width:'500px', padding: '14px'}" >
-                    <div  class="category-item">
-                        <a href="https://portal.qiniu.com/signup?code=1h8cpibemhb9u">七牛云每月10G免费空间与流量</a>
-                    </div>
-                    <div  class="category-item">
-                        <a href="https://chuangke.aliyun.com/invite?userCode=647hkjjy" target="_blank"><img src="/static/img/hot-1.gif">阿里云8月爆款限时抢，力省11000+
-                        </a>
-                    </div>
-                </el-card>
-                <el-card  class="right-box-2" >
-                    <div class="user-info">
-                        <img style="width: 100px;height: 100px;" src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator" alt="">
-                        <div class="user-info-cont">
-                            <div >光有工具</div>
-                            <div>图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
+                            <span class="views-count">阅读 {{article.readNum}}</span>
                         </div>
                     </div>
                 </el-card>
-                <el-card class="right-box-3">
-                    <el-image src="http://img.hsshy.cn/cd9cb95c-1967-40b7-ae94-38ebb699e18f.png"></el-image>
-                </el-card>
-            </el-aside>
-
-
-    </el-container>
-
+            </div>
+        </div>
+    </el-main>
 
 </template>
 
 <script>
     import BlogApi from '../../../api/business/blog';
+    import 'element-ui/lib/theme-chalk/display.css';
+    import bus from '../../common/bus';
 
     export default {
         name: "index",
@@ -70,14 +33,21 @@
             return {
                 activeIndex: 'index',
                 articleList: [],
-                req:[],
-                categoryList:[],
-                colorList:["danger","warning","success","info",""]
+                req: [],
+                categoryList: [],
+                colorList: ["danger", "warning", "success", "info", ""]
             };
         },
         created() {
-            this.getArticleList();
-            this.getCategoryList();
+            this.selectCategory(this.$route.query.cid);
+
+            // this.getCategoryList();
+        },
+        watch: {
+            $route() {
+                this.selectCategory(this.$route.query.cid);
+
+            },
         },
         methods: {
             getArticleList() {
@@ -91,8 +61,10 @@
                     if (res.error === false) {
                         loading.close();
                         this.articleList = res.data ? res.data : []
-                        this.articleList.forEach(article=>{
-                            article.tags = article.tag.split(',');
+                        this.articleList.forEach(article => {
+                            if (article.tag) {
+                                article.tags = article.tag.split(',');
+                            }
                         })
                     } else {
                         this.$message.error(res.msg);
@@ -102,7 +74,7 @@
                     this.$message.error(err.msg);
                 });
             },
-            getCategoryList(){
+            getCategoryList() {
                 BlogApi.getCategoryList().then((res) => {
                     if (res.error === false) {
                         this.categoryList = res.data;
@@ -114,23 +86,20 @@
                 })
             },
             handleSelect(key, keyPath) {
-                if(key=='index'){
+                if (key == 'index') {
                     this.$router.push({path: `/blog/index`})
-                }
-                else if(key=='about'){
+                } else if (key == 'about') {
                     this.$message.error("暂未开放");
-                }
-                else if(key=='friendLink'){
+                } else if (key == 'friendLink') {
                     this.$message.error("暂未开放");
-                }
-                else if(key=='tool'){
+                } else if (key == 'tool') {
                     this.$message.error("暂未开放");
                 }
             },
-            goToDetail(shortCode){
+            goToDetail(shortCode) {
                 this.$router.push({path: `/blog/detail/${shortCode}`})
             },
-            selectCategory(cid){
+            selectCategory(cid) {
                 this.req.cid = cid;
                 this.getArticleList();
             }
@@ -143,6 +112,7 @@
         width: 100%;
         height: 100%;
     }
+
     .article-list {
         width: 100%;
         height: 100%;
@@ -152,52 +122,63 @@
         align-items: center;
         margin-bottom: 300px;
     }
+
     .article-item {
-        width: 80%;
+        width: 100%;
         margin-bottom: 10px;
         cursor: pointer;
     }
+
     .article-time {
         font-size: 13px;
         color: #999;
     }
+
     .article-tag-box {
         font-size: 13px;
         margin-left: 5%;
     }
+
     .article-tag {
         margin-left: 2px;
     }
-    .views-count{
+
+    .views-count {
         font-size: 12px;
         color: #999;
         float: right;
     }
+
     .article-bottom {
         margin-top: 13px;
         line-height: 12px;
     }
+
     .aside-left-box {
         display: flex;
         justify-content: center;
         height: 100%;
     }
+
     .aside-right-box {
         display: flex;
         justify-content: center;
         flex-direction: column;
         height: 100%;
     }
+
     .right-box-1 {
         height: 80%;
         width: 80%;
         margin-top: 5%;
     }
+
     .right-box-2 {
         height: 80%;
         width: 80%;
         margin-top: 5%;
     }
+
     .right-box-3 {
         height: 80%;
         width: 80%;
@@ -205,22 +186,29 @@
         display: flex;
         justify-content: center;
     }
-    .category-box {
+
+    .left-box-1 {
         height: 80%;
-        width: 80%;
-        margin-top: 10%;
+        width: 100%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
     }
+
     .category-item {
         font-size: 15px;
         padding: 10px 0;
         cursor: pointer;
     }
+
     .category-active {
         color: #38b7ea;
     }
-    .category-item a{
+
+    .category-item a {
         color: #38b7ea;
     }
+
     .user-info {
         display: flex;
         align-items: center;
@@ -228,6 +216,7 @@
         border-bottom: 2px solid #ccc;
         margin-bottom: 20px;
     }
+
     .user-info-cont {
         padding-left: 50px;
         flex: 1;

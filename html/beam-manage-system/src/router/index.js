@@ -120,7 +120,11 @@ export default new Router({
                 {
                     path: '/blog/detail/:shortCode',
                     component: resolve => require(['../components/blog/front/detail.vue'], resolve)
-                }
+                },
+                {
+                    path: '/blog/document',
+                    component: resolve => require(['../components/blog/front/document.vue'], resolve)
+                },
             ]
         },
         {

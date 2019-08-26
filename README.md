@@ -7,7 +7,7 @@ http://www.hsshy.com/#/login
 http://www.hsshy.com
 #### 项目介绍
 
-- 基于SpringBoot 2，一款快速开发的脚手架。
+- 基于SpringBoot 2，一款快速开发的脚手架。admin:后台管理系统。rest:用于快速构建中小型API、RESTful API项目。
 - 有配套的代码生成器可供使用。
 - 基础模块：
   -  **用户管理**
@@ -39,7 +39,7 @@ http://www.hsshy.com
 - 持久层框架：MyBatis-Plus 3.1.2
 - 定时器：Quartz 2.3
 - 数据库连接池：hikari
-- 后台管理系统前端：Vue2.x
+- 后台管理系统前端：Vue2.x+element-ui (可更换主题颜色)
 - 缓存：Redis
 - 图片存储：七牛云（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
 #### 项目结构
