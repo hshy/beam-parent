@@ -115,15 +115,19 @@ export default new Router({
             children: [
                 {
                     path: '/blog/index',
-                    component: resolve => require(['../components/blog/front/index.vue'], resolve)
+                    component: resolve => require(['../components/blog/front/index.vue'], resolve),
+                    meta: {title: 'hsshy的博客', permission: false},
                 },
                 {
                     path: '/blog/detail/:shortCode',
-                    component: resolve => require(['../components/blog/front/detail.vue'], resolve)
+                    component: resolve => require(['../components/blog/front/detail.vue'], resolve),
+                    meta: {title: '文章详情', permission: false},
                 },
                 {
                     path: '/blog/document',
-                    component: resolve => require(['../components/blog/front/document.vue'], resolve)
+                    component: resolve => require(['../components/blog/front/document.vue'], resolve),
+                    meta: {title: '文档', permission: false},
+
                 },
             ]
         },

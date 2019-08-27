@@ -25,7 +25,9 @@ Vue.prototype.getPerms = function (){//changeData是函数名
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     let buttonItems = localStorage.getItem("buttonItems");
-    console.log();
+    if (to.meta.title) {
+        document.title = to.meta.title;
+    }
     if(to.meta.permission&&buttonItems){
         if(buttonItems.indexOf(to.meta.perms)!=-1){
            next();
