@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsshy.beam.modular.tool.dao.TemplateSendMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.hsshy.beam.modular.tool.entity.TemplateSend" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="openId" column="open_id"/>
+        <result property="formId" column="form_id"/>
+        <result property="keyword1" column="keyword1"/>
+        <result property="keyword2" column="keyword2"/>
+        <result property="keyword3" column="keyword3"/>
+        <result property="keyword4" column="keyword4"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="sendTime" column="send_time"/>
+        <result property="status" column="status"/>
+        <result property="errorMsg" column="error_msg"/>
+        <result property="msgType" column="msg_type"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		            a.`id` AS "id", 
+                a.`order_no` AS "orderNo", 
+                a.`open_id` AS "openId", 
+                a.`form_id` AS "formId", 
+                a.`keyword1` AS "keyword1", 
+                a.`keyword2` AS "keyword2", 
+                a.`keyword3` AS "keyword3", 
+                a.`keyword4` AS "keyword4", 
+                a.`remark` AS "remark", 
+                a.`create_time` AS "createTime", 
+                a.`update_time` AS "updateTime", 
+                a.`send_time` AS "sendTime", 
+                a.`status` AS "status", 
+                a.`error_msg` AS "errorMsg", 
+                a.`msg_type` AS "msgType"
+        </sql>
+
+    <select id="selectPageList" resultType="com.hsshy.beam.modular.tool.entity.TemplateSend">
+        select
+        <include refid="Base_Column_List"/>
+        from t_template_send a
+        <where>
+            <if test="templateSend.orderNo != null and templateSend.orderNo != ''">
+                and a.order_no = #{templateSend.orderNo}
+            </if>
+            <if test="templateSend.openId != null and templateSend.openId != ''">
+                and a.open_id = #{templateSend.openId}
+            </if>
+            <if test="templateSend.formId != null and templateSend.formId != ''">
+                and a.form_id = #{templateSend.formId}
+            </if>
+            <if test="templateSend.keyword1 != null and templateSend.keyword1 != ''">
+                and a.keyword1 = #{templateSend.keyword1}
+            </if>
+            <if test="templateSend.keyword2 != null and templateSend.keyword2 != ''">
+                and a.keyword2 = #{templateSend.keyword2}
+            </if>
+            <if test="templateSend.keyword3 != null and templateSend.keyword3 != ''">
+                and a.keyword3 = #{templateSend.keyword3}
+            </if>
+            <if test="templateSend.keyword4 != null and templateSend.keyword4 != ''">
+                and a.keyword4 = #{templateSend.keyword4}
+            </if>
+            <if test="templateSend.remark != null and templateSend.remark != ''">
+                and a.remark = #{templateSend.remark}
+            </if>
+            <if test="templateSend.sendTime != null and templateSend.sendTime != ''">
+                and a.send_time = #{templateSend.sendTime}
+            </if>
+            <if test="templateSend.status != null and templateSend.status != ''">
+                and a.status = #{templateSend.status}
+            </if>
+            <if test="templateSend.errorMsg != null and templateSend.errorMsg != ''">
+                and a.error_msg = #{templateSend.errorMsg}
+            </if>
+            <if test="templateSend.msgType != null and templateSend.msgType != ''">
+                and a.msg_type = #{templateSend.msgType}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

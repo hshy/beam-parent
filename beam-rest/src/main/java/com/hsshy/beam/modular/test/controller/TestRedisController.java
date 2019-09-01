@@ -19,7 +19,7 @@ import java.util.Set;
  * @author: hs
  * @create: 2019-08-04 14:09:52
  **/
-@Api(value = "测试redis",tags = "TestRedisController")
+//@Api(value = "测试redis",tags = "TestRedisController")
 @RequestMapping(value = "/redis")
 @RestController
 public class TestRedisController {

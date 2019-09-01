@@ -2,6 +2,7 @@ package com.hsshy.beam.aop;
 import com.hsshy.beam.common.aop.BaseControllerExceptionHandler;
 import com.hsshy.beam.common.enumeration.RetEnum;
 import com.hsshy.beam.common.utils.R;
+import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -43,6 +44,18 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     public R exception(BindException e) {
         e.printStackTrace();
         return R.fail(e.getAllErrors().get(0).getDefaultMessage());
+    }
+
+    /**
+     * 拦截jwt相关异常
+     */
+    @ExceptionHandler(JwtException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public R jwtException(JwtException e) {
+        e.printStackTrace();
+        log.error("jwt相关异常:"+e.getMessage());
+        return R.fail(RetEnum.TOKEN_ERROR.getRet(), e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -1,9 +1,7 @@
 package com.hsshy.beam.interceptors;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.common.enumeration.RetEnum;
-import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
-import com.hsshy.beam.common.utils.RenderUtil;
+import com.hsshy.beam.common.utils.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +21,6 @@ public class AppInterceptor implements HandlerInterceptor {
 
     Logger logger = LoggerFactory.getLogger(AppInterceptor.class);
 
-    @Autowired
-    private RedisUtil redisUtil;
 
     /**
      * 执行完控制器后调用，即离开时
@@ -45,9 +41,11 @@ public class AppInterceptor implements HandlerInterceptor {
 
         String referer = request.getHeader("Referer");
         if(!org.springframework.util.StringUtils.isEmpty(referer) && (referer.contains("swagger") || referer.contains("apiDoc"))){
+            request.setAttribute("uid", "1098482460968165378");
             return true;
         }
         if(request.getServletPath().contains("swagger") || request.getServletPath().contains("api-docs") || request.getServletPath().contains("webjars") || request.getServletPath().contains("configuration")){
+            request.setAttribute("uid", "1098482460968165378");
             return true;
         }
 
@@ -68,11 +66,21 @@ public class AppInterceptor implements HandlerInterceptor {
             RenderUtil.renderJson(response, R.fail(RetEnum.TOKEN_ERROR.getRet(), RetEnum.TOKEN_ERROR.getMsg()));
             return false;
         }
-        String uid = (String) redisUtil.get(utoken);
-        if (uid == null){
+        JwtTokenUtil.parseToken(utoken);
+
+        boolean isExpired = JwtTokenUtil.isTokenExpired(utoken);
+        if(isExpired){
             RenderUtil.renderJson(response, R.fail(RetEnum.TOKEN_EXPIRED.getRet(), RetEnum.TOKEN_EXPIRED.getMsg()));
             return false;
         }
+
+        String uid = JwtTokenUtil.getUserIdFromToken(utoken);
+
+        if (ToolUtil.isEmpty(uid)){
+            RenderUtil.renderJson(response, R.fail(RetEnum.TOKEN_ERROR.getRet(), RetEnum.TOKEN_ERROR.getMsg()));
+            return false;
+        }
+
         request.setAttribute("uid", uid);
         return true;
     }

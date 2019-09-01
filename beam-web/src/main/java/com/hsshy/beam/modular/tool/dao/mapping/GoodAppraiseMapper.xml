@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsshy.beam.modular.tool.dao.GoodAppraiseMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.hsshy.beam.modular.tool.entity.GoodAppraise" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="frozen" column="frozen"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		            a.`id` AS "id", 
+                a.`content` AS "content", 
+                a.`frozen` AS "frozen", 
+                a.`create_time` AS "createTime", 
+                a.`update_time` AS "updateTime"
+        </sql>
+
+    <select id="selectPageList" resultType="com.hsshy.beam.modular.tool.entity.GoodAppraise">
+        select
+        <include refid="Base_Column_List"/>
+        from t_good_appraise a
+        <where>
+            <if test="goodAppraise.content != null and goodAppraise.content != ''">
+                and a.content = #{goodAppraise.content}
+            </if>
+            <if test="goodAppraise.frozen != null and goodAppraise.frozen != ''">
+                and a.frozen = #{goodAppraise.frozen}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

@@ -114,6 +114,39 @@ public class RegexUtil {
     }
 
     /**
+     * 验证整数个数（正整数和负整数）
+     * @param digit 一位或多位0-9之间的整数
+     * @return 验证整数个数
+     */
+    public static int countDigit(String digit) {
+        String regex = "[0-9]";
+        Pattern pattern = Pattern.compile(regex);// 匹配的模式
+        Matcher m = pattern.matcher(digit);
+        int count = 0;
+
+        while(m.find()){
+            count++;
+        }
+        return count;
+    }
+    /**
+     * 验证数字和英文个数
+     * @param
+     * @return 个数
+     */
+    public static int countEnglishAndNum(String digit) {
+        String regex = "[a-zA-Z0-9]";
+        Pattern pattern = Pattern.compile(regex);// 匹配的模式
+        Matcher m = pattern.matcher(digit);
+        int count = 0;
+
+        while(m.find()){
+            count++;
+        }
+        return count;
+    }
+
+    /**
      * 验证整数和浮点数（正负整数和正负浮点数）
      * @param decimals 一位或多位0-9之间的浮点数，如：1.23，233.30
      * @return 验证成功返回true，验证失败返回false
@@ -161,6 +194,21 @@ public class RegexUtil {
     public static boolean checkURL(String url) {
         String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
         return Pattern.matches(regex, url);
+    }
+
+    /**
+     * 验证URL地址
+     * @param str 例如：#在抖音，记录美好生活#可怕 http://v.douyin.com/kw7GEP/ 复制此链接，打开【抖音短视频】，直接观看视频！
+     * @return 有url返回url 不然返回空
+     */
+    public static String getURL(String str) {
+        String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
+        Pattern pt=Pattern.compile(regex);
+        Matcher mt=pt.matcher(str);
+        while (mt.find()) {
+            return mt.group();
+        }
+        return "";
     }
 
     /**

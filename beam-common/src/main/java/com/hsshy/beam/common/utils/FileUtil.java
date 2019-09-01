@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -110,5 +112,48 @@ public class FileUtil {
             }
         }
     }
+
+    //链接url下载图片
+    public static void downloadFile(String fileUrl,String path) {
+        URL url = null;
+        try {
+            url = new URL(fileUrl);
+            DataInputStream dataInputStream = new DataInputStream(url.openStream());
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = dataInputStream.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
+            }
+            fileOutputStream.write(output.toByteArray());
+            dataInputStream.close();
+            fileOutputStream.close();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void downloadMP4(String mp4Url,String path) {
+
+        try {
+            BufferedInputStream bufferedInputStream = new  BufferedInputStream(new URL(mp4Url).openStream());
+            FileOutputStream fileOutputStream = new FileOutputStream(path);
+            int count=0;
+            byte[] b = new byte[100];
+            while((count = bufferedInputStream.read(b)) != -1) {
+                fileOutputStream.write(b, 0,count);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
 }

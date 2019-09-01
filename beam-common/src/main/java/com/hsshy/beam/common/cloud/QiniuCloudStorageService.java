@@ -20,50 +20,21 @@ public class QiniuCloudStorageService extends CloudStorageService {
     private String token;
     private Auth auth;
 
-    public QiniuCloudStorageService(CloudStorageConfig config){
+    public QiniuCloudStorageService(CloudStorageConfig config) {
         this.config = config;
-
         //初始化
         init();
     }
 
-    private void init(){
+    private void init() {
         auth = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey());
         Configuration c = new Configuration(Zone.autoZone());
         uploadManager = new UploadManager(c);
         bucketManager = new BucketManager(auth, c);
-
         token = auth.uploadToken(config.getQiniuBucketName());
     }
 
-    @Override
-    public String upload(String pic) throws Exception {
-        if(!StringUtils.isBlank(pic) && !pic.contains("http:") && !pic.contains("https:") && !pic.contains("upload")){
-            if (pic.indexOf("data:image/jpeg;base64") > -1 || pic.indexOf("data:image/png;base64") > -1){
-                pic = pic.substring(pic.indexOf(",") * 1 + 1, pic.length());
-            }
-            Base64.Decoder decoder = Base64.getDecoder();
-            byte[] data = decoder.decode(pic);
-            for(int i=0;i<data.length;++i){
-                if(data[i]<0){ data[i]+=256; }
-            }
-//            InputStream input = new ByteArrayInputStream(data);
-//            OutputStream output = new ByteArrayOutputStream();
-//            //图片尺寸不变，压缩图片文件大小outputQuality实现,参数1为最高质量
-//            Thumbnails.of(input).scale(1f).outputQuality(0.25f).toOutputStream(output);
-            return upload(data);
-        }else{
-            return pic;
-        }
-    }
 
-    @Override
-    public String upload(byte[] data) {
-        return upload(data, getPath(config.getQiniuPrefix(),""));
-    }
-
-
-    @Override
     public String upload(byte[] data, String path) {
         try {
             Response res = uploadManager.put(data, path, token);
@@ -77,13 +48,27 @@ public class QiniuCloudStorageService extends CloudStorageService {
         return config.getQiniuDomain() + "/" + path;
     }
 
+
     @Override
-    public String upload(InputStream inputStream, String path) {
-        try {
-            byte[] data = IOUtils.toByteArray(inputStream);
-            return this.upload(data, path);
-        } catch (IOException e) {
-            throw new BeamException("上传文件失败", e);
+    public String uploadSuffix(String pic, String suffix) throws Exception {
+        if (!StringUtils.isBlank(pic) && !pic.contains("http:") && !pic.contains("https:") && !pic.contains("upload")) {
+            if (pic.indexOf("data:image/jpeg;base64") > -1 || pic.indexOf("data:image/png;base64") > -1) {
+                pic = pic.substring(pic.indexOf(",") * 1 + 1, pic.length());
+            }
+            Base64.Decoder decoder = Base64.getDecoder();
+            byte[] data = decoder.decode(pic);
+            for (int i = 0; i < data.length; ++i) {
+                if (data[i] < 0) {
+                    data[i] += 256;
+                }
+            }
+//            InputStream input = new ByteArrayInputStream(data);
+//            OutputStream output = new ByteArrayOutputStream();
+//            //图片尺寸不变，压缩图片文件大小outputQuality实现,参数1为最高质量
+//            Thumbnails.of(input).scale(1f).outputQuality(0.25f).toOutputStream(output);
+            return upload(data, getPath(config.getQiniuPrefix(), suffix));
+        } else {
+            return pic;
         }
     }
 
@@ -94,13 +79,18 @@ public class QiniuCloudStorageService extends CloudStorageService {
 
     @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
-        return upload(inputStream, getPath(config.getQiniuPrefix(), suffix));
+        try {
+            byte[] data = IOUtils.toByteArray(inputStream);
+            return upload(data, getPath(config.getQiniuPrefix(), suffix));
+        } catch (IOException e) {
+            throw new BeamException("上传文件失败", e);
+        }
     }
 
     @Override
-    public void delete(String path){
-        if (path.contains(config.getQiniuDomain())){
-            String key = path.replaceAll(config.getQiniuDomain()+"/", "");
+    public void delete(String path) {
+        if (path.contains(config.getQiniuDomain())) {
+            String key = path.replaceAll(config.getQiniuDomain() + "/", "");
             try {
                 //调用delete方法移动文件
                 bucketManager.delete(config.getQiniuBucketName(), key);

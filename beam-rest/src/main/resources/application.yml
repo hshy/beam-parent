@@ -14,7 +14,7 @@ beam:
     auth-open: true #拦截器是否开启(true或者false)
     sign-open: true #签名机制是否开启(true或false)
     file-upload-path: /upload/test      #文件上传目录(不配置的话为java.io.tmpdir目录)
-    secret: miyao        #秘钥
+    secret: hsshy        #秘钥
 spring:
   servlet:
     multipart:
