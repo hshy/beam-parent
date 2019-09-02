@@ -61,6 +61,7 @@
 		<weixin-popular>2.8.28</weixin-popular>
 		<bcprov-jdk15on>1.56</bcprov-jdk15on>
 
+		<thumbnailator>0.4.8</thumbnailator>
 
 	</properties>
 	<dependencyManagement>
@@ -291,6 +292,13 @@
 				<artifactId>weixin-popular</artifactId>
 				<version>${weixin-popular}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator}</version>
+			</dependency>
+
 
 
 		</dependencies>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsshy.beam.modular.tool.dao.PosterBgMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.hsshy.beam.modular.tool.entity.PosterBg" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="remark" column="remark"/>
+        <result property="frozen" column="frozen"/>
+        <result property="cid" column="cid"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+       a.`id` AS "id",       a.`img_url` AS "imgUrl",       a.`remark` AS "remark",       a.`frozen` AS "frozen",       a.`cid` AS "cid",       a.`create_time` AS "createTime",       a.`update_time` AS "updateTime"    </sql>
+
+    <select id="selectPageList" resultType="com.hsshy.beam.modular.tool.entity.PosterBg">
+        select
+        <include refid="Base_Column_List"/>
+        from t_poster_bg a
+        <where>
+            <if test="posterBg.imgUrl != null and posterBg.imgUrl != ''">
+                and a.img_url = #{posterBg.imgUrl}
+            </if>
+            <if test="posterBg.remark != null and posterBg.remark != ''">
+                and a.remark = #{posterBg.remark}
+            </if>
+            <if test="posterBg.frozen != null and posterBg.frozen != ''">
+                and a.frozen = #{posterBg.frozen}
+            </if>
+            <if test="posterBg.cid != null and posterBg.cid != ''">
+                and a.cid = #{posterBg.cid}
+            </if>
+        </where>
+    </select>
+
+    <update id="changeFrozen">
+        update t_poster_bg
+        set frozen = #{frozen}
+        where id = #{id}
+    </update>
+
+</mapper>

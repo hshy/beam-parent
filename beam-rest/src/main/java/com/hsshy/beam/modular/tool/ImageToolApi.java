@@ -1,8 +1,6 @@
 package com.hsshy.beam.modular.tool;
-
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.common.base.controller.BaseBeanController;
-import com.hsshy.beam.common.base.controller.BaseController;
 import com.hsshy.beam.common.support.HttpKit;
 import com.hsshy.beam.common.utils.*;
 import com.hsshy.beam.modular.mini.constant.MiniAppConfig;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import weixin.popular.bean.wxa.LineColor;
-
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
