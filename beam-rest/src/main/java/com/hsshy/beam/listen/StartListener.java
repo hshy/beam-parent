@@ -1,8 +1,6 @@
 package com.hsshy.beam.listen;
 import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.modular.common.service.ISysConfigService;
-import com.hsshy.beam.modular.mini.constant.BdAiConfig;
-import com.hsshy.beam.modular.mini.constant.MiniAppConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +24,7 @@ public class StartListener implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        MiniAppConfig miniAppConfig = sysConfigService.getConfigObject("MiniAppConfig", MiniAppConfig.class);
-        BdAiConfig bdAiConfig = sysConfigService.getConfigObject("BdAiConfig", BdAiConfig.class);
-        System.out.println(bdAiConfig.toString());
-        redisUtil.set("MiniAppConfig",miniAppConfig,-1);
-        redisUtil.set("BdAiConfig",bdAiConfig,-1);
-        logger.info("appId:{}",miniAppConfig.getAppId());
+
         logger.info("项目启动成功---------------------------------------------------");
     }
 }
