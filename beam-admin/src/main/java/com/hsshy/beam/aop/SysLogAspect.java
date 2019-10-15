@@ -1,5 +1,5 @@
 package com.hsshy.beam.aop;
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 import com.hsshy.beam.common.annotion.SysLog;
 import com.hsshy.beam.common.log.LogManager;
 import com.hsshy.beam.common.log.factory.LogTaskFactory;
@@ -61,7 +61,7 @@ public class SysLogAspect {
 		Object[] args = joinPoint.getArgs();
 		String params = "";
 		try{
-			 params = new Gson().toJson(args[0]);
+			 params = JSON.toJSONString(args[0]);
 		}catch (Exception e){
 
 		}

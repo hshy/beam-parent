@@ -26,89 +26,58 @@ import java.util.HashMap;
  **/
 public class R<T> extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
-	
+
 	public R(int code, String msg) {
 		put("code", code);
 		put("msg", msg);
 		put("data", null);
 		put("error",false);
 	}
-
-	public static R fail() {
-
-		return new R(RetEnum.ERROR.getRet(),RetEnum.ERROR.getMsg());
+	public R(int code, String msg, boolean error) {
+		put("code", code);
+		put("msg", msg);
+		put("data", null);
+		put("error",error);
 	}
-	
+	public R(int code, String msg, boolean error, T data) {
+		put("code", code);
+		put("msg", msg);
+		put("data", data);
+		put("error",error);
+	}
+	public static R fail() {
+		return new R(RetEnum.ERROR.getRet(), RetEnum.ERROR.getMsg(),true);
+	}
 	public static R fail(String msg) {
 		return fail(RetEnum.ERROR.getRet(), msg);
 	}
 	
 	public static R fail(int code, String msg) {
-		R r = new R(code,msg);
-		r.put("error",true);
-		r.put("data",null);
-		return r;
+		return new R(code,msg,true);
 	}
-
 	public static <T> R<T> fail(T data) {
-		R r = new R(RetEnum.ERROR.getRet(),RetEnum.ERROR.getMsg());
-		r.put("data",data);
-		r.put("error",true);
-		return r;
+		return new R(RetEnum.ERROR.getRet(), RetEnum.ERROR.getMsg(),true,data);
 	}
-
-
-	public static <T> R<T> fail(int code,String msg,T data) {
-		R r = new R(code,msg);
-		r.put("data",data);
-		r.put("error",true);
-		return r;
+	public static <T> R<T> fail(int code, String msg, T data) {
+		return new R(code,msg,true,data);
 	}
-
-
-
 	public static R ok() {
-
-		return new R(RetEnum.SUCCESS.getRet(),RetEnum.SUCCESS.getMsg());
+		return new R(RetEnum.SUCCESS.getRet(), RetEnum.SUCCESS.getMsg());
 	}
-
-
-
 	public static R ok(String msg) {
-		R r = new R(RetEnum.SUCCESS.getRet(),msg);
-		r.put("data",msg);
-		r.put("error",false);
-
-		return r;
+		String data = msg;
+		return new R(RetEnum.SUCCESS.getRet(),msg,false,data);
 	}
 
 	public static R ok(int code, String msg) {
-		R r = new R(code,msg);
-		r.put("code", code);
-		r.put("msg", msg);
-		r.put("data", null);
-		r.put("error",false);
-
-		return r;
+		return new R(code,msg,false,null);
 	}
-
-
 	public static <T> R<T> ok(T data) {
-		R r = new R(RetEnum.SUCCESS.getRet(),RetEnum.SUCCESS.getMsg());
-		r.put("data",data);
-		r.put("error",false);
-		return r;
+		return new R(RetEnum.SUCCESS.getRet(), RetEnum.SUCCESS.getMsg(),false,data);
 	}
-
-
-	public static <T> R<T> ok(int code,String msg,T data) {
-		R r = new R(code,msg);
-		r.put("data",data);
-		r.put("error",false);
-		return r;
+	public static <T> R<T> ok(int code, String msg, T data) {
+		return new R(code,msg,false,data);
 	}
-
-
 	@Override
 	public R put(String key, Object value) {
 		super.put(key, value);

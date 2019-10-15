@@ -11,12 +11,11 @@
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 <el-button v-if="canDel" type="danger" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-button v-if="canAdd" type="primary" icon="add" class="handle-del mr10" @click="handleAdd">新增</el-button>
+                <el-button v-if="canExport" type="warning"  class="handle-del mr10" @click="handleExport">导出</el-button>
             </div>
             <el-table :data="tableData" v-loading="loading" border class="table" ref="multipleTable"
                       @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-
-
                 <el-table-column
                     label="角色名称"
                     align="center"
@@ -97,6 +96,7 @@
 
 <script>
     import RoleApi from '../../api/sysrole';
+    import http from '@/util/http'
 
     export default {
         name: 'basetable',
@@ -125,7 +125,9 @@
                 canEdit:true,
                 canAdd:true,
                 canDel:true,
-                canConfigPerm:true
+                canConfigPerm:true,
+                canExport:true,
+
             }
         },
         created() {
@@ -134,9 +136,21 @@
             this.canAdd = this.getPerms().indexOf("sys:role:add")!=-1;
             this.canDel = this.getPerms().indexOf("sys:role:del")!=-1;
             this.canConfigPerm = this.getPerms().indexOf("sys:role:configPerm")!=-1;
+            this.canExport = this.getPerms().indexOf("sys:role:export")!=-1;
         },
         computed: {},
         methods: {
+            handleExport(){
+                this.roleIds = [];
+                const length = this.multipleSelection.length;
+                for (let i = 0; i < length; i++) {
+                    this.menuIds.push(this.multipleSelection[i].id);
+                }
+                let url = http.getBaseUrl()+"/sys/role/export";
+                let param = this.$utils.queryParams(this.req,"?");
+                param = param + "&roleIds="+this.roleIds;
+                window.location.href = url+param;
+            },
             saveMuenPerms(){
                 this.checkMenuData = [];
                 this.checkMenuData = this.checkMenuData.concat(this.$refs.treeMenu.getCheckedKeys());

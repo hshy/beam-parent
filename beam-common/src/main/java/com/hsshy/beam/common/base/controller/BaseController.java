@@ -38,7 +38,21 @@ public class BaseController {
     }
 
 
+    public HttpServletResponse getExportExcelResponse(String title){
+        HttpServletResponse response = HttpKit.getResponse();
+        //web浏览通过MIME类型判断文件是excel类型
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        // Content-disposition属性设置成以附件方式进行下载
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=" +new String((title+ ".xlsx").getBytes(), "iso-8859-1") );
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return response;
 
+    }
 
 
 

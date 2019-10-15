@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/beam_ht':{
-          // target: 'http://localhost:8080', // 本地,
-          target: 'http://www.hsshy.com', // 本地,
+          target: 'http://localhost:8080', // 本地,
+          // target: 'http://www.hsshy.com', // 本地,
           changeOrigin: true
       }
     },

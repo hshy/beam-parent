@@ -3,10 +3,12 @@ import { commonParams } from '../api/config'
 import { Message } from 'element-ui'
 
 const Http = {
-
+    getBaseUrl(){
+        return "/beam_ht";
+    },
     get(url, params) {
         const data = Object.assign({}, commonParams, params);
-        url = "/beam_ht" + url
+        url = this.getBaseUrl() + url
         return axios.get(url, {
             params: data,
         }).then((res) => {
@@ -64,7 +66,7 @@ const Http = {
     },
     post(url, data) {
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-        url = "/beam_ht" + url
+        url = this.getBaseUrl() + url
         return axios.post(url, data).then((res) => {
             if(res.data.error===false){
                 return Promise.resolve(res.data); //成功

@@ -138,7 +138,6 @@
 
 <script>
     import MenuApi from '../../api/sysmenu';
-
     export default {
         name: 'basetable',
         data() {
@@ -266,6 +265,7 @@
                 this.menu.delFlag = 0;
                 this.editVisible = true;
             },
+
             handleEdit(index, row) {
                 this.menu.delFlag = 0;
 

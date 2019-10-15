@@ -1,16 +1,29 @@
 package com.hsshy.beam.modular.sys.controller;
 
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.support.ExcelTypeEnum;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsshy.beam.common.annotion.SysLog;
+import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.common.utils.DateUtil;
 import com.hsshy.beam.common.utils.R;
+import com.hsshy.beam.common.utils.ToolUtil;
+import com.hsshy.beam.modular.sys.dto.RoleExportDto;
+import com.hsshy.beam.modular.sys.entity.Menu;
 import com.hsshy.beam.modular.sys.entity.Role;
 import com.hsshy.beam.modular.sys.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 角色
@@ -22,7 +35,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value="RoleController",tags={"Role接口"})
 @RestController
 @RequestMapping("/sys/role")
-public class RoleController  {
+public class RoleController extends BaseController {
 
     @Autowired
     private IRoleService roleService;
@@ -84,7 +97,34 @@ public class RoleController  {
     }
 
 
+    @RequiresPermissions("sys:role:export")
+    @ApiOperation("导出")
+    @GetMapping(value = "/export")
+    public void exportExcel(Role role) throws Exception{
+        QueryWrapper<Role> qw = new QueryWrapper();
+        if(ToolUtil.isNotEmpty(role.getRoleName())){
+            qw.like("role_name",role.getRoleName());
+        }
+        if(ToolUtil.isNotEmpty(role.getRoleIds())&&role.getRoleIds().length>0){
+            qw.in("id",role.getRoleIds());
+        }
+        List<Role> roleList = roleService.list(qw);
+        List<RoleExportDto> roleExportDtoList = new ArrayList<>();
+        for(int i=0;i<roleList.size();i++){
+            RoleExportDto roleExportDto = new RoleExportDto();
+            BeanUtils.copyProperties(roleList.get(i),roleExportDto);
+            roleExportDtoList.add(roleExportDto);
+        }
 
+        String sheetName = "sheet1";
+        OutputStream out = getExportExcelResponse("角色数据导出-"+ DateUtil.getAllTime()).getOutputStream();
+        ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
+        Sheet sheet = new Sheet(1,0, RoleExportDto.class);
+        sheet.setSheetName(sheetName);
+        writer.write(roleExportDtoList,sheet);
+        writer.finish();
+
+    }
 
 
 }

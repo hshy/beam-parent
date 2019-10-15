@@ -8,7 +8,10 @@ import '../static/css/theme-ff406d/index.css' //粉红色主题
 // import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
 import 'element-ui/lib/theme-chalk/icon.css';    // 默认icon
 import "babel-polyfill";
+import utils from '@/util/utils'
 
+
+Vue.prototype.$utils = utils;
 Vue.use(ElementUI, { size: 'small' });
 Vue.prototype.$axios = axios;
 Vue.prototype.getPerms = function (){//changeData是函数名

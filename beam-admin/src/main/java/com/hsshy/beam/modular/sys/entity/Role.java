@@ -33,7 +33,8 @@ public class Role extends RestEntity<Long> {
     @TableField(exist = false)
     private Long[] menuIds;
 
-
+    @TableField(exist = false)
+    private Long[] roleIds;
 
     @Override
     public Long getId() {
