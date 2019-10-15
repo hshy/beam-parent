@@ -8,6 +8,7 @@ import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -27,8 +28,8 @@ public class ArticleCategoryController extends BaseController {
     @Autowired
     private IArticleCategoryService articleCategoryService;
 
-
     //分页
+    @RequiresPermissions("blog:category:list")
     @ApiOperation("分页列表")
     @GetMapping(value = "/page/list")
     public R pageList(ArticleCategory articleCategory) {
@@ -40,7 +41,7 @@ public class ArticleCategoryController extends BaseController {
         IPage page = articleCategoryService.page(new Page(articleCategory.getCurrentPage(), articleCategory.getPageSize()), qw);
         return R.ok(page);
     }
-
+    @RequiresPermissions("blog:category:list")
     @ApiOperation("列表")
     @GetMapping(value = "/list")
     public R list(ArticleCategory articleCategory) {
@@ -50,6 +51,8 @@ public class ArticleCategoryController extends BaseController {
         return R.ok(articleCategoryList);
     }
 
+
+    @RequiresPermissions("blog:category:save")
     @ApiOperation("保存")
     @PostMapping(value = "/save")
     public R save(@RequestBody ArticleCategory articleCategory) {
@@ -62,6 +65,7 @@ public class ArticleCategoryController extends BaseController {
         return R.ok();
     }
 
+    @RequiresPermissions("blog:category:del")
     @ApiOperation("删除")
     @PostMapping(value = "/delete")
     public R delete(@RequestBody Long articleCategoryIds[]) {
@@ -85,6 +89,7 @@ public class ArticleCategoryController extends BaseController {
         return R.ok();
     }
 
+    @RequiresPermissions("blog:category:change")
     @ApiOperation("改变状态,是否可用")
     @PostMapping(value = "/change/status/{flag}")
     public R changeStatus(@RequestBody Long id, @PathVariable Integer flag) {

@@ -9,6 +9,7 @@ import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,6 +30,7 @@ public class ArticleController extends BaseController {
 
 
     //分页
+    @RequiresPermissions("blog:article:list")
     @ApiOperation("分页列表")
     @GetMapping(value = "/page/list")
     public R pageList(Article article) {
@@ -42,7 +44,7 @@ public class ArticleController extends BaseController {
         }
         return R.ok(page);
     }
-
+    @RequiresPermissions("blog:article:list")
     @ApiOperation("列表")
     @GetMapping(value = "/list")
     public R list(Article article) {
@@ -51,7 +53,7 @@ public class ArticleController extends BaseController {
         List<Article> articleList = articleService.list(qw);
         return R.ok(articleList);
     }
-
+    @RequiresPermissions("blog:article:info")
     @ApiOperation("详情")
     @GetMapping(value = "/info")
     public R info(Long articleId) {
@@ -59,20 +61,21 @@ public class ArticleController extends BaseController {
 
         return R.ok(article);
     }
-
+    @RequiresPermissions("blog:article:save")
     @ApiOperation("保存")
     @PostMapping(value = "/save")
     public R save(@RequestBody Article article) {
         return articleService.saveArticle(article);
     }
 
+    @RequiresPermissions("blog:article:save")
     @ApiOperation("保存内容")
     @PostMapping(value = "/save/content")
     public R saveContent(@RequestBody Article article) {
         articleService.saveOrUpdate(article);
         return R.ok("保存文章内容成功");
     }
-
+    @RequiresPermissions("blog:article:del")
     @ApiOperation("删除")
     @PostMapping(value = "/delete")
     public R delete(@RequestBody Long articleIds[]) {
