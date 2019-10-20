@@ -11,13 +11,13 @@ spring:
     filters: log4j,wall,mergeStat
     hikari:
       readOnly: false
-      connectionTimeout: 30000 # 等待来自连接池的连接 默认30秒
-      idleTimeout: 600000 # 连接允许在连接池中闲置的时间 默认10分钟
-      validationTimeout: 5000 # 连接将被测试活动的最大时间量
-      maxLifetime: 1800000 # 连接池中连接最大的生命周期 默认30分钟
-      loginTimeout: 10 # 连接超时间件
-      maximumPoolSize: 20 # 最大的可用连接
-      minimumIdle: 10 # 最小的连接
+      connectionTimeout: 60000 #连接超时 1分钟
+      idleTimeout: 58000 # 一个连接空闲状态的最大时长 一分钟
+      validationTimeout: 6000
+      maxLifetime: 60000 # 1分钟
+      loginTimeout: 5
+      maximumPoolSize: 30 # 连接池最大连接数
+      minimumIdle: 10 #最小空闲连接
   redis:
     database: 0
     host: 127.0.0.1

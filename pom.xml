@@ -32,7 +32,7 @@
 		<beam.common.version>0.0.1-SNAPSHOT</beam.common.version>
 		<beam.web.version>0.0.1-SNAPSHOT</beam.web.version>
 
-		<mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
+		<mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
 
 		<swagger.version>2.9.2</swagger.version>
 		<fastjson.version>1.2.47</fastjson.version>
