@@ -82,7 +82,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             user.setSalt(salt);
             user.setPassword(ShiroUtils.sha256("123456", salt));
             if(this.save(user)){
-                return R.ok();
+                if(user.getRoleIds().size()<=0){
+                    return R.ok();
+                }
+                else {
+                    // 插入用户角色关系
+                    baseMapper.saveUserRole(user);
+                    return R.ok();
+                }
 
             }
             else {
