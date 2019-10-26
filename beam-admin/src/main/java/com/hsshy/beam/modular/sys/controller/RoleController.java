@@ -1,8 +1,12 @@
 package com.hsshy.beam.modular.sys.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.metadata.style.WriteCellStyle;
+import com.alibaba.excel.write.metadata.style.WriteFont;
+import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsshy.beam.common.annotion.SysLog;
 import com.hsshy.beam.common.base.controller.BaseController;
@@ -15,6 +19,7 @@ import com.hsshy.beam.modular.sys.entity.Role;
 import com.hsshy.beam.modular.sys.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeanUtils;
@@ -115,15 +120,21 @@ public class RoleController extends BaseController {
             BeanUtils.copyProperties(roleList.get(i),roleExportDto);
             roleExportDtoList.add(roleExportDto);
         }
-
         String sheetName = "sheet1";
-        OutputStream out = getExportExcelResponse("角色数据导出-"+ DateUtil.getAllTime()).getOutputStream();
-        ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
-        Sheet sheet = new Sheet(1,0, RoleExportDto.class);
-        sheet.setSheetName(sheetName);
-        writer.write(roleExportDtoList,sheet);
-        writer.finish();
+        String fileName = "角色数据导出-"+ DateUtil.getAllTime();
+        OutputStream out = getExportExcelResponse(fileName).getOutputStream();
 
+        WriteCellStyle headWriteCellStyle = new WriteCellStyle();
+        headWriteCellStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+        WriteFont headWriteFont = new WriteFont();
+        headWriteFont.setFontHeightInPoints((short)10);
+        headWriteFont.setBold(false);
+        headWriteCellStyle.setWriteFont(headWriteFont);
+        // 内容的策略
+        WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
+        HorizontalCellStyleStrategy horizontalCellStyleStrategy =
+                new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
+        EasyExcel.write(out, RoleExportDto.class).registerWriteHandler(horizontalCellStyleStrategy).sheet(sheetName).doWrite(roleExportDtoList);
     }
 
 

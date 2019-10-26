@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    import bus from '../../common/bus';
+    import bus from '../../../api/bus';
     import BlogApi from '../../../api/business/blog';
     export default {
         data() {

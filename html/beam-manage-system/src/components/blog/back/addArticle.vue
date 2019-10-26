@@ -90,7 +90,7 @@
     import 'quill/dist/quill.snow.css';
     import 'quill/dist/quill.bubble.css';
     import {quillEditor} from 'vue-quill-editor';
-    import bus from '../../common/bus';
+    import bus from '../../../api/bus';
 
     export default {
         data(){

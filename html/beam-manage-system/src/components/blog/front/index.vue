@@ -25,7 +25,7 @@
 <script>
     import BlogApi from '../../../api/business/blog';
     import 'element-ui/lib/theme-chalk/display.css';
-    import bus from '../../common/bus';
+    import bus from '../../../api/bus';
 
     export default {
         name: "index",

@@ -62,8 +62,8 @@
 
 </template>
 <script>
-    import bus from '../common/bus';
-    import AccountApi from '../common/account';
+    import bus from '../../api/bus';
+    import AccountApi from '../../api/account';
 
     export default {
 

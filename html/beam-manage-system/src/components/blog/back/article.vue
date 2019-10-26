@@ -95,7 +95,7 @@
 
 <script>
     import ArticleApi from '../../../api/business/article';
-    import bus from '../../common/bus';
+    import bus from '../../../api/bus';
     export default {
         name: 'basetable',
         data() {
