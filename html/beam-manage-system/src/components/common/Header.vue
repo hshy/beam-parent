@@ -129,11 +129,14 @@
                         this.$message.error(err.msg);
                     })
             },
-            getButtonList() {
+            getButtonList(isRefresh) {
                 AccountApi.getButtonList().then((res) => {
                         if (res.error == false) {
                             this.buttonItems = res.data;
                             localStorage.setItem("buttonItems", res.data);
+                            if(isRefresh){
+                                window.location.reload();
+                            }
                         }
 
                     },
@@ -196,7 +199,7 @@
                         duration: 1000,
                         onClose: function () {
                             that.getNavList();
-                            that.getButtonList();
+                            that.getButtonList(true);
                         }
                     });
                 }, (err) => {

@@ -98,7 +98,7 @@
 
 <script>
     import Schart from 'vue-schart';
-    import bus from '../common/bus';
+    import bus from './bus';
     import DashboardApi from '../../api/dashboard';
 
     export default {

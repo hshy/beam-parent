@@ -16,19 +16,19 @@ export default new Router({
             children: [
                 {
                     path: '/dashboard',
-                    component: resolve => require(['../components/page/Dashboard.vue'], resolve),
+                    component: resolve => require(['../components/common/Dashboard.vue'], resolve),
                     meta: {title: '系统首页', permission: false, perms: "sys:dashboard:info"},
                 },
                 {
                     // 权限页面
                     path: '/permission',
-                    component: resolve => require(['../components/page/Permission.vue'], resolve),
+                    component: resolve => require(['../components/common/Permission.vue'], resolve),
                     meta: {title: '权限测试', permission: true}
                 },
 
                 {
                     path: '/403',
-                    component: resolve => require(['../components/page/403.vue'], resolve),
+                    component: resolve => require(['../components/common/403.vue'], resolve),
                     meta: {title: '403'}
                 }
                 ,
@@ -105,7 +105,7 @@ export default new Router({
 
         {
             path: '/login',
-            component: resolve => require(['../components/page/Login.vue'], resolve)
+            component: resolve => require(['../components/common/Login.vue'], resolve)
         },
         {
             path: '/blog',
@@ -133,7 +133,7 @@ export default new Router({
         },
         {
             path: '/404',
-            component: resolve => require(['../components/page/404.vue'], resolve),
+            component: resolve => require(['../components/common/404.vue'], resolve),
             meta: {title: '404'}
         },
         {
