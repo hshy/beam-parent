@@ -28,4 +28,6 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     void delMenuPermByRoleId(Long roleId);
 
+
+
 }

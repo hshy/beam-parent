@@ -1,9 +1,6 @@
 package com.hsshy.beam.modular.sys.controller;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.metadata.Sheet;
-import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
@@ -14,7 +11,6 @@ import com.hsshy.beam.common.utils.DateUtil;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.dto.RoleExportDto;
-import com.hsshy.beam.modular.sys.entity.Menu;
 import com.hsshy.beam.modular.sys.entity.Role;
 import com.hsshy.beam.modular.sys.service.IRoleService;
 import io.swagger.annotations.Api;
@@ -56,7 +52,6 @@ public class RoleController extends BaseController {
     @ApiOperation(value = "列表")
     @GetMapping(value = "/list")
     public Object list(Role role)  {
-
         QueryWrapper qw = new QueryWrapper<Role>();
         return  R.ok(roleService.list(qw));
     }
@@ -136,6 +131,10 @@ public class RoleController extends BaseController {
                 new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
         EasyExcel.write(out, RoleExportDto.class).registerWriteHandler(horizontalCellStyleStrategy).sheet(sheetName).doWrite(roleExportDtoList);
     }
+
+
+
+
 
 
 }
