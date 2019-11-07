@@ -3,7 +3,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hsshy.beam.modular.blog.entity.ArticleCategory;
 import com.hsshy.beam.modular.blog.service.IArticleCategoryService;
-import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.modular.base.controller.BaseController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import io.swagger.annotations.Api;

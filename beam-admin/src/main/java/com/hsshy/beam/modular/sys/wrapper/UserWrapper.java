@@ -1,6 +1,6 @@
 package com.hsshy.beam.modular.sys.wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.hsshy.beam.common.base.warpper.BaseControllerWrapper;
+import com.hsshy.beam.modular.base.warpper.BaseControllerWrapper;
 import com.hsshy.beam.common.factory.impl.ConstantFactory;
 import java.util.Map;
 

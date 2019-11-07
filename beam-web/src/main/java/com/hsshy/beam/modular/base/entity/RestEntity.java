@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.base.entity;
+package com.hsshy.beam.modular.base.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 

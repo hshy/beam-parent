@@ -5,7 +5,7 @@ import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsshy.beam.common.annotion.SysLog;
-import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.modular.base.controller.BaseController;
 import com.hsshy.beam.common.utils.DateUtil;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;

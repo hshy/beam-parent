@@ -1,7 +1,7 @@
 package com.hsshy.beam.modular.sys.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.hsshy.beam.common.base.entity.RestEntity;
+import com.hsshy.beam.modular.base.entity.RestEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;

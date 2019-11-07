@@ -1,10 +1,9 @@
 package com.hsshy.beam.modular.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.hsshy.beam.common.utils.ShortCodeKit;
 import com.hsshy.beam.modular.blog.entity.Article;
 import com.hsshy.beam.modular.blog.service.IArticleService;
-import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.modular.base.controller.BaseController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
 import io.swagger.annotations.Api;

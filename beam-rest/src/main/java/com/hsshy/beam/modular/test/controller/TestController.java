@@ -1,6 +1,6 @@
 package com.hsshy.beam.modular.test.controller;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
-import com.hsshy.beam.common.base.controller.BaseBeanController;
+import com.hsshy.beam.modular.base.controller.BaseBeanController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.RedisUtil;
 import com.hsshy.beam.modular.test.dto.LoginForm;

@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.base.warpper;
+package com.hsshy.beam.modular.base.warpper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 

@@ -1,6 +1,6 @@
 package com.hsshy.beam.modular.sys.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.hsshy.beam.common.base.service.ICommonService;
+import com.hsshy.beam.modular.base.service.ICommonService;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.modular.sys.dto.ChangePassowdForm;
 import com.hsshy.beam.modular.sys.entity.User;

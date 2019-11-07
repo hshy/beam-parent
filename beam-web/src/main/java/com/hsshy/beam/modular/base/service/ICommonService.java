@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.base.service;
+package com.hsshy.beam.modular.base.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 

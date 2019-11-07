@@ -1,12 +1,9 @@
-package com.hsshy.beam.common.base.controller;
+package com.hsshy.beam.modular.base.controller;
 import com.hsshy.beam.common.support.HttpKit;
 import com.hsshy.beam.common.utils.RedisUtil;
-import com.hsshy.beam.common.utils.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.Serializable;
 
 public abstract class BaseBeanController {
 

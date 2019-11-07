@@ -6,7 +6,7 @@ import com.hsshy.beam.common.annotion.SysLog;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.modular.sys.entity.LoginLog;
 import com.hsshy.beam.modular.sys.service.ILoginLogService;
-import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.modular.base.controller.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

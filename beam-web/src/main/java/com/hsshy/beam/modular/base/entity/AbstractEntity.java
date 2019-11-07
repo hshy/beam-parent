@@ -1,5 +1,5 @@
 
-package com.hsshy.beam.common.base.entity;
+package com.hsshy.beam.modular.base.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.hsshy.beam.common.constant.DataBaseConstant;

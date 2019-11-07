@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.base.dto;
+package com.hsshy.beam.modular.base.dto;
 
 import java.util.List;
 

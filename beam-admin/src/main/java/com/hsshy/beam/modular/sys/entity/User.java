@@ -2,7 +2,7 @@ package com.hsshy.beam.modular.sys.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.hsshy.beam.common.base.entity.DataEntity;
+import com.hsshy.beam.modular.base.entity.DataEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

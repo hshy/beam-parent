@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.base.service.impl;
+package com.hsshy.beam.modular.base.service.impl;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -1,5 +1,5 @@
 package com.hsshy.beam.modular.sys.controller;
-import com.hsshy.beam.common.base.controller.BaseController;
+import com.hsshy.beam.modular.base.controller.BaseController;
 import com.hsshy.beam.common.factory.impl.ConstantFactory;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
