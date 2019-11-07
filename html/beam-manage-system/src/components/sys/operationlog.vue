@@ -98,7 +98,6 @@
                 tableData: [],
                 page: {pageNo: 1, pageSize: 20},
                 multipleSelection: [],
-                is_search: false,
                 delVisible: false,
                 operationLog: {},
                 req: {},
@@ -150,7 +149,7 @@
                 });
             },
             search() {
-                this.is_search = true;
+                this.page.pageNo = 1;
                 this.getData();
             },
 

@@ -106,7 +106,6 @@
                 tableData: [],
                 page: {pageNo: 1, pageSize: 20},
                 multipleSelection: [],
-                is_search: false,
                 editVisible: false,
                 delVisible: false,
                 role: {},
@@ -234,7 +233,7 @@
                 });
             },
             search() {
-                this.is_search = true;
+                this.page.pageNo = 1;
                 this.getData();
             },
 

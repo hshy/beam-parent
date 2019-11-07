@@ -147,7 +147,6 @@
                 treeData: [],
                 page: {pageNo: 1, pageSize: 20},
                 multipleSelection: [],
-                is_search: false,
                 editVisible: false,
                 delVisible: false,
                 iconVisible: false,
@@ -256,7 +255,7 @@
                 });
             },
             search() {
-                this.is_search = true;
+                this.page.pageNo = 1;
                 this.getTreeData();
             },
 

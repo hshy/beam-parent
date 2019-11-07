@@ -85,7 +85,6 @@
             return {
                 tableData: [],
                 page: {pageNo: 1, pageSize: 20},
-                is_search: false,
                 delVisible: false,
                 loginLog: {},
                 req: {},
@@ -136,7 +135,7 @@
                 });
             },
             search() {
-                this.is_search = true;
+                this.page.pageNo = 1;
                 this.getData();
             },
 
