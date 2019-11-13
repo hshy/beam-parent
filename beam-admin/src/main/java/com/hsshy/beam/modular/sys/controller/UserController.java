@@ -45,6 +45,7 @@ public class UserController extends BaseController {
         return  R.ok(new UserWrapper(userService.selectPageList(user)).wrap());
     }
 
+    @RequiresPermissions("sys:user:changeStatus")
     @ApiOperation("改变状态,是否可用")
     @PostMapping(value = "/change/status/{flag}")
     public R changeStatus(@RequestBody Long userId,@PathVariable Integer flag){
