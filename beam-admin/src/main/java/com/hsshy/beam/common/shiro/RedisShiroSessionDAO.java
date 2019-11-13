@@ -4,7 +4,6 @@ import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 @Component

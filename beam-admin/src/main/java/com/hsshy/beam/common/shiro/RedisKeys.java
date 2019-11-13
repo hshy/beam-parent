@@ -15,4 +15,5 @@ public class RedisKeys {
     public static String getShiroSessionKey(String key){
         return "sessionid:" + key;
     }
+
 }
