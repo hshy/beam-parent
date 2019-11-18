@@ -5,16 +5,14 @@
 
     <groupId>com.hsshy</groupId>
     <artifactId>beam-rest</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>beam-rest</name>
     <description>api模块</description>
 
     <parent>
         <groupId>com.hsshy</groupId>
         <artifactId>beam-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
 
@@ -111,6 +109,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hsshy</groupId>
 	<artifactId>beam-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>beam-parent</name>
 	<packaging>pom</packaging> <!--重要 父级packageing为 pom-->
 
@@ -27,13 +27,11 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
+        <beam.common.version>1.0.0</beam.common.version>
+        <beam.web.version>1.0.0</beam.web.version>
+
 		<spring.boot.data.redis.version>2.1.5.RELEASE</spring.boot.data.redis.version>
-
-		<beam.common.version>0.0.1-SNAPSHOT</beam.common.version>
-		<beam.web.version>0.0.1-SNAPSHOT</beam.web.version>
-
 		<mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
-
 		<swagger.version>2.9.2</swagger.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<ehcache.core.version>2.6.11</ehcache.core.version>
@@ -60,7 +58,6 @@
 		<weixin-popular>2.8.28</weixin-popular>
 		<bcprov-jdk15on>1.56</bcprov-jdk15on>
 		<thumbnailator>0.4.8</thumbnailator>
-
 	</properties>
 	<dependencyManagement>
 
