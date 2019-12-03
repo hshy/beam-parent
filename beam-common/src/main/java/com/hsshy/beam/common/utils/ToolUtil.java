@@ -1,13 +1,18 @@
 package com.hsshy.beam.common.utils;
 import com.hsshy.beam.common.utils.support.StrKit;
+
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.Map.Entry;
+
+import static org.springframework.beans.BeanUtils.getPropertyDescriptors;
 
 /**
  * 高频方法集合类
@@ -183,7 +188,7 @@ public class ToolUtil {
     /**
      * 对象是否不为空(新增)
      *
-     * @param obj String,List,Map,Object[],int[],long[]
+     * @param o String,List,Map,Object[],int[],long[]
      * @return
      */
     public static boolean isNotEmpty(Object o) {
@@ -193,7 +198,7 @@ public class ToolUtil {
     /**
      * 对象是否为空
      *
-     * @param obj String,List,Map,Object[],int[],long[]
+     * @param o String,List,Map,Object[],int[],long[]
      * @return
      */
     @SuppressWarnings("rawtypes")
@@ -394,23 +399,6 @@ public class ToolUtil {
         }
     }
 
-    /**
-     * 去掉指定后缀
-     *
-     * @param str    字符串
-     * @param suffix 后缀
-     * @return 切掉后的字符串，若后缀不是 suffix， 返回原字符串
-     */
-    public static String removeSuffix(String str, String suffix) {
-        if (isEmpty(str) || isEmpty(suffix)) {
-            return str;
-        }
-
-        if (str.endsWith(suffix)) {
-            return str.substring(0, str.length() - suffix.length());
-        }
-        return str;
-    }
 
     /**
      * 当前时间

@@ -1,5 +1,7 @@
 package com.hsshy.beam.common.exception;
 import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.utils.support.StrKit;
+
 public class BeamException extends RuntimeException {
 
     private Integer code;
@@ -25,6 +27,10 @@ public class BeamException extends RuntimeException {
         super(msg, e);
         this.message = msg;
         this.code = code;
+    }
+
+    public BeamException(Throwable throwable, String messageTemplate, Object... params) {
+        super(StrKit.format(messageTemplate, params), throwable);
     }
 
     public Integer getCode() {
