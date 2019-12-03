@@ -5,7 +5,7 @@ import com.hsshy.beam.common.log.factory.LogTaskFactory;
 import com.hsshy.beam.common.shiro.ShiroUtils;
 import com.hsshy.beam.common.util.KaptchaUtil;
 import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.modular.sys.dto.LoginForm;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -13,7 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.hsshy.beam.common.support.HttpKit.getIp;
+import static com.hsshy.beam.common.utils.support.HttpKit.getIp;
 
 @RestController
 public class LoginController  {

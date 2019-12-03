@@ -1,21 +1,5 @@
-/**
- * Copyright (c) 2015-2016, Chill Zhuang 庄骞 (smallchill@163.com).
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.hsshy.beam.common.utils;
-import com.hsshy.beam.common.support.StrKit;
-
+import com.hsshy.beam.common.utils.support.StrKit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -354,56 +338,6 @@ public class ToolUtil {
     }
 
     /**
-     * 强转->int
-     *
-     * @param obj
-     * @return
-     */
-//	public static int toInt(Object value) {
-//		return toInt(value, -1);
-//	}
-
-    /**
-     * 强转->int
-     *
-     * @param obj
-     * @param defaultValue
-     * @return
-     */
-//	public static int toInt(Object value, int defaultValue) {
-//		return Convert.toInt(value, defaultValue);
-//	}
-
-    /**
-     * 强转->long
-     *
-     * @param obj
-     * @return
-     */
-//	public static long toLong(Object value) {
-//		return toLong(value, -1);
-//	}
-
-    /**
-     * 强转->long
-     *
-     * @param obj
-     * @param defaultValue
-     * @return
-     */
-//	public static long toLong(Object value, long defaultValue) {
-//		return Convert.toLong(value, defaultValue);
-//	}
-//
-//	public static String encodeUrl(String url) {
-//		return URLKit.encode(url, CharsetKit.UTF_8);
-//	}
-//
-//	public static String decodeUrl(String url) {
-//		return URLKit.decode(url, CharsetKit.UTF_8);
-//	}
-
-    /**
      * map的key转为小写
      *
      * @param map
@@ -536,8 +470,6 @@ public class ToolUtil {
     /**
      * 把一个数转化为int
      *
-     * @author fengshuonan
-     * @Date 2017/11/15 下午11:10
      */
     public static Integer toInt(Object val) {
         if (val instanceof Double) {
@@ -578,4 +510,7 @@ public class ToolUtil {
         int lastIndexOf = fileWholeName.lastIndexOf(".");
         return fileWholeName.substring(lastIndexOf + 1);
     }
+
+
+
 }

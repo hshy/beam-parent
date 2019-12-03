@@ -1,9 +1,8 @@
 package com.hsshy.beam.modular.test.controller;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.modular.test.dto.LoginForm;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

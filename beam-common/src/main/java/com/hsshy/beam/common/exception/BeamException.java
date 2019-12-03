@@ -1,13 +1,5 @@
 package com.hsshy.beam.common.exception;
-
 import com.hsshy.beam.common.enumeration.RetEnum;
-
-/**
- * 封装guns的异常
- *
- * @author fengshuonan
- * @Date 2017/12/28 下午10:32
- */
 public class BeamException extends RuntimeException {
 
     private Integer code;

@@ -1,7 +1,6 @@
 package com.hsshy.beam.common.factory.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hsshy.beam.common.constant.cache.Cache;
-import com.hsshy.beam.common.constant.cache.CacheKey;
+import com.hsshy.beam.common.constant.CacheKey;
 import com.hsshy.beam.common.factory.IConstantFactory;
 import com.hsshy.beam.common.utils.SpringContextHolder;
 import com.hsshy.beam.common.utils.ToolUtil;
@@ -42,7 +41,7 @@ public class ConstantFactory implements IConstantFactory {
      * 通过角色id获取角色名称
      */
     @Override
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_NAME + "'+#roleId")
+    @Cacheable(value = CacheKey.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_NAME + "'+#roleId")
     public String getSingleRoleName(Long roleId) {
         if (0 == roleId) {
             return "--";
@@ -58,7 +57,7 @@ public class ConstantFactory implements IConstantFactory {
      * 获取部门名称
      */
     @Override
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
+    @Cacheable(value = CacheKey.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
     public String getDeptName(Long deptId) {
         Dept dept = deptMapper.selectById(deptId);
         if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getName())) {

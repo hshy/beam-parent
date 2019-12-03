@@ -41,11 +41,7 @@ public enum RetEnum {
     /**
      * session过期
      */
-    LOGIN_EXPIRED(-1,"请重新登陆"),
-    /**
-     * 其他
-     */
-    INVLIDE_DATE_STRING(400, "输入日期格式不对"),
+    LOGIN_EXPIRED(401,"请重新登陆"),
 
     /**
      * 其他

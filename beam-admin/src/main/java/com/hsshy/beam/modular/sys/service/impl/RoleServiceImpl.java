@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.dao.RoleMapper;
 import com.hsshy.beam.modular.sys.entity.Role;

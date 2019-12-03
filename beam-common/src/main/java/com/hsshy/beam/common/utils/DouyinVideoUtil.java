@@ -1,5 +1,5 @@
 package com.hsshy.beam.common.utils;
-import com.hsshy.beam.common.support.HttpKit;
+import com.hsshy.beam.common.utils.support.HttpKit;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

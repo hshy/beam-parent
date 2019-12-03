@@ -1,5 +1,5 @@
 package com.hsshy.beam.listen;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.modular.common.service.ISysConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

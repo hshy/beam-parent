@@ -1,14 +1,11 @@
 package com.hsshy.beam.common.utils;
-
 import com.alibaba.fastjson.JSON;
 import com.hsshy.beam.common.enumeration.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
-
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 /**
  * 渲染工具类
  *

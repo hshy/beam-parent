@@ -1,5 +1,5 @@
 package com.hsshy.beam.common.mutidatasource.aop;
-import com.hsshy.beam.common.config.multi.MutiDataSourceProperties;
+import com.hsshy.beam.common.mutidatasource.config.MutiDataSourceProperties;
 import com.hsshy.beam.common.mutidatasource.DataSourceContextHolder;
 import com.hsshy.beam.common.mutidatasource.annotion.DataSource;
 import org.aspectj.lang.ProceedingJoinPoint;

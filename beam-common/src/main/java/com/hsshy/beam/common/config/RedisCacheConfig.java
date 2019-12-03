@@ -2,7 +2,7 @@ package com.hsshy.beam.common.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hsshy.beam.common.constant.cache.Cache;
+import com.hsshy.beam.common.constant.CacheKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -14,7 +14,6 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
-
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +41,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean
+    @Override
     public RedisCacheManager cacheManager() {
         return new RedisCacheManager(
                 RedisCacheWriter.nonLockingRedisCacheWriter(factory),
@@ -54,7 +54,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap() {
         Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap<>();
         //SsoCache和BasicDataCache进行过期时间配置
-        redisCacheConfigurationMap.put(Cache.CONSTANT, this.getRedisCacheConfigurationWithTtl(24*60*60));
+        redisCacheConfigurationMap.put(CacheKey.CONSTANT, this.getRedisCacheConfigurationWithTtl(24*60*60));
         return redisCacheConfigurationMap;
     }
 

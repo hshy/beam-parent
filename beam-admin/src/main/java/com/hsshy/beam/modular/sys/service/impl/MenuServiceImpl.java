@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.hsshy.beam.common.constant.Constant;
-import com.hsshy.beam.common.constant.cache.Cache;
-import com.hsshy.beam.common.constant.cache.CacheKey;
+import com.hsshy.beam.common.constant.CacheKey;
 import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.dao.MenuMapper;
 import com.hsshy.beam.modular.sys.entity.Menu;
@@ -101,7 +100,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
 
     @Override
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.USER_ID + "'+#userId")
+    @Cacheable(value = CacheKey.CONSTANT, key = "'" + CacheKey.USER_ID + "'+#userId")
     public List<Map> getUserMenuList(Long userId) {
 
         //系统管理员，拥有最高权限

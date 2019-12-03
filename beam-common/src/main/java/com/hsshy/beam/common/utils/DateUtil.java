@@ -1,31 +1,13 @@
-/**
- * Copyright (c) 2015-2016, Chill Zhuang 庄骞 (smallchill@163.com).
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.hsshy.beam.common.utils;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
-
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 public class DateUtil {
 
     /**
@@ -224,16 +206,17 @@ public class DateUtil {
     /**
      * 得到n天之后的日期
      */
-    public static String getAfterDayDateStr(Date date,String days) {
+    public static String getAfterDayDateStr(Date date, String days) {
         int daysInt = Integer.parseInt(days);
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
         return getTime(calendar.getTime());
     }
+
     /**
      * 得到n天之后的日期
      */
-    public static Date getAfterDayDate(Date date,String days) {
+    public static Date getAfterDayDate(Date date, String days) {
         int daysInt = Integer.parseInt(days);
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
@@ -243,19 +226,18 @@ public class DateUtil {
     /**
      * 得到n天之前的日期
      */
-    public static String getBeforeDayDateStr(Date date,String days) {
+    public static String getBeforeDayDateStr(Date date, String days) {
         int daysInt = Integer.parseInt(days);
-
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.DATE, -daysInt); // 日期减 如果不够减会将月变动
         return getTime(calendar.getTime());
     }
+
     /**
      * 得到n天之前的日期
      */
-    public static Date getBeforeDayDate(Date date,String days) {
+    public static Date getBeforeDayDate(Date date, String days) {
         int daysInt = Integer.parseInt(days);
-
         Calendar calendar = getCalendar(date);
         calendar.add(Calendar.DATE, -daysInt); // 日期减 如果不够减会将月变动
         return calendar.getTime();
@@ -267,12 +249,12 @@ public class DateUtil {
      * @param min
      * @return
      */
-    public static String getBeforeMinDate(Date nowDate,String min) {
+    public static String getBeforeMinDate(Date nowDate, String min) {
         int minInt = Integer.parseInt(min);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(nowDate);
-        calendar.add(Calendar.MINUTE,-minInt);
-        Date dt=calendar.getTime();
+        calendar.add(Calendar.MINUTE, -minInt);
+        Date dt = calendar.getTime();
         return getTime(dt);
 
     }
@@ -283,12 +265,12 @@ public class DateUtil {
      * @param min
      * @return
      */
-    public static String getAfterMinDate(Date nowDate,String min) {
+    public static String getAfterMinDate(Date nowDate, String min) {
         int minInt = Integer.parseInt(min);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(nowDate);
-        calendar.add(Calendar.MINUTE,minInt);
-        Date dt=calendar.getTime();
+        calendar.add(Calendar.MINUTE, minInt);
+        Date dt = calendar.getTime();
         return getTime(dt);
     }
 
@@ -297,14 +279,11 @@ public class DateUtil {
      */
     public static String getAfterDayWeek(String days) {
         int daysInt = Integer.parseInt(days);
-
         Calendar canlendar = Calendar.getInstance(); // java.util包
         canlendar.add(Calendar.DATE, daysInt); // 日期减 如果不够减会将月变动
         Date date = canlendar.getTime();
-
         SimpleDateFormat sdf = new SimpleDateFormat("E");
         String dateStr = sdf.format(date);
-
         return dateStr;
     }
 

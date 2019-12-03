@@ -1,6 +1,6 @@
 package com.hsshy.beam.modular.base.controller;
-import com.hsshy.beam.common.support.HttpKit;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.support.HttpKit;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

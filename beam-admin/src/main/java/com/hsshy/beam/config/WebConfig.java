@@ -2,7 +2,7 @@ package com.hsshy.beam.config;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import com.hsshy.beam.common.listener.ConfigListener;
-import com.hsshy.beam.common.xss.XssFilter;
+import com.hsshy.beam.common.utils.xss.XssFilter;
 import com.hsshy.beam.config.properties.BeamAdminProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

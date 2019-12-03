@@ -3,7 +3,7 @@ import com.hsshy.beam.modular.base.controller.BaseController;
 import com.hsshy.beam.common.shiro.IShiro;
 import com.hsshy.beam.common.shiro.ShiroUtils;
 import com.hsshy.beam.common.utils.R;
-import com.hsshy.beam.common.utils.RedisUtil;
+import com.hsshy.beam.common.utils.redis.RedisUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
 import com.hsshy.beam.modular.sys.entity.Menu;
 import com.hsshy.beam.modular.sys.service.IMenuService;

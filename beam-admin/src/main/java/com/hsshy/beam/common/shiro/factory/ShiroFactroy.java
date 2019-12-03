@@ -2,8 +2,7 @@ package com.hsshy.beam.common.shiro.factory;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsshy.beam.common.constant.Constant;
-import com.hsshy.beam.common.constant.cache.Cache;
-import com.hsshy.beam.common.constant.cache.CacheKey;
+import com.hsshy.beam.common.constant.CacheKey;
 import com.hsshy.beam.common.factory.impl.ConstantFactory;
 import com.hsshy.beam.common.shiro.ShiroUser;
 import com.hsshy.beam.common.utils.SpringContextHolder;
@@ -81,7 +80,7 @@ public class ShiroFactroy implements IShiro {
 
         return shiroUser;
     }
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.USER_MENU + "'+#userId")
+    @Cacheable(value = CacheKey.CONSTANT, key = "'" + CacheKey.USER_MENU + "'+#userId")
     @Override
     public List<String> findPermissionsByUserId(Long userId) {
 
