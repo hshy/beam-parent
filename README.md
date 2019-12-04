@@ -6,7 +6,6 @@ http://www.hsshy.com/#/login
 #### 博客地址
 http://www.hsshy.com
 #### 项目介绍
-
 - 基于SpringBoot 2，一款快速开发的脚手架。admin:后台管理系统。rest:用于快速构建中小型API、RESTful API项目。
 - 有配套的代码生成器可供使用。
 - 基础模块：
@@ -124,5 +123,5 @@ beam-parent
 - Spring Boot 整合Kafka案例
 #### 有需要dubbo的请移至：https://gitee.com/hsshy/beam-dubbo
 
-#### 有问题请关注公众号回复消息
+#### 还有问题请移步公众号
 ![image.png](http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png)
