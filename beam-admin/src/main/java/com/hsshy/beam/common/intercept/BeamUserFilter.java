@@ -8,16 +8,7 @@ import org.apache.shiro.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
-/**
- * Filter that allows access to resources if the accessor is a known user, which is defined as
- * having a known principal.  This means that any user who is authenticated or remembered via a
- * 'remember me' feature will be allowed access from this filter.
- * <p/>
- * If the accessor is not a known user, then they will be redirected to the {@link #setLoginUrl(String) loginUrl}</p>
- *
- * @since 0.9
- */
-public class GunsUserFilter extends AccessControlFilter {
+public class BeamUserFilter extends AccessControlFilter {
 
     /**
      *
@@ -32,7 +23,7 @@ public class GunsUserFilter extends AccessControlFilter {
      * @return
      * @throws Exception
      * */
-
+    @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 
 
@@ -50,12 +41,10 @@ public class GunsUserFilter extends AccessControlFilter {
      * onAccessDenied是否执行取决于isAccessAllowed的值，如果返回true则onAccessDenied不会执行；如果返回false，执行onAccessDenied
      * 如果onAccessDenied也返回false，则直接返回，不会进入请求的方法（只有isAccessAllowed和onAccessDenied的情况下）
      * */
+    @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-
-
         RenderUtil.renderJson(httpServletResponse, R.fail(RetEnum.LOGIN_EXPIRED.getRet(),RetEnum.LOGIN_EXPIRED.getMsg()));
-
         return false;
 
     }

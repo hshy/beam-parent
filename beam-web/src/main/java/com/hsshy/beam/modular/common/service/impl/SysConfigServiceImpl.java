@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {
 
 
+    @Override
     public String getValue(String key, String defaultValue) {
         String value = baseMapper.getByKey(key);
         if(StringUtils.isBlank(value)){
@@ -29,7 +30,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
         }
         return value;
     }
-
+    @Override
     public <T> T getConfigObject(String key, Class<T> clazz) {
         String value = getValue(key, null);
         if(StringUtils.isNotBlank(value)){
@@ -38,10 +39,10 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
         try {
             return clazz.newInstance();
         } catch (Exception e) {
-            throw new BeamException(RetEnum.ERRORPARAM);
+            throw new BeamException(RetEnum.ERROR_PARAM);
         }
     }
-
+    @Override
     @Transactional(readOnly = false, rollbackFor = Exception.class)
     public void updateValueByKey(String key, String value) {
         baseMapper.updateValueByKey(key, value);

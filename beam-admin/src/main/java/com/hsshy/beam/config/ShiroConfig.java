@@ -1,5 +1,5 @@
 package com.hsshy.beam.config;
-import com.hsshy.beam.common.intercept.GunsUserFilter;
+import com.hsshy.beam.common.intercept.BeamUserFilter;
 import com.hsshy.beam.common.shiro.RedisShiroSessionDAO;
 import com.hsshy.beam.common.shiro.UserRealm;
 import org.apache.shiro.mgt.SecurityManager;
@@ -63,7 +63,7 @@ public class ShiroConfig {
 
         //session过期拦截
         HashMap<String, Filter> myFilters = new HashMap<>();
-        myFilters.put("user", new GunsUserFilter());
+        myFilters.put("user", new BeamUserFilter());
         shiroFilter.setFilters(myFilters);
         /**
          *

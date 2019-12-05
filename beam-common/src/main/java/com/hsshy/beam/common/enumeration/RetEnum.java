@@ -6,26 +6,18 @@ package com.hsshy.beam.common.enumeration;
  * at 2017/12/6 17:49
  */
 public enum RetEnum {
-    /**
-     * 成功
-      */
+
     SUCCESS(200,"成功"),
-    /**
-     * 失败
-     */
+
     ERROR(400,"失败"),
     /**
      * 禁止访问
      */
     FORBID(403,"禁止访问"),
     /**
-     * SIGN签名无效
-     */
-    ERRORSIGN(401,"无效的签名"),
-    /**
      * 参数异常
      */
-    ERRORPARAM(1004,"参数异常"),
+    ERROR_PARAM(1004,"参数异常"),
     /**
      * token过期
      */
@@ -42,16 +34,13 @@ public enum RetEnum {
      * session过期
      */
     LOGIN_EXPIRED(401,"请重新登陆"),
-
     /**
      * 其他
      */
     WRITE_ERROR(500, "渲染界面错误"),
-
     /**
      * 文件上传
      */
-
     FILE_NOT_FOUND(404, "未找到文件!"),
 
     FILE_READING_ERROR(500, "文件读取错误!"),
@@ -61,9 +50,8 @@ public enum RetEnum {
     CAPTCHA_LAPSED(500,"验证码已失效"),
    /**
     *  服务器异常
-    * */
+    */
     SERVER_EXCEPTION(500,"未知的服务器异常"),
-
 
     DANGER_ERROR(500,"请求中有违反安全规则元素存在，拒绝访问!");
 
