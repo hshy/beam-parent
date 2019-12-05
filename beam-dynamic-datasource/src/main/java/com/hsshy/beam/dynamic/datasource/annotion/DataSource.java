@@ -2,11 +2,7 @@ package com.hsshy.beam.dynamic.datasource.annotion;
 import java.lang.annotation.*;
 
 /**
- * 
  * 多数据源标识
- *
- * @author hs
- * @date 2019年2月12日
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)

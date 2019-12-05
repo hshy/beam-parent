@@ -15,9 +15,6 @@ import java.lang.reflect.Method;
 
 /**
  * 多数据源，切面处理类
- *
- * @author hs
- * @since 1.0.0
  */
 @Aspect
 @Component

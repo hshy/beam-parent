@@ -1,12 +1,9 @@
 package com.hsshy.beam.dynamic.datasource.config;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
  * 多数据源上下文
- *
- * @author hs
  */
 public class DynamicContextHolder {
     @SuppressWarnings("unchecked")

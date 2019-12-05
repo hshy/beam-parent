@@ -1,17 +1,10 @@
-
 package com.hsshy.beam.dynamic.datasource.config;
-
-
 import com.hsshy.beam.dynamic.datasource.property.DataSourceProperties;
 import com.zaxxer.hikari.HikariDataSource;
-
 import java.sql.SQLException;
 
 /**
  * DruidDataSource
- *
- * @author Mark sunlightcs@gmail.com
- * @since 1.0.0
  */
 public class DynamicDataSourceFactory {
 

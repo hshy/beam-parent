@@ -3,8 +3,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.Data;
 /**
  * <p>数据库数据源配置</p>
- * @author hs
- * @date 2019年2月12日
  */
 @Data
 public class DataSourceProperties {
