@@ -27,7 +27,4 @@ public class DataSourceProperties {
 
     private int minimumIdle = 10;
 
-    private String dataSourceName = "defaultDataSource";
-
-
 }
