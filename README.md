@@ -123,5 +123,5 @@ beam-parent
 - Spring Boot 整合Kafka案例
 #### 有需要dubbo的请移至：https://gitee.com/hsshy/beam-dubbo
 
-#### 还有问题请移步公众号
+#### 还有问题请移步公众号，回复加群。
 ![image.png](http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png)
