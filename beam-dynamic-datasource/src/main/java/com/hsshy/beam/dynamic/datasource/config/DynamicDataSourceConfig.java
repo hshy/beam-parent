@@ -38,8 +38,8 @@ public class DynamicDataSourceConfig {
         Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
         Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
         dataSourcePropertiesMap.forEach((k, v) -> {
-            HikariDataSource druidDataSource = DynamicDataSourceFactory.buildDruidDataSource(v);
-            targetDataSources.put(k, druidDataSource);
+            HikariDataSource hikariDataSource = DynamicDataSourceFactory.buildDruidDataSource(v);
+            targetDataSources.put(k, hikariDataSource);
         });
         return targetDataSources;
     }
