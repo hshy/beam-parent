@@ -6,8 +6,6 @@ package com.hsshy.beam.common.constant;
 public class Constant {
 	/** 超级管理员ID */
 	public static final long SUPER_ADMIN = 1L;
-
-
     /**
 	 * 菜单类型
 	 */
@@ -36,30 +34,6 @@ public class Constant {
         }
     }
     
-    /**
-     * 定时任务状态
-     */
-    public enum ScheduleStatus {
-        /**
-         * 正常
-         */
-    	NORMAL(0),
-        /**
-         * 暂停
-         */
-    	PAUSE(1);
-
-        private int value;
-
-        private ScheduleStatus(int value) {
-            this.value = value;
-        }
-        
-        public int getValue() {
-            return value;
-        }
-    }
-
     /**
      * 云服务商
      */

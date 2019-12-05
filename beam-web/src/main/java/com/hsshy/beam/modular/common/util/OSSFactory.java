@@ -1,4 +1,3 @@
-
 package com.hsshy.beam.modular.common.util;
 import com.hsshy.beam.common.cloud.*;
 import com.hsshy.beam.common.constant.Constant;
