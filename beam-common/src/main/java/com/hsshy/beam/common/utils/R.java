@@ -1,6 +1,6 @@
 package com.hsshy.beam.common.utils;
 
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 
 import java.util.HashMap;
 

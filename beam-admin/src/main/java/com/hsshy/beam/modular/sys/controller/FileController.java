@@ -1,6 +1,6 @@
 package com.hsshy.beam.modular.sys.controller;
 
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.modular.common.util.OSSFactory;
 import com.hsshy.beam.common.utils.R;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.UUID;
 
 @Api(value="FileController",tags={"文件上传接口"})
 @RestController

@@ -3,7 +3,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.hsshy.beam.config.properties.BeamRestProperties;
 import com.hsshy.beam.sign.security.DataSecurityAction;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.common.utils.MD5Util;
 import com.hsshy.beam.common.utils.ReflectionUtils;

@@ -1,5 +1,5 @@
 package com.hsshy.beam.common.exception;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.utils.support.StrKit;
 
 public class BeamException extends RuntimeException {

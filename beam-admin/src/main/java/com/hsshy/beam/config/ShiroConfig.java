@@ -17,13 +17,6 @@ import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-/**
- * Shiro的配置文件
- *
- * @author Mark sunlightcs@gmail.com
- * @since 3.0.0 2017-09-27
- */
 @Configuration
 public class ShiroConfig {
 

@@ -1,11 +1,10 @@
 package com.hsshy.beam.interceptors;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.utils.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

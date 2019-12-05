@@ -1,7 +1,6 @@
 package com.hsshy.beam.modular.common;
-
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.ToolUtil;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-
 @Api(value = "FileController", tags = {"文件上传接口"})
 @RestController
 @RequestMapping("/file")

@@ -1,7 +1,7 @@
 package com.hsshy.beam.modular.common.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.modular.common.dao.SysConfigMapper;
 import com.hsshy.beam.modular.common.entity.SysConfig;

@@ -1,5 +1,5 @@
 package com.hsshy.beam.common.aop;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.common.utils.R;
 import org.slf4j.Logger;

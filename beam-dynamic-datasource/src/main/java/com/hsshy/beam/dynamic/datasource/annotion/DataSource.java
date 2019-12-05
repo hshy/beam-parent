@@ -1,5 +1,4 @@
-package com.hsshy.beam.common.mutidatasource.annotion;
-
+package com.hsshy.beam.dynamic.datasource.annotion;
 import java.lang.annotation.*;
 
 /**
@@ -13,6 +12,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })
 public @interface DataSource {
-
 	String name() default "";
 }

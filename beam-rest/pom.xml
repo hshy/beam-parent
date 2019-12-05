@@ -31,7 +31,11 @@
             <artifactId>beam-common</artifactId>
         </dependency>
 
-
+        <!-- 动态数据源模块 需要时打开-->
+<!--        <dependency>-->
+<!--            <groupId>com.hsshy</groupId>-->
+<!--            <artifactId>beam-dynamic-datasource</artifactId>-->
+<!--        </dependency>-->
 
         <!--以上两个模块所引用的包需在此模块重新引入，因为以上包的依赖只在编译时使用-->
 
@@ -46,15 +50,7 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
-        <!-- swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
+
 
         <!-- fastjson -->
         <dependency>
@@ -78,9 +74,6 @@
             <artifactId>jjwt</artifactId>
         </dependency>
 
-
-
-
         <!--dubbo依赖包 使用dubbo时把注释打开-->
         <!--<dependency>-->
             <!--<groupId>com.alibaba.boot</groupId>-->
@@ -103,7 +96,6 @@
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
         </dependency>
-
 
 
     </dependencies>

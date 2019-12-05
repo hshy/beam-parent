@@ -15,12 +15,6 @@ public class StartListener implements ApplicationListener<ContextRefreshedEvent>
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
 
-    @Autowired
-    private ISysConfigService sysConfigService;
-
-    @Autowired
-    private RedisUtil redisUtil;
-
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 

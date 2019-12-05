@@ -3,6 +3,7 @@ import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
 import com.hsshy.beam.modular.base.controller.BaseBeanController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.redis.RedisUtil;
+import com.hsshy.beam.modular.common.service.ISysConfigService;
 import com.hsshy.beam.modular.test.dto.LoginForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,6 +24,9 @@ public class TestController extends BaseBeanController {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private ISysConfigService sysConfigService;
+
     /*
     *
     *  请求参数  可以再sign/util/signTest中进行模拟
@@ -33,7 +37,6 @@ public class TestController extends BaseBeanController {
     *
     *
     */
-
     //签名方式：
     // 请求对象为 object: 整个对象进行base64编码后的值  sign: 将整个对象进行base64编码得到的值拼接上密钥做md5加密作为sign
     @ApiOperation(value = "登陆")
@@ -51,21 +54,40 @@ public class TestController extends BaseBeanController {
     @ApiOperation(value = "免授权")
     @IgnoreUTokenAuth
     @GetMapping(value = "/ignore")
-    public R  testIgnore(){
+    public R  ignore(){
         return R.ok();
     }
 
-    //在登陆完执行
-
     @ApiOperation(value = "授权")
-    @GetMapping(value = "/no/ignore")
-    public R  testNoIgnore(){
+    @GetMapping(value = "/auth")
+    public R  auth(){
         System.out.println(getUserId());
         return R.ok();
     }
 
+    @ApiOperation(value = "动态数据源测试-默认数据源")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/dynamic/default")
+    public R  dynamicDefault(){
+        return R.ok(sysConfigService.getValue("test",""));
+    }
 
-
+//    @ApiOperation(value = "动态数据源测试-test数据源")
+//    @IgnoreUTokenAuth
+//    @GetMapping(value = "/dynamic/test")
+//    @DataSource(name = "test")
+//    public R  dynamicTest(){
+//
+//        return R.ok(sysConfigService.getValue("test",""));
+//    }
+//
+//    @ApiOperation(value = "动态数据源测试-tool数据源")
+//    @IgnoreUTokenAuth
+//    @GetMapping(value = "/dynamic/tool")
+//    @DataSource(name = "tool")
+//    public R  dynamicTool(){
+//        return R.ok(sysConfigService.getValue("test",""));
+//    }
 
 
 

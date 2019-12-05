@@ -1,6 +1,6 @@
 package com.hsshy.beam.common.utils;
 import com.alibaba.fastjson.JSON;
-import com.hsshy.beam.common.enumeration.RetEnum;
+import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;

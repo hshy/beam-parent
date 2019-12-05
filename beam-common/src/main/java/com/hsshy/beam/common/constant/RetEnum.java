@@ -1,4 +1,4 @@
-package com.hsshy.beam.common.enumeration;
+package com.hsshy.beam.common.constant;
 
 /**
  * 返回信息枚举
