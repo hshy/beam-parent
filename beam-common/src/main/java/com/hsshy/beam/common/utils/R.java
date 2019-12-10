@@ -1,7 +1,10 @@
 package com.hsshy.beam.common.utils;
 
 import com.hsshy.beam.common.constant.RetEnum;
+import lombok.*;
+import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -9,28 +12,46 @@ import java.util.HashMap;
  * @author: hs
  * @create: 2018-09-21 22:42:04
  **/
-public class R<T> extends HashMap<String, Object> {
+@ToString
+@AllArgsConstructor
+public class R<T>  implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Getter
+    @Setter
+    private int code;
+
+    @Getter
+    @Setter
+    private String msg;
+
+    @Getter
+    @Setter
+    private T data;
+
+    @Getter
+    @Setter
+    private boolean error;
+
     public R(int code, String msg) {
-        put("code", code);
-        put("msg", msg);
-        put("data", null);
-        put("error", false);
+        this.code = code;
+        this.msg = msg;
+        this.data = null;
+        this.error = false;
     }
 
     public R(int code, String msg, boolean error) {
-        put("code", code);
-        put("msg", msg);
-        put("data", null);
-        put("error", error);
+        this.code = code;
+        this.msg = msg;
+        this.data = null;
+        this.error = error;
     }
 
     public R(int code, String msg, boolean error, T data) {
-        put("code", code);
-        put("msg", msg);
-        put("data", data);
-        put("error", error);
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+        this.error = error;
     }
 
     public static R fail() {
@@ -74,11 +95,7 @@ public class R<T> extends HashMap<String, Object> {
         return new R(code, msg, false, data);
     }
 
-    @Override
-    public R put(String key, Object value) {
-        super.put(key, value);
-        return this;
-    }
+
 
 
 }
