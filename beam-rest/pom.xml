@@ -51,7 +51,6 @@
         </dependency>
 
 
-
         <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
