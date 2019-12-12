@@ -1,6 +1,5 @@
 package com.hsshy.beam.config;
 import com.hsshy.beam.common.intercept.BeamUserFilter;
-import com.hsshy.beam.common.shiro.RedisShiroSessionDAO;
 import com.hsshy.beam.common.shiro.UserRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -9,8 +8,10 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import javax.servlet.Filter;
@@ -19,22 +20,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 @Configuration
 public class ShiroConfig {
-
+    /**
+     * 单机环境，session交给shiro管理
+     */
     @Bean("sessionManager")
-    public SessionManager sessionManager(RedisShiroSessionDAO redisShiroSessionDAO,
-                                         @Value("${beam.admin.redis-open}") boolean redisOpen,
-                                         @Value("${beam.admin.shiro-redis}") boolean shiroRedis){
+    @ConditionalOnProperty(prefix = "beam.admin", name = "cluster", havingValue = "false")
+    public SessionManager sessionManager(@Value("${beam.admin.globalSessionTimeout:3600}") long globalSessionTimeout){
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        //设置session过期时间为6小时(单位：毫秒)，默认为30分钟
-        sessionManager.setGlobalSessionTimeout(6 * 60 * 60 * 1000);
+        sessionManager.setGlobalSessionTimeout(globalSessionTimeout*1000);
+        sessionManager.setSessionValidationInterval(globalSessionTimeout * 1000);
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionIdUrlRewritingEnabled(false);
-
-        //如果开启redis缓存且beam.admin.shiro-redis=true，则shiro session存到redis里
-        if(redisOpen && shiroRedis){
-            sessionManager.setSessionDAO(redisShiroSessionDAO);
-        }
         return sessionManager;
+    }
+    /**
+     * 集群环境，session交给spring-session管理
+     */
+    @Bean
+    @ConditionalOnProperty(prefix = "beam.admin", name = "cluster", havingValue = "true")
+    public ServletContainerSessionManager servletContainerSessionManager() {
+        return new ServletContainerSessionManager();
     }
 
     @Bean("securityManager")
@@ -42,7 +47,7 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm);
         securityManager.setSessionManager(sessionManager);
-
+        securityManager.setRememberMeManager(null);
         return securityManager;
     }
 

@@ -36,7 +36,6 @@ public abstract class BaseBeanController {
 		return Long.parseLong(uid);
 	}
 
-
 	/**
 	 * 小程序登录后的sessionKey
 	 * @param

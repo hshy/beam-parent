@@ -2,9 +2,9 @@ beam:
   admin:
     swagger-open: true  #是否开启swagger (true/false)
     kaptcha-open: false
-    redis-open: false  # 是否开启redis缓存  true开启   false关闭
-    shiro-redis: false # true表示shiro session存到redis里，需要开启redis，才会生效【分布式场景】
     version: 0.0.1
+    globalSessionTimeout: 21600 #单机环境，session过期时间为6小时
+    cluster: false #需要集群 session共享时 改为true pom文件注释打开 BeamAdminApplication类上注解打开
 server:
    port: 8080
    tomcat:

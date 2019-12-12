@@ -5,6 +5,7 @@ redisson:
 spring:
   profiles: test
   datasource:
+    url: jdbc:mysql://127.0.0.1:3306/beam?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
     hikari:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/beam?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
       username: root
@@ -35,15 +36,11 @@ spring:
 #      maxAttempts: 2 #连接失败重试次数
 #    password: testpwd    # 密码（默认为空）
 
-##多数据源的配置
-#beam:
-#  dynamic:
-#    datasource:
-#      test:
-#        jdbc-url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
-#        username: root
-#        password: 123456
-#      tool:
-#        jdbc-url: jdbc:mysql://127.0.0.1:3306/tool?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
-#        username: root
-#        password: 123456
+#多数据源的配置
+beam:
+  dynamic:
+    datasource:
+      test:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password: 123456

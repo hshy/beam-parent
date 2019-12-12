@@ -31,6 +31,8 @@ http://www.hsshy.com
   - **图片存储（七牛云）（注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）**
   - **定时任务：Quartz，已搭建成界面化方式，配置即可使用**
   - **工具类：excel导入导出，汉字转拼音，字符串工具类，数字工具类，发送邮件，redis工具类，MD5加密，HTTP工具类，防注入工具类,i18n 国际化多语言工具等等。**
+  - **动态数据源模块抽离封装，即插即用**
+  - **集群session共享**
 #### 技术选型
 - 核心框架：Spring Boot 2.1.5
 - 安全框架：Apache Shiro 1.4
@@ -78,6 +80,17 @@ beam-parent
 ![image.png](http://img.hsshy.cn/upload/20190821/2683498c87f24613886694f813f44c2e.png)
 ![image.png](http://img.hsshy.cn/upload/20190821/31332a378a604e13947e6525cb81c43b.png)
 
+#### 动态数据源使用方法
+- 引入beam-dynamic-datasource 模块。
+- yml文件加上其他数据源配置。
+- 使用的类或者方法加上@DataSource(name = "数据源名称")注解
+
+#### 动态数据源测试方法
+- 打开beam-rest模块pom文件的注解
+- 新建数据库test，将beam数据库的sys_config同步到测试数据库test，修改不同数据
+- 打开TestController的注释，运行项目，环境选择test，即可进行测试。
+
+
 #### 部署流程
 
 ##### 软件安装（Linux）
@@ -107,7 +120,6 @@ beam-parent
 - 上传图片失败，请修改sys_config中的七牛云配置，改为自己的七牛云配置。（七牛云注册便有10G免费空间，注册地址：https://portal.qiniu.com/signup?code=1h8cpibemhb9u）。
 - 提示账户验证失败，检查是否安装Redis，以及用户名密码是否正确。
 - set、get报红，请安装Lombok插件。详情请参照软件需求。
-
 <br>
 
 ### 代码生成器

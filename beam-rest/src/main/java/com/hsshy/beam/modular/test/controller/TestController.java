@@ -1,5 +1,6 @@
 package com.hsshy.beam.modular.test.controller;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
+import com.hsshy.beam.dynamic.datasource.annotion.DataSource;
 import com.hsshy.beam.modular.base.controller.BaseBeanController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.redis.RedisUtil;

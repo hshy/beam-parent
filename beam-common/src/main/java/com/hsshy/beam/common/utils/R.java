@@ -1,12 +1,7 @@
 package com.hsshy.beam.common.utils;
-
 import com.hsshy.beam.common.constant.RetEnum;
 import lombok.*;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
-import java.util.HashMap;
-
 /**
  * @description: 封装返回结果类
  * @author: hs
@@ -14,7 +9,7 @@ import java.util.HashMap;
  **/
 @ToString
 @AllArgsConstructor
-public class R<T>  implements Serializable {
+public class R<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Getter
@@ -94,8 +89,5 @@ public class R<T>  implements Serializable {
     public static <T> R<T> ok(int code, String msg, T data) {
         return new R(code, msg, false, data);
     }
-
-
-
 
 }

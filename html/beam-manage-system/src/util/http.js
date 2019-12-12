@@ -16,7 +16,7 @@ const Http = {
                 return Promise.resolve(res.data); //成功
             }
             else{
-                if (res.data.code === -1) {
+                if (res.data.code === 401) {
                     Message.error(res.data.msg);
                     window.location = "/#/login";
                     return Promise.reject(res.data);
@@ -73,7 +73,7 @@ const Http = {
 
             }
             else{
-                if (res.data.code === -1) {
+                if (res.data.code === 401) {
                     Message.error(res.data.msg);
                     window.location = "/#/login";
                     return Promise.resolve(res.data) //拒绝
