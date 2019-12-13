@@ -50,7 +50,7 @@ beam-parent
 │             
 ├─beam-web  公用实体类、dao、service
 │   
-├─beam-dynamic-datasource  动态数据源模块
+├─beam-dynamic-datasource  动态数据源模块（按需引入）
 │ 
 ├─beam-admin     管理后台系统（独立的与beam-rest无关联）
 │        └─resources 
@@ -81,10 +81,6 @@ beam-parent
 ![image.png](http://img.hsshy.cn/upload/20190821/2683498c87f24613886694f813f44c2e.png)
 ![image.png](http://img.hsshy.cn/upload/20190821/31332a378a604e13947e6525cb81c43b.png)
 
-#### 动态数据源使用方法
-- 引入beam-dynamic-datasource 模块。
-- yml文件加上其他数据源配置。
-- 使用的类或者方法加上@DataSource(name = "数据源名称")注解
 
 #### 动态数据源测试方法
 - 打开beam-rest模块pom文件的注解
@@ -126,14 +122,7 @@ beam-parent
 ### 代码生成器
 #### https://gitee.com/hsshy/beam-generator
 
-#### Spring Boot其他案例：https://gitee.com/hsshy/beam-example
-- 秒杀案例模块（加锁、aop加锁、redis锁、消息队列）
-- 动态数据源案例模块
-- Spring Boot 整合RabbitMQ案例
-- Spring Boot 整合dubbo消费者
-- Spring Boot 整合dubbo服务提供者
-- Spring Boot 整合email发送邮件（异步发送、消息队列发送）
-- Spring Boot 整合Kafka案例
+
 #### 有需要dubbo的请移至：https://gitee.com/hsshy/beam-dubbo
 
 #### 还有问题请移步公众号，回复加群。

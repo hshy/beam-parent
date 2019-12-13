@@ -13,6 +13,14 @@
                     <div class="user-info-list">真实姓名：<span>{{sysuser.name}}</span></div>
                     <div class="user-info-list">所在部门：<span>{{sysuser.deptName}}</span></div>
                 </el-card>
+
+                <el-card shadow="hover" class="mgb20" style="height:300px;">
+                    <el-image src="http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png"></el-image>
+                    <div class="user-info-cont">
+                        <div class="user-info-name">关注微信公众号</div>
+                        <div>还有问题请移步公众号，回复加群</div>
+                    </div>
+                </el-card>
                 <el-card shadow="hover" class="mgb20" style="height:252px;">
                     <div class="user-info">
                         <img src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator" alt="">
@@ -21,9 +29,6 @@
                             <div>微信小程序：图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
                         </div>
                     </div>
-                </el-card>
-                <el-card shadow="hover" class="mgb20" style="height:300px;">
-                    <el-image src="http://img.hsshy.cn/cd9cb95c-1967-40b7-ae94-38ebb699e18f.png"></el-image>
                 </el-card>
             </el-col>
             <el-col :span="16">
