@@ -47,16 +47,17 @@ http://www.hsshy.com
 ````
 beam-parent
 ├─beam-common     公共模块
+│             
+├─beam-web  公用实体类、dao、service
+│   
+├─beam-dynamic-datasource  动态数据源模块
 │ 
-├─beam-admin     管理后台
+├─beam-admin     管理后台系统（独立的与beam-rest无关联）
 │        └─resources 
 │           ├─application.yml  配置文件
 │           ├─logback-spring.xml  日志配置文件
 │ 
-├─beam-rest        API服务 （post请求签名、token)
-│             
-│ 
-├─beam-web  公用实体类、dao、service
+├─beam-rest  API接口模块 （post请求签名、token)
 │   
 │ 
 ├─html/beam-manager-system 前端代码
