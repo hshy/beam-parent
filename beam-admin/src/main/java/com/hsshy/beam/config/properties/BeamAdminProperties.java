@@ -15,16 +15,16 @@ public class BeamAdminProperties {
 
     public static final String BEAM_REST_PREFIX = "beam.admin";
 
-    private Boolean kaptchaOpen = false;
+    private Boolean captchaOpen = false;
 
     private Boolean swaggerOpen = false;
 
-    public Boolean getKaptchaOpen() {
-        return kaptchaOpen;
+    public Boolean getCaptchaOpen() {
+        return captchaOpen;
     }
 
-    public void setKaptchaOpen(Boolean kaptchaOpen) {
-        this.kaptchaOpen = kaptchaOpen;
+    public void setCaptchaOpen(Boolean captchaOpen) {
+        this.captchaOpen = captchaOpen;
     }
 
     public Boolean getSwaggerOpen() {

@@ -14,16 +14,20 @@
                     <div class="user-info-list">所在部门：<span>{{sysuser.deptName}}</span></div>
                 </el-card>
 
-                <el-card shadow="hover" class="mgb20" style="height:300px;">
-                    <el-image src="http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png"></el-image>
-                    <div class="user-info-cont">
-                        <div class="user-info-name">关注微信公众号</div>
-                        <div>还有问题请移步公众号，回复加群</div>
+                <el-card shadow="hover" class="mgb20" >
+                    <div class="user-info">
+                        <el-image style="width: 120px;height: 120px;"
+                                  src="http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png"></el-image>
+                        <div class="user-info-cont">
+                            <div class="user-info-name">微信公众号</div>
+                            <div>还有问题请移步公众号，回复加群或者加微信</div>
+                        </div>
                     </div>
                 </el-card>
-                <el-card shadow="hover" class="mgb20" style="height:252px;">
+                <el-card shadow="hover" class="mgb20">
                     <div class="user-info">
-                        <img src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator" alt="">
+                        <img src="http://img.hsshy.cn/5f3cf4da-b38f-4b0c-be54-93e35a637056.png" class="user-avator"
+                             alt="">
                         <div class="user-info-cont">
                             <div class="user-info-name">光有工具</div>
                             <div>微信小程序：图片文字识别、动植物识别、车型识别、二维码生成解析、手写板等工具</div>
@@ -38,7 +42,7 @@
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-lx-people grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
+                                    <div class="grid-num">999999999</div>
                                     <div>用户访问量</div>
                                 </div>
                             </div>
@@ -111,11 +115,11 @@
         data() {
             return {
 
-                user : null,
+                user: null,
                 todoList: [{
-                        title: '今天要修复100个bug',
-                        status: false,
-                    },
+                    title: '今天要修复100个bug',
+                    status: false,
+                },
                     {
                         title: '今天要修复100个bug',
                         status: false,
@@ -142,36 +146,36 @@
             Schart
         },
         computed: {
-            sysuser(){
+            sysuser() {
                 let sysuser = JSON.parse(localStorage.getItem('sysuser'));
-                return sysuser?sysuser:this.user;
+                return sysuser ? sysuser : this.user;
             }
         },
-        created(){
+        created() {
             this.getDashboardContent();
             this.handleListener();
         },
-        activated(){
+        activated() {
             this.handleListener();
         },
-        deactivated(){
+        deactivated() {
             window.removeEventListener('resize', this.renderChart);
             bus.$off('collapse', this.handleBus);
         },
         methods: {
 
-            getDashboardContent(){
-                DashboardApi.getDashboardContent().then((res)=>{
-                },(err) => {
+            getDashboardContent() {
+                DashboardApi.getDashboardContent().then((res) => {
+                }, (err) => {
                     this.$message.error(err.msg);
                 })
             },
-            handleListener(){
+            handleListener() {
                 bus.$on('collapse', this.handleBus);
                 // 调用renderChart方法对图表进行重新渲染
                 window.addEventListener('resize', this.renderChart)
             },
-            handleBus(msg){
+            handleBus(msg) {
                 setTimeout(() => {
                     this.renderChart()
                 }, 300);

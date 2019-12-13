@@ -37,7 +37,6 @@ public class ShiroUtils {
 
     //获取当前 Subject
     public static Subject getSubject() {
-
         return SecurityUtils.getSubject();
     }
 
@@ -74,7 +73,9 @@ public class ShiroUtils {
     public static void removeSessionAttr(String key) {
         Session session = getSession();
         if (session != null)
+        {
             session.removeAttribute(key);
+        }
     }
 
     public static boolean isLogin() {
@@ -93,7 +94,7 @@ public class ShiroUtils {
         if (kaptcha == null) {
             throw new BeamException(RetEnum.CAPTCHA_LAPSED);
         }
-        removeSessionAttr(key);
+//        removeSessionAttr(key);
         return kaptcha.toString();
     }
 

@@ -3,9 +3,9 @@ import com.google.code.kaptcha.Constants;
 import com.hsshy.beam.common.log.LogManager;
 import com.hsshy.beam.common.log.factory.LogTaskFactory;
 import com.hsshy.beam.common.shiro.ShiroUtils;
-import com.hsshy.beam.common.util.KaptchaUtil;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.redis.RedisUtil;
+import com.hsshy.beam.config.properties.BeamAdminProperties;
 import com.hsshy.beam.modular.sys.dto.LoginForm;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -21,14 +21,16 @@ public class LoginController  {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private BeamAdminProperties beamAdminProperties;
 
     @PostMapping(value = "/login")
     @ResponseBody
     public Object login(@RequestBody LoginForm loginForm){
 
-        if(new KaptchaUtil().isKaptchaOnOff()){
-            String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
-            if(!loginForm.getCaptcha().equalsIgnoreCase(kaptcha)){
+        if(beamAdminProperties.getCaptchaOpen()){
+            String captcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+            if(!loginForm.getCaptcha().equalsIgnoreCase(captcha)){
                 return R.fail("验证码不正确");
             }
         }

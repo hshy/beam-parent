@@ -1,11 +1,12 @@
 package com.hsshy.beam.modular.sys.controller;
-
-
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.hsshy.beam.common.utils.R;
+import com.hsshy.beam.config.properties.BeamAdminProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -14,26 +15,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 /**
  * 验证码生成
  *
  * @author fengshuonan
  * @date 2017-05-05 23:10
  */
-@Controller
-@RequestMapping("/kaptcha")
-public class KaptchaController {
-
-
+@RestController
+@RequestMapping("/captcha")
+public class CaptchaController {
 
     @Autowired
     private Producer producer;
 
+    @Autowired
+    private BeamAdminProperties beamAdminProperties;
+
+    @RequestMapping("/open")
+    public R isOpen() {
+        return R.ok(beamAdminProperties.getCaptchaOpen());
+    }
+
     /**
      * 生成验证码
      */
-    @RequestMapping("")
+    @RequestMapping("/pic.jpg")
     public void index(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
