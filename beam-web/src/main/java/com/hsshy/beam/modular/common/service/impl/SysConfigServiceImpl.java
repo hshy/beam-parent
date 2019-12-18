@@ -10,6 +10,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * <p>
  * 系统配置信息表 服务实现类
@@ -30,6 +32,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
         }
         return value;
     }
+
     @Override
     public <T> T getConfigObject(String key, Class<T> clazz) {
         String value = getValue(key, null);

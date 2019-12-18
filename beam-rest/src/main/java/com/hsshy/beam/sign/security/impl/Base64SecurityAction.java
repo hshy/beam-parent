@@ -1,8 +1,6 @@
 package com.hsshy.beam.sign.security.impl;
-
 import com.hsshy.beam.sign.security.DataSecurityAction;
 import org.springframework.util.Base64Utils;
-
 /**
  * 对数据进行base64编码的方式
  *

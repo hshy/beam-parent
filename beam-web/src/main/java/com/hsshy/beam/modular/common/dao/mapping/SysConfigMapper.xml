@@ -14,9 +14,9 @@
 
     <sql id="Base_Column_List">
                id,
-               paramKey,
+               param_key as paramKey,
                remark,
-               paramValue,
+               param_value as paramValue,
                status
     	</sql>
 
@@ -27,6 +27,11 @@
     <!-- 根据key，查询value -->
     <select id="getByKey" parameterType="string"  resultType="string">
       select param_value from sys_config where `param_key` = #{key}
+    </select>
+    <select id="getConfigByKey" resultType="com.hsshy.beam.modular.common.entity.SysConfig">
+        select <include refid="Base_Column_List"></include>
+        from sys_config
+        where `param_key` = #{key}
     </select>
 
 

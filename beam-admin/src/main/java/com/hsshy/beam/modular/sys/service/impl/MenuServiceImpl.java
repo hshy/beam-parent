@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 菜单管理
@@ -44,7 +45,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         if(menuIdList == null){
             return menuList;
         }
-
         List<Map> userMenuList = new ArrayList<>();
         for(Map menu : menuList){
             if(menuIdList.contains(menu.get("id"))){
@@ -54,13 +54,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return userMenuList;
     }
 
-
-
     @Override
     public List<Map> queryListParentId(Long parentId) {
         return baseMapper.queryListParentId(parentId);
     }
-
 
     @Override
     public List<Map> treeMenuList(Long menuId,Menu menu) {
@@ -73,7 +70,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         else {
             menuList =  queryListParentId(menuId);
         }
-
         return getAllMenuTreeList(menuList);
     }
 
@@ -93,8 +89,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         //清除缓存
         redisUtil.clearCache();
         Boolean a = this.removeByIds(Arrays.asList(menuIds));
-
-
         return R.ok();
     }
 
@@ -107,7 +101,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         if(userId.longValue() == Constant.SUPER_ADMIN){
             return getAllMenuList(null);
         }
-
         //用户菜单列表
         List<Long> menuIdList = userService.queryAllMenuId(userId);
         return getAllMenuList(menuIdList);
@@ -130,7 +123,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      */
     private List<Map> getMenuTreeList(List<Map> menuList, List<Long> menuIdList){
         List<Map> subMenuList = new ArrayList<Map>();
-
         for(Map entity : menuList){
             //目录
             if(Integer.parseInt(entity.get("type")+"") == Constant.MenuType.CATALOG.getValue()){

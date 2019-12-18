@@ -14,6 +14,7 @@
         "element-ui": "^2.11.0",
         "mavon-editor": "^2.7.5",
         "vue": "^2.5.16",
+        "vue-amap": "^0.5.10",
         "vue-cropperjs": "^2.2.0",
         "vue-quill-editor": "3.0.6",
         "vue-quill-editor-upload": "^1.1.0",

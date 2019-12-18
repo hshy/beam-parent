@@ -14,7 +14,7 @@
                     <div class="user-info-list">所在部门：<span>{{sysuser.deptName}}</span></div>
                 </el-card>
 
-                <el-card shadow="hover" class="mgb20" >
+                <el-card shadow="hover" class="mgb20">
                     <div class="user-info">
                         <el-image style="width: 120px;height: 120px;"
                                   src="http://img.hsshy.cn/upload/20190821/04ce4ff9ddf64816a4831223654d588b.png"></el-image>
@@ -71,31 +71,22 @@
                         </el-card>
                     </el-col>
                 </el-row>
-                <el-card shadow="hover" style="height:403px;">
-                    <div slot="header" class="clearfix">
-                        <span>待办事项</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
-                    </div>
-                    <el-table :data="todoList" :show-header="false" height="304" style="width: 100%;font-size:14px;">
-                        <el-table-column width="40">
-                            <template slot-scope="scope">
-                                <el-checkbox v-model="scope.row.status"></el-checkbox>
-                            </template>
-                        </el-table-column>
-                        <el-table-column>
-                            <template slot-scope="scope">
-                                <div class="todo-item" :class="{'todo-item-del': scope.row.status}">
-                                    {{scope.row.title}}
-                                </div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column width="60">
-                            <template slot-scope="scope">
-                                <i class="el-icon-edit"></i>
-                                <i class="el-icon-delete"></i>
-                            </template>
-                        </el-table-column>
-                    </el-table>
+                <el-card>
+                    <el-amap-search-box class="search-box" :search-option="amap.searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
+                    <el-amap ref="map" vid="amapDemo" :amap-manager="amap.amapManager" :center="amap.center" :zoom="amap.zoom" :plugin="amap.plugin"   :events="amap.events" class="amap-wrapper">
+                        <el-amap-marker vid="component-marker" :position="amap.markers.position" visible="true" draggable="true"></el-amap-marker>
+                        <el-amap-info-window
+                            :position="amap.markers.position"
+                            :visible="amap.currentWindow.visible"
+                            :content="amap.currentWindow.content">
+                        </el-amap-info-window>
+                    </el-amap>
+                    <!--<div class="toolbar">-->
+                        <!--<span v-if="loaded">-->
+                          <!--location: lng = {{ lng }} lat = {{ lat }}-->
+                        <!--</span>-->
+                        <!--<span v-else>正在定位</span>-->
+                    <!--</div>-->
                 </el-card>
             </el-col>
 
@@ -109,37 +100,70 @@
     import Schart from 'vue-schart';
     import bus from '../../api/bus';
     import DashboardApi from '../../api/dashboard';
-
+    import { AMapManager } from 'vue-amap';
+    let amapManager = new AMapManager();
     export default {
         name: 'dashboard',
         data() {
             return {
-
                 user: null,
-                todoList: [{
-                    title: '今天要修复100个bug',
-                    status: false,
+                amap:{
+                    center:{},
+                    amapManager,
+                    address:{
+                        province:null,
+                        district:null,
+                        city:null
+                    },
+                    searchOption: {
+                        citylimit: true
+                    },
+                    currentWindow:{
+                        visible:true,
+                        content:null
+                    },
+                    plugin: ['ToolBar', {
+                        pName: 'MapType',
+                        defaultType: 0,
+                        events: {
+                            init(o) {
+                                console.log(o);
+                            }
+                        }
+                    }],
+                    zoom:20,
+                    markers:{
+                        position:[],
+                    },
+                    events: {
+                        init: (o) => {
+                            o.getCity(result => {
+                                console.log(result)
+                                this.amap.address.city=result.city;
+                                this.amap.address.province=result.province
+                                this.amap.address.district=result.district
+                            })
+                        },
+                        'moveend': () => {
+                        },
+                        'zoomchange': () => {
+                        },
+                        'click': (e) => {
+                            console.log(e)
+                            this.amap.markers.position=[e.lnglat.lng,e.lnglat.lat]
+                            var geocoder = new AMap.Geocoder({
+                                radius: 1000,
+                                extensions: "all"
+                            });
+                            let _this =this
+                            geocoder.getAddress([e.lnglat.lng,e.lnglat.lat], function(status, result) {
+                                console.log(e);
+                                let temp=result.regeocode.formattedAddress;
+                                _this.amap.currentWindow.content="地址:"+temp
+                            });
+                        },
+                    },
                 },
-                    {
-                        title: '今天要修复100个bug',
-                        status: false,
-                    },
-                    {
-                        title: '今天要写100行代码加几个bug吧',
-                        status: false,
-                    }, {
-                        title: '今天要修复100个bug',
-                        status: false,
-                    },
-                    {
-                        title: '今天要修复100个bug',
-                        status: true,
-                    },
-                    {
-                        title: '今天要写100行代码加几个bug吧',
-                        status: true,
-                    }
-                ],
             }
         },
         components: {
@@ -154,6 +178,7 @@
         created() {
             this.getDashboardContent();
             this.handleListener();
+            this.initMap();
         },
         activated() {
             this.handleListener();
@@ -163,7 +188,19 @@
             bus.$off('collapse', this.handleBus);
         },
         methods: {
-
+            initMap() {
+                let longitude =  119.216440 ;
+                let latitude = 26.043500;
+                this.amap.center=[longitude, latitude]
+                this.amap.markers.position=this.amap.center;
+            },
+            onSearchResult(pois) {
+                if (pois.length > 0) {
+                    //第一个为精确搜索点
+                    this.amap.markers.position=[pois[0].lng, pois[0].lat];
+                    this.amap.center = [pois[0].lng, pois[0].lat];
+                }
+            },
             getDashboardContent() {
                 DashboardApi.getDashboardContent().then((res) => {
                 }, (err) => {
@@ -187,6 +224,15 @@
 
 
 <style scoped>
+    .search-box{
+        margin-bottom: 10px;
+    }
+
+    .amap-wrapper {
+        width: 100%;
+        height: 300px;
+    }
+
     .el-row {
         margin-bottom: 20px;
     }

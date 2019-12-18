@@ -4,6 +4,7 @@ import router from './router';
 import store from './store/store';
 import axios from 'axios';
 import ElementUI from 'element-ui';
+import AMap from 'vue-amap'
 import '../static/css/theme-ff406d/index.css' //粉红色主题
 // import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
 import 'element-ui/lib/theme-chalk/icon.css';    // 默认icon
@@ -15,7 +16,6 @@ Vue.prototype.$utils = utils;
 Vue.use(ElementUI, { size: 'small' });
 Vue.prototype.$axios = axios;
 Vue.prototype.getPerms = function (){//changeData是函数名
-
     let buttonItems = localStorage.getItem("buttonItems");
     if(buttonItems){
         return buttonItems;
@@ -23,7 +23,6 @@ Vue.prototype.getPerms = function (){//changeData是函数名
     else {
         return [];
     }
-
 }
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
@@ -50,6 +49,15 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+Vue.use(AMap);
+// 初始化地图
+AMap.initAMapApiLoader({
+    // 高德的key
+    key: '818eeffae9ec8deb70b60d2794ae3906',
+    // 插件集合
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor','AMap.Geocoder'],
+    v: '1.4.4'
+});
 new Vue({
     router,
     store,

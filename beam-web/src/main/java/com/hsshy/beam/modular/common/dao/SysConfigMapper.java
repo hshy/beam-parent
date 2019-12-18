@@ -18,6 +18,11 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
     String getByKey(@Param("key") String key);
 
     /**
+     * 根据key，查询value
+     */
+    SysConfig getConfigByKey(@Param("key") String key);
+
+    /**
      * 根据key，更新value
      */
     int updateValueByKey(@Param("key") String key, @Param("value") String value);

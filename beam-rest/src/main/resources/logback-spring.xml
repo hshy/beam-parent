@@ -29,6 +29,7 @@
             </encoder>
         </appender>
 
+
         <root level="info">
             <appender-ref ref="STDOUT"/>
         </root>
@@ -43,7 +44,6 @@
     <!-- ********************** 放到服务器上不管在什么环境都只在文件记录日志 **************************** -->
     <!-- ****************************************************************************************** -->
     <springProfile name="prod">
-
         <!-- 日志记录器，日期滚动记录 -->
         <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <!-- 正在记录的日志文件的路径及文件名 -->

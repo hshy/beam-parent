@@ -125,7 +125,6 @@
         background-size: 100%;
         background-color: #2d3a4b;
     }
-
     .ms-title {
         width: 100%;
         line-height: 50px;
@@ -134,7 +133,6 @@
         color: #fff;
         border-bottom: 1px solid #ddd;
     }
-
     .ms-login {
         position: absolute;
         left: 50%;
@@ -145,27 +143,22 @@
         background: rgba(255, 255, 255, 0.3);
         overflow: hidden;
     }
-
     .ms-content {
         padding: 30px 30px;
     }
-
     .login-btn {
         text-align: center;
     }
-
     .login-btn button {
         width: 100%;
         height: 36px;
         margin-bottom: 10px;
     }
-
     .login-tips {
         font-size: 12px;
         line-height: 30px;
         color: #fff;
     }
-
     .captchaPic {
         width: 40%;
         height: 100%;

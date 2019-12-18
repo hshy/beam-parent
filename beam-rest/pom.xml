@@ -83,6 +83,11 @@
             <artifactId>redisson</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
+
         <!--dubbo依赖包 使用dubbo时把注释打开-->
         <!--<dependency>-->
         <!--<groupId>com.alibaba.boot</groupId>-->

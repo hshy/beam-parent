@@ -205,7 +205,6 @@
 <script>
     import SysUserApi from '../../api/sysuser';
     import DeptApi from '../../api/sysdept';
-
     export default {
         name: 'basetable',
         data() {
