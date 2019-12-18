@@ -81,12 +81,12 @@
                             :content="amap.currentWindow.content">
                         </el-amap-info-window>
                     </el-amap>
-                    <!--<div class="toolbar">-->
-                        <!--<span v-if="loaded">-->
-                          <!--location: lng = {{ lng }} lat = {{ lat }}-->
-                        <!--</span>-->
-                        <!--<span v-else>正在定位</span>-->
-                    <!--</div>-->
+                    <div class="toolbar">
+                        <span v-if="amap.loaded">
+                          location: lng = {{amap.center.lng }} lat = {{ amap.center.lat }}
+                        </span>
+                        <span v-else>正在定位</span>
+                    </div>
                 </el-card>
             </el-col>
 
@@ -108,6 +108,7 @@
             return {
                 user: null,
                 amap:{
+                    loaded:false,
                     center:{},
                     amapManager,
                     address:{
@@ -122,23 +123,43 @@
                         visible:true,
                         content:null
                     },
-                    plugin: ['ToolBar', {
-                        pName: 'MapType',
-                        defaultType: 0,
-                        events: {
-                            init(o) {
-                                console.log(o);
+                    plugin: [
+                       {
+                            pName: 'ToolBar',
+                            defaultType: 0,
+                            events: {
+                                init(o) {
+                                    console.log(o);
+                                }
+                            }
+                        },
+                        {
+                            pName: 'Geolocation',
+                            events: {
+                                init(o) {
+                                    // o 是高德地图定位插件实例
+                                    console.log(o);
+                                    let that = this;
+                                    o.getCurrentPosition((status, result) => {
+                                        console.log(result);
+                                        if (result && result.position) {
+                                            that.amap.center = [result.position.lng,result.position.lat];
+                                            that.amap.loaded = true;
+                                            that.$nextTick();
+                                        }
+                                    });
+                                }
                             }
                         }
-                    }],
+                    ],
                     zoom:20,
                     markers:{
                         position:[],
                     },
                     events: {
                         init: (o) => {
+                            console.log(o);
                             o.getCity(result => {
-                                console.log(result)
                                 this.amap.address.city=result.city;
                                 this.amap.address.province=result.province
                                 this.amap.address.district=result.district
@@ -157,7 +178,7 @@
                             });
                             let _this =this
                             geocoder.getAddress([e.lnglat.lng,e.lnglat.lat], function(status, result) {
-                                console.log(e);
+                                console.log(result);
                                 let temp=result.regeocode.formattedAddress;
                                 _this.amap.currentWindow.content="地址:"+temp
                             });
@@ -189,8 +210,8 @@
         },
         methods: {
             initMap() {
-                let longitude =  119.216440 ;
-                let latitude = 26.043500;
+                let longitude =  119.237974 ;
+                let latitude = 26.053042;
                 this.amap.center=[longitude, latitude]
                 this.amap.markers.position=this.amap.center;
             },
