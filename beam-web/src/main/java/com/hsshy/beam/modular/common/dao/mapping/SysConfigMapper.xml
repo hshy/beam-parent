@@ -3,6 +3,8 @@
 
 <mapper namespace="com.hsshy.beam.modular.common.dao.SysConfigMapper">
 
+<!--    <cache flushInterval="10800" readOnly="false" size="5"></cache>-->
+
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.hsshy.beam.modular.common.entity.SysConfig" id="BaseResultMap">
         <result property="id" column="id"/>
@@ -25,7 +27,7 @@
     </update>
 
     <!-- 根据key，查询value -->
-    <select id="getByKey" parameterType="string"  resultType="string">
+    <select id="getByKey" parameterType="string" useCache="true"  resultType="string">
       select param_value from sys_config where `param_key` = #{key}
     </select>
     <select id="getConfigByKey" resultType="com.hsshy.beam.modular.common.entity.SysConfig">

@@ -73,6 +73,8 @@ public class TestController extends BaseBeanController {
         return R.ok(sysConfigService.getValue("test",""));
     }
 
+
+
 //    @ApiOperation(value = "动态数据源测试-test数据源")
 //    @IgnoreUTokenAuth
 //    @GetMapping(value = "/dynamic/test")
