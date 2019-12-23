@@ -20,7 +20,6 @@ import java.io.InputStream;
 @RequestMapping("/file")
 public class FileController {
 
-
     /**
      * 文件上传
      */
