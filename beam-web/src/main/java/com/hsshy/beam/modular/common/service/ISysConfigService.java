@@ -1,5 +1,7 @@
 package com.hsshy.beam.modular.common.service;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.modular.common.entity.SysConfig;
 
 import java.util.Optional;
@@ -14,10 +16,10 @@ import java.util.Optional;
  */
 public interface ISysConfigService extends IService<SysConfig> {
 
-     <T> T getConfigObject(String key, Class<T> clazz);
+    <T> T getConfigObject(String key, Class<T> clazz);
 
-     void updateValueByKey(String key, String value);
+    void updateValueByKey(String key, String value);
 
-     String getValue(String key, String defaultValue) ;
+    String getValue(String key, String defaultValue);
 
 }

@@ -1,16 +1,21 @@
 package com.hsshy.beam.modular.test.controller;
 import com.hsshy.beam.common.annotion.IgnoreUTokenAuth;
-import com.hsshy.beam.dynamic.datasource.annotion.DataSource;
-import com.hsshy.beam.modular.base.controller.BaseBeanController;
 import com.hsshy.beam.common.utils.R;
 import com.hsshy.beam.common.utils.redis.RedisUtil;
+import com.hsshy.beam.modular.base.controller.BaseBeanController;
 import com.hsshy.beam.modular.common.service.ISysConfigService;
 import com.hsshy.beam.modular.test.dto.LoginForm;
+import com.hsshy.beam.modular.test.service.AsyncService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.*;
 
 /**
  * @description: 测试
@@ -27,6 +32,9 @@ public class TestController extends BaseBeanController {
 
     @Autowired
     private ISysConfigService sysConfigService;
+
+    @Autowired
+    private AsyncService asyncService;
 
     /*
     *
@@ -92,8 +100,22 @@ public class TestController extends BaseBeanController {
 //        return R.ok(sysConfigService.getValue("test",""));
 //    }
 
-
-
+    @ApiOperation(value = "测试异步结果归集")
+    @IgnoreUTokenAuth
+    @GetMapping(value = "/asyn")
+    @SneakyThrows
+    public R  testAsyn(){
+        Future<String>  future1 = asyncService.getAsynResult1();
+        Future<String>  future2 = asyncService.getAsynResult2();
+        String result1 =future1.get();
+//        logger.info("异步1处理结果为：{}",result1);
+        String result2 =future2.get();
+//        logger.info("异步2处理结果为：{}",result2);
+        Map map = new HashMap();
+        map.put("result1",result1);
+        map.put("result2",result2);
+        return R.ok(map);
+    }
 
 
 }

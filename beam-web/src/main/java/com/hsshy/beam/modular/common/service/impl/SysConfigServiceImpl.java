@@ -6,11 +6,10 @@ import com.hsshy.beam.common.exception.BeamException;
 import com.hsshy.beam.modular.common.dao.SysConfigMapper;
 import com.hsshy.beam.modular.common.entity.SysConfig;
 import com.hsshy.beam.modular.common.service.ISysConfigService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 /**
  * <p>
@@ -20,6 +19,7 @@ import java.util.Optional;
  * @author stylefeng
  * @since 2018-10-15
  */
+@Slf4j
 @Service(value = "sysConfigService")
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {
 
@@ -32,6 +32,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
         }
         return value;
     }
+
 
     @Override
     public <T> T getConfigObject(String key, Class<T> clazz) {
