@@ -1,6 +1,8 @@
 package com.hsshy.beam.aop;
 import com.hsshy.beam.common.aop.BaseControllerExceptionHandler;
 import com.hsshy.beam.common.constant.RetEnum;
+import com.hsshy.beam.common.log.LogManager;
+import com.hsshy.beam.common.log.factory.LogTaskFactory;
 import com.hsshy.beam.common.utils.R;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
-
 
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -73,14 +74,13 @@ public class GlobalExceptionHandler extends BaseControllerExceptionHandler {
     }
 
 
-
-
     /**
      * 拦截未知的运行时异常
      */
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
+    @Override
     public R notFount(RuntimeException e) {
         e.printStackTrace();
         log.error("异常信息：{}",e.getMessage());

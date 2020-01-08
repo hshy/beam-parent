@@ -12,11 +12,10 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
-
 /**
  * 系统日志，切面处理类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author hs
  */
 @Aspect
 @Component
@@ -44,18 +43,15 @@ public class SysLogAspect {
 	private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		Method method = signature.getMethod();
-
 		String bussinessName = "";
 		SysLog syslog = method.getAnnotation(SysLog.class);
 		if(syslog != null){
 			//注解上的描述
 			bussinessName = syslog.value();
 		}
-
 		//请求的方法名
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = signature.getName();
-
 
 		//请求的参数
 		Object[] args = joinPoint.getArgs();
@@ -70,9 +66,6 @@ public class SysLogAspect {
 		if (null == user) {
 			return;
 		}
-
 		LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, params));
-
-
 	}
 }
