@@ -1,7 +1,7 @@
 package com.hsshy.beam.common.utils;
 
-import com.hsshy.beam.common.constant.RetEnum;
 import com.hsshy.beam.common.exception.BeamException;
+import com.hsshy.beam.common.constant.RetEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

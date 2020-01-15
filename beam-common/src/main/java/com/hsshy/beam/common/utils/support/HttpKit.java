@@ -1,4 +1,5 @@
 package com.hsshy.beam.common.utils.support;
+import com.hsshy.beam.common.utils.xss.XssAndSqlHttpServletRequestWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,7 +20,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.hsshy.beam.common.utils.xss.XssAndSqlHttpServletRequestWrapper;
 
 public class HttpKit {
 

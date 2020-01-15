@@ -1,6 +1,6 @@
 package com.hsshy.beam.common.aop.aspectj;
-import com.hsshy.beam.common.utils.redis.RedissLockUtil;
 import com.hsshy.beam.common.utils.ToolUtil;
+import com.hsshy.beam.common.utils.redis.RedissLockUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Order(1)
 /*order越小越是最先执行，但更重要的是最先执行的最后结束。order默认值是2147483647*/
-public class RedisLockAspect {
+public class
+RedisLockAspect {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	//Service层切点     用于记录错误日志
